@@ -1,6 +1,4 @@
-import CustomButton from "Shared/CustomButton"
-import bg2 from "../../Assests/Content/07/breadcrumbs_bg.jpg"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
+
 import { Home } from "@mui/icons-material"
 import { useNavigate } from "react-router-dom"
 
@@ -12,7 +10,7 @@ const Section1 = () => {
         <div
           className="relative h-[60vh] lg:h-[50vh]"
           style={{
-            backgroundImage: `url(${bg2})`,
+            // backgroundImage: `url(${bg2})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

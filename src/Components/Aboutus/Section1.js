@@ -1,8 +1,6 @@
-import CustomButton from "Shared/CustomButton"
-import bg2 from "../../Assests/Content/07/breadcrumbs_bg.jpg"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import { Home } from "@mui/icons-material"
 import { useNavigate } from "react-router-dom"
+import bg2 from "../../Assests/Content/07/breadcrumbs_bg.jpg"
 
 const Section1 = ({ data, isTeam }) => {
   const baseURL = process.env.REACT_APP_API_URL
@@ -11,15 +9,20 @@ const Section1 = ({ data, isTeam }) => {
     <>
       <div className="">
         <div
-          className="relative h-[35vh] !object-fit-fill  lg:h-[35vh]"
-          style={{
-            backgroundImage: `url(${data?.featuredMedia?.url ? baseURL + data?.featuredMedia?.url : bg2})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "fixed",
-          }}
+          className="relative h-[19rem] !object-fit-fill  lg:h-[19rem]"
+          // style={{
+          //   backgroundImage: `url(${data?.featuredMedia?.url ? baseURL + data?.featuredMedia?.url : bg2})`,
+          //   backgroundSize: "cover",
+          //   backgroundPosition: "center",
+          //   backgroundRepeat: "no-repeat",
+          //   backgroundAttachment: "fixed",
+          // }}
         >
+          <img
+            src={data?.cover?.url ? process.env.REACT_APP_API_URL + data?.cover?.url : bg2}
+            alt="Cover"
+            className="relative h-[19rem] w-full"
+          />
           <div className="bg-black bg-opacity-50 blur-sm absolute top-0 h-full w-full left-0 flex justify-center items-center "></div>
           <div className="flex flex-col  text-white absolute top-[15%]  justify-between px-[3%] lg:px-[7%] gap-4 ">
             <div className="text-xs lg:text-base whitespace-nowrap text-wrap font-semibold  gap-2  ">
@@ -27,7 +30,7 @@ const Section1 = ({ data, isTeam }) => {
               US / {isTeam ? "Management Team" : "Company Profile"}
             </div>
             <div className="text-base lg:text-3xl text-wrap my-2 font-semibold ">
-              {isTeam ? "Management Team" : "Company Profile"}
+              {isTeam ? "Management Team" : data?.title || "Company Profile"}
             </div>
             <div className="lg:w-[75%] !text-sm font-thin space border-l-2 p-1 border-red-700 pl-4 ">
               {data?.description || ""}

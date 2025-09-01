@@ -1,6 +1,6 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
-import { gsap } from 'gsap'
+import { gsap } from "gsap"
 import React, { useEffect, useState } from "react"
 import { FaQuoteLeft } from "react-icons/fa"
 import { useQuery } from "react-query"
@@ -51,7 +51,7 @@ function QuotationSliders() {
   }
 
   useEffect(() => {
-    gsap.from('.boxs', {
+    gsap.from(".boxs", {
       y: 300,
       opacity: 0,
       duration: 1,
@@ -62,45 +62,42 @@ function QuotationSliders() {
       //   // start: 'top 100%',
       //   toggleActions: 'play none none none',
       // },
-    });
-  }, []);
-      const {
-          data: testimonialData,
-          isLoading,
-          refetch,
-        } = useQuery(["testimonial"], () => testimonialServiceFn())
+    })
+  }, [])
+  const { data: testimonialData, isLoading, refetch } = useQuery(["testimonial"], () => testimonialServiceFn())
   return (
-    <div
-      style={{
-        backgroundImage: `url(${bg2})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
-      className="boxs h-[35vh] lg:h-[55vh] w-[90vw] lg:w-[74vw] rounded-lg m-5 lg:mx-[13vw] lg:my-16  overflow-hidden"
-    >
-      <div className="slider-container  h-[40vh] lg:h-[55vh] w-[90vw] lg:w-[74vw] bg-blue-900 rounded-lg bg-opacity-80  ">
-        <Slider {...settings}>
-         {testimonialData?.data?.data?.map((item)=>( <div className="relative h-[40vh] lg:h-[55vh] w-[90vw] lg:w-[74vw]">
-            <div className="absolute left-[15%] top-10 flex flex-col text-white gap-4 !justify-center w-[70%] !items-center">
-             <div className="relative overflow-hidden">
-                 <img
-                decoding="async"
-                // src={slider3}
-                src={baseURL+item?.avatar?.url}
-                className={`opacity-70 h-24 w-24  rounded-full object-cover `}
-                alt=""
-              />
-              <FaQuoteLeft  className="absolute opacity-95 bottom-0 mb-[-2px] left-[40%] !text-2xl" />
+    testimonialData?.data?.data?.length > 0 && (
+      <div
+        style={{
+          backgroundImage: `url(${bg2})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+        className="boxs h-[35vh] lg:h-[55vh] w-[90vw] lg:w-[74vw] rounded-lg m-5 lg:mx-[13vw] lg:my-16  overflow-hidden"
+      >
+        <div className="slider-container  h-[40vh] lg:h-[55vh] w-[90vw] lg:w-[74vw] bg-blue-900 rounded-lg bg-opacity-80  ">
+          <Slider {...settings}>
+            {testimonialData?.data?.data?.map((item) => (
+              <div className="relative h-[40vh] lg:h-[55vh] w-[90vw] lg:w-[74vw]">
+                <div className="absolute left-[15%] top-10 flex flex-col text-white gap-4 !justify-center w-[70%] !items-center">
+                  <div className="relative overflow-hidden">
+                    <img
+                      decoding="async"
+                      // src={slider3}
+                      src={baseURL + item?.avatar?.url}
+                      className={`opacity-70 h-24 w-24  rounded-full object-cover `}
+                      alt=""
+                    />
+                    <FaQuoteLeft className="absolute opacity-95 bottom-0 mb-[-2px] left-[40%] !text-2xl" />
+                  </div>
+                  <div className="!font-thin text-sm lg:text-base text-center family-serif2">{item?.comment}</div>
+                  <div className="font-semibold">-- {item?.name + " ( " + item?.degination + " )"}</div>
+                </div>
               </div>
-              <div className="!font-thin text-sm lg:text-base text-center family-serif2">
-                {item?.comment}
-              </div>
-              <div className="font-semibold">-- {item?.name + " ( "+item?.degination + " )"}</div>
-            </div>
-          </div>))}
-          {/* <div className="relative h-[40vh] lg:h-[55vh] w-[90vw] lg:w-[74vw]">
+            ))}
+            {/* <div className="relative h-[40vh] lg:h-[55vh] w-[90vw] lg:w-[74vw]">
             <div className="absolute left-[15%] top-10 flex flex-col text-white gap-4 !justify-center w-[70%] !items-center">
              <div className="relative overflow-hidden">
               <img
@@ -210,9 +207,10 @@ function QuotationSliders() {
               <div className="font-semibold">-- John Gerry Design Hunt</div>
             </div>
           </div> */}
-        </Slider>
+          </Slider>
+        </div>
       </div>
-    </div>
+    )
   )
 }
 

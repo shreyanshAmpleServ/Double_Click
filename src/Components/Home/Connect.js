@@ -6,13 +6,13 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 
 const Connections = () => {
-  const [isModal,setIsModal] = useState(false)
+  const [isModal, setIsModal] = useState(false)
 
   return (
     <>
       <div className=" py-[6%] !pb-[0%]">
         <div
-          className="relative h-[35vh] lg:h-[37vh]"
+          className="relative h-[20vh] lg:h-[12rem] overflow-hidden"
           style={{
             backgroundImage: `url(${bg2})`,
             backgroundSize: "cover",
@@ -21,15 +21,25 @@ const Connections = () => {
             backgroundAttachment: "fixed",
           }}
         >
-          <div className=" bg-primary !opacity-60 absolute top-0 h-full w-full left-0 flex justify-center items-center ">
-        </div>
-            <div className="flex flex-col lg:flex-row text-white absolute top-[15%] lg:top-[35%] justify-between px-[6%] lg:px-[12%] gap-4 items-center">
-            <div className="text-xl text-wrap  lg:w-[30%]">Interested in working with Doubleclick?</div>
-            <div className="lg:w-[37%] !text-sm">We don’t just manage suppliers, we micro-manage them. We have a consultative, personalized approach</div>
-            <CustomButton   
-            //  onClick={() => setIsModal(true)}
-              variant="outlined" className="!text-white border-3 font-bold !border-white !rounded-full" ><Link to="/contact" > GET IN TOUCH <ArrowForwardIosIcon className="!text-base" /></Link></CustomButton>
+          <div className=" bg-primary !opacity-60 absolute top-0 h-full w-full left-0 flex justify-center items-center "></div>
+          <div className="flex !w-[100%] flex-col lg:flex-row text-white absolute top-[30%] lg:top-[35%] justify-between px-[6%] lg:px-[12%] gap-4 items-center">
+            <div className="text-base lg:text-xl whitespace-nowrap  lg:w-[30%]">
+              Interested in working with Doubleclick?
             </div>
+            {/* <div className="lg:w-[37%] text-center text-xs lg:!text-sm">
+              We don’t just manage suppliers, we micro-manage them. We have a consultative, personalized approach
+            </div> */}
+            <CustomButton
+              //  onClick={() => setIsModal(true)}
+              variant="outlined"
+              className="!text-white border-3 font-bold !border-white !rounded-full"
+            >
+              <Link to="/contact" className="!text-xs lg:!text-base">
+                {" "}
+                GET IN TOUCH <ArrowForwardIosIcon className="!text-xs lg:!text-base" />
+              </Link>
+            </CustomButton>
+          </div>
         </div>
       </div>
       {/* <RequestQuoteModal modal={isModal} setModal={setIsModal} /> */}

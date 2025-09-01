@@ -10,6 +10,8 @@ import Loader from "Shared/Loader"
 import logo from "../../Assests/Content/logo_footer.png"
 import SerachModal from "./SearchModal"
 import SAPLogo from "../../Assests/SAPLogo.png"
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone"
+import EmailIcon from "@mui/icons-material/Email"
 /**
  * Header component
  * @param {Object} props - Component props
@@ -74,8 +76,8 @@ const Header = () => {
         </div>
       )}
       <header class="w-full family-serif2 hidden lg:block z-30">
-        <div class="w-full  pl-[6%] pr-[3%] bg-gray-600  text-white">
-          <div class="flex justify-between p-2">
+        <div class="w-full  !bg-[#4b5563]  text-white">
+          <div class="flex  pl-[5rem] pr-[3rem]  max-w-screen-2xl mx-auto justify-between p-2">
             <div class="col">
               <img src={SAPLogo} className="h-8 w-16" />
               {/* <img src={"https://www.doubleclick.co.tz/images/SAP_GoldPartner_grad_R.png"} className="h-8" /> */}
@@ -86,10 +88,12 @@ const Header = () => {
             </div>
             <div class="col-md-auto">
               <span class="mr-3">
-                <i class="icofont-ui-touch-phone"></i>
+                {/* <i class="icofont-ui-touch-phone"></i> */}
+                <PhoneIphoneIcon className="!text-white !font-thin  !text-sm" />
                 {findData("company_phone")?.value}
               </span>
               <span class="mr-3">
+                <EmailIcon className="!text-white !font-thin mr-1 !text-sm" />
                 <i class="icofont-ui-email"></i>
                 {findData("company_email")?.value}
               </span>
@@ -100,20 +104,20 @@ const Header = () => {
       <nav
         className={` bg-white !sticky !z-40 !top-0 !left-0 ${
           isScrolled ? "shadow-lg shadow-red-200" : ""
-        } w-full flex items-center text-black   py-4 px-[0%] lg:px-[4%]`}
+        } w-full flex items-center max-w-screen-2xl mx-auto text-black   py-4 px-[0%] lg:px-[4%]`}
       >
-        <div className=" container mx-auto px-4 flex justify-between items-center w-full">
+        <div className=" container mx-auto px-4 flex justify-between items-center w-full ">
           <a href="/" className="flex items-center">
             <img src={logo} alt="Logo" className="h-14" />
           </a>
 
           {/* Desktop Menu */}
           <div
-            className="hidden  !uppercase lg:flex space-x-4 text-sm align-content-end  text-black1 "
-            style={{ fontWeight: "700" }}
+            className="hidden  !uppercase lg:flex space-x-3 text-sm align-content-end  !text-black1 "
+            style={{ fontWeight: "550", color: "#4a4a4a" }}
           >
             <div>
-              <a href="/" className="hover:text-red-600">
+              <a href="/" className="text-black1 hover:text-red-600">
                 Home
               </a>
             </div>
@@ -127,13 +131,13 @@ const Header = () => {
               </div>
               <div className="absolute   w-auto bg-white border shadow-lg text-xs whitespace-nowrap font-medium rounded hidden group-hover:block z-50">
                 <a
-                  href="/aboutus-company-profile"
+                  href="/aboutus/company-profile"
                   className=" !capitalize whitespace-nowrap border-b flex px-4 py-2 hover:bg-gray-100"
                 >
                   Company Profile
                 </a>
                 <a
-                  href="/aboutus-management-team"
+                  href="/aboutus/management-team"
                   className=" !capitalize whitespace-nowrap flex px-4 py-2  hover:bg-gray-100"
                 >
                   Management Team
@@ -147,7 +151,7 @@ const Header = () => {
                 {item?.slug != "blogs" && (
                   <div className=" group">
                     <a
-                      href={item?.article ? `${window.location.origin}/${item.slug}/${item?.article?.slug}` : "#"}
+                      href={item?.article ? `${window.location.origin}/${item?.article?.slug}` : "#"}
                       className="!uppercase flex whitespace-nowrap items-center   hover:text-red-600"
                     >
                       {item?.name}
@@ -170,11 +174,7 @@ const Header = () => {
                               </div>
                             ) : (
                               <a
-                                href={
-                                  i?.article
-                                    ? `${window.location.origin}/${item.slug}/${i.slug}/${i?.article?.slug}`
-                                    : ""
-                                }
+                                href={i?.article ? `${window.location.origin}/${item.slug}/${i?.article?.slug}` : ""}
                                 className=" !capitalize whitespace-nowrap flex px-4 border-b py-2 hover:bg-gray-100"
                               >
                                 {/* {i?.children?.length > 0 &&  <FaAngleDown className="text-black !font-thin h-3  !mt-0.5 " />} */}
@@ -198,7 +198,7 @@ const Header = () => {
                                     <a
                                       href={
                                         j?.article
-                                          ? `${window.location.origin}/${item.slug}/${i.slug}/${j?.slug}/${j?.article?.slug}`
+                                          ? `${window.location.origin}/${item.slug}/${i.slug}/${j?.article?.slug}`
                                           : "/no-article-found"
                                       }
                                       className=" !capitalize pl-10 bg-gray-100 whitespace-nowrap border-b flex  px-4 py-1 hover:bg-gray-100"
@@ -213,7 +213,7 @@ const Header = () => {
                                       <a
                                         href={
                                           k?.article
-                                            ? `${window.location.origin}/${item.slug}/${i.slug}/${j.slug}/${k.slug}/${k?.article?.slug}`
+                                            ? `${window.location.origin}/${item.slug}/${i.slug}/${j.slug}/${k?.article?.slug}`
                                             : `${window.location.origin}/no-article-found`
                                         }
                                         className=" !capitalize px-4 flex bg-gray-200 py-1 !pl-16 border-b    hover:bg-gray-200"
@@ -265,10 +265,10 @@ const Header = () => {
               </button>
               {aboutOpen && (
                 <div className="pl-8 bg-gray-50">
-                  <a href="/aboutus-company-profile" className="block py-2 hover:bg-gray-100">
+                  <a href="/aboutus/company-profile" className="block py-2 hover:bg-gray-100">
                     Company Profile
                   </a>
-                  <a href="/aboutus-management-team" className="block py-2 hover:bg-gray-100">
+                  <a href="/aboutus/management-team" className="block py-2 hover:bg-gray-100">
                     Management Team
                   </a>
                 </div>
@@ -294,7 +294,7 @@ const Header = () => {
                       <a
                         href={
                           item?.article
-                            ? `${window.location.origin}/${item.slug}/${item.article.slug}`
+                            ? `${window.location.origin}/${item.article.slug}`
                             : `${window.location.origin}/no-article-found`
                         }
                         className="w-full text-left px-6 py-3 border-b hover:bg-gray-100 flex justify-between items-center"
@@ -328,7 +328,7 @@ const Header = () => {
                                 <a
                                   href={
                                     child?.article
-                                      ? `${window.location.origin}/${item.slug}/${child.slug}/${child.article.slug}`
+                                      ? `${window.location.origin}/${item.slug}/${child.article.slug}`
                                       : `${window.location.origin}/no-article-found`
                                   }
                                   className="block py-2 pl-8 text-sm border-b hover:bg-gray-200"
@@ -364,7 +364,7 @@ const Header = () => {
                                           key={sIdx}
                                           href={
                                             sub?.article
-                                              ? `${window.location.origin}/${item.slug}/${child.slug}/${sub.slug}/${sub.article.slug}`
+                                              ? `${window.location.origin}/${item.slug}/${child.slug}/${sub.article.slug}`
                                               : `${window.location.origin}/no-article-found`
                                           }
                                           className=" px-6 py-2 pl-10 border-b hover:bg-gray-200   hover:text-red-600 flex justify-between items-center"
@@ -384,7 +384,7 @@ const Header = () => {
                                                 key={s2Idx}
                                                 href={
                                                   sub2?.article
-                                                    ? `${window.location.origin}/${item.slug}/${child.slug}/${sub?.slug}/${sub2.slug}/${sub2.article.slug}`
+                                                    ? `${window.location.origin}/${item.slug}/${child.slug}/${sub?.slug}/${sub2.article.slug}`
                                                     : `${window.location.origin}/no-article-found`
                                                 }
                                                 className=" px-6 py-2 pl-14 border-b hover:bg-gray-200   hover:text-red-600 flex justify-between items-center"

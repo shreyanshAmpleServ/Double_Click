@@ -96,8 +96,8 @@ const Quotes = () => {
 
   return (
     <>
-      <div className=" p-[6%] !pb-[4%]">
-        <div className="text-center pb-14 ">
+      <div className="p-[6%] !pt-[3%] !pb-[1%]">
+        <div className="text-center pb-4 ">
           <div className="text-base font-semibold text-black">REQUEST A</div>
           <div className="text-3xl lg:text-4xl font-semibold text-primary">Free Quote</div>
         </div>
@@ -156,11 +156,11 @@ const Quotes = () => {
                 placeholder="Message"
                 className="mt-4"
               ></CustomInput>
-              <ReCAPTCHA
+              {/* <ReCAPTCHA
                 sitekey="6LdFLqgUAAAAABy-iDsiuueFkJOeYgZzR1IKi36C"
                 onChange={(token) => setCaptchaToken(token)}
                 // size="invisible"
-              />
+              /> */}
               <CustomButton type="submit" className="bg-primary-red !rounded-full !w-48 !font-semibold">
                 REQUEST QUOTE
               </CustomButton>

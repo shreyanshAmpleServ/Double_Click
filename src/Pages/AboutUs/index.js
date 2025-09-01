@@ -13,11 +13,13 @@ import { useLocation } from "react-router-dom"
 import { aboutServiceFn, footerServiceFn } from "Services/Home"
 import CustomButton from "Shared/CustomButton"
 import Loader from "Shared/Loader"
+import { fontSizeCalc, widthCalculate } from "Shared/widthCalculate"
+import logo from "../../Assests/Content/logo_footer.png"
 
 const AboutUs = () => {
   const location = useLocation()
 
-  const isAboutUsTeam = location.pathname.includes("aboutus-management-team")
+  const isAboutUsTeam = location.pathname.includes("management-team")
 
   const { data: aboutData, isLoading, refetch } = useQuery(["companyAddress"], () => aboutServiceFn())
 
@@ -35,9 +37,18 @@ const AboutUs = () => {
         />
         <meta property="og:title" content="About Us | DoubleClick Consulting" />
         <meta
+          name="title"
+          content={`About Us | ${isAboutUsTeam ? "Management Team" : "Company Profile"} | DoubleClick Consulting`}
+        />
+        <meta
           property="og:description"
           content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
         />
+        <meta
+          name="description"
+          content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+        />
+        <meta property="og:image" content={logo} />
       </Helmet>
       {isLoading && (
         <div className="fixed h-[100vh] w-[100vw] z-50 bg-black bg-opacity-85 flex justify-center items-center">
@@ -46,7 +57,7 @@ const AboutUs = () => {
         </div>
       )}
 
-      <div className=" w-[100vw]  overflow-hidden">
+      <div className=" w-[100vw] min-w-[320px] !bg-white max-w-screen-2xl mx-auto">
         <Section1 isTeam={isAboutUsTeam} data={aboutData?.data?.data} />
         {!isAboutUsTeam ? (
           <div className="flex px-[5%] py-[1%]  flex-wrap">
@@ -87,14 +98,18 @@ const AboutUs = () => {
                 )}
                 {item.__component === "shared.carousel-button" && (
                   <div
-                    className={`flex justify-center my-3 ${
-                      item?.renderBlock?.value == "Full" ? "w-[100%]" : " w-[100%]  lg:w-[50%]"
-                    }`}
+                    style={
+                      ({ fontSize: `${item?.renderBlock?.fontSize && fontSizeCalc(item?.renderBlock?.fontSize)}` },
+                      item?.renderBlock?.styleCSS)
+                    }
+                    className={`flex  justify-center my-3 w-[100%] ${widthCalculate(item?.renderBlock?.value)}  ${
+                      item?.renderBlock?.padding
+                    } ${item?.renderBlock?.margin}  ${item?.renderBlock?.htmlCSSClasses}  `}
                   >
                     {" "}
                     <CustomButton
-                      style={{ width: "90%" }}
-                      className="!bg-[#2f3985] !font-semibold  !px-10 !py-3 whitespace-nowrap !text-lg w-[75%] lg:w-[30%]  !rounded-full"
+                      style={({ width: "90%" }, item?.renderBlock?.innerStyleCSS)}
+                      className={` ${item?.renderBlock?.innerHtmlCSSClasses}!bg-[#2f3985] !font-semibold  !px-10 !py-3 whitespace-nowrap !text-lg w-[75%] lg:w-[30%]  !rounded-full`}
                     >
                       <a href={item?.link}> {item.name}</a>
                     </CustomButton>
@@ -105,19 +120,22 @@ const AboutUs = () => {
                 )}
                 {item.__component === "shared.quote" && <QuoteSection value={item.renderBlock?.value} data={item} />}
                 {item.__component === "shared.media" && (
-                  <AboutSection
-                    customWidth={item.renderBlock}
-                    value={item.renderBlock?.value}
-                    data={item?.file}
-                    type={2}
-                  />
+                  <AboutSection customWidth={item.renderBlock} value={item.renderBlock?.value} data={item} type={2} />
                 )}
                 {item.__component === "shared.media-wrapper" && (
                   <AboutSection
                     customWidth={item.renderBlock}
                     value={item.renderBlock?.value}
-                    data={item?.file}
+                    data={{ file: item?.file, thumbnail: item?.thumbnail_image }}
                     type={2}
+                  />
+                )}
+                {item.__component === "shared.stack-images" && (
+                  <AboutSection
+                    value={item?.renderBlock?.value}
+                    customWidth={item.renderBlock}
+                    data={item?.files}
+                    type={4}
                   />
                 )}
               </>

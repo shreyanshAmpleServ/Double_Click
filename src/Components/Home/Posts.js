@@ -38,14 +38,14 @@ const Posts = () => {
 
   return (
     <>
-      <div className="p-[6%] !pb-[2%]">
-        <div className="text-center lg:pb-14 ">
+      <div className="p-[6%] !pt-[3%] !pb-[1%]">
+        <div className="text-center lg:pb-4 ">
           <div className="text-base font-semibold text-black">COMPANYS NEWS</div>
           <div className="text-3xl lg:text-4xl font-semibold text-primary">Recent Posts</div>
         </div>
-        <div className="grid lg:grid-cols-3  text-center lg:gap-10 p-1">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2  text-center lg:gap-10 md:gap-5 p-1">
           {posts?.map((item, index) => (
-            <div className="  bg-white relative lg:px-4 py-10 pb-0 flex flex-col items-center gap-1 w-[88vw] lg:w-full lg:text-black2   ">
+            <div className="  bg-white relative lg:px-4 py-10 pb-0 flex flex-col items-center gap-1 w-[88vw] lg:w-full md:w-full lg:text-black2   ">
               <img
                 src={baseURL + item?.cover?.url}
                 alt=""

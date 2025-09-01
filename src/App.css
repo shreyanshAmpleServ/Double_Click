@@ -1,6 +1,7 @@
 /*  */
 * {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  /* background-color: gray; */
 }
 /* These are utility classes to enable 3D effects */
 .perspective {
@@ -18,3 +19,12 @@
 .rotate-x-180 {
   transform: rotateX(180deg);
 }
+figure img {
+  margin: auto;
+}
+.rendor :is(ol, ul) li {
+  margin: 0.6rem 0 !important;
+}
+/* .rendor :is(ol, ul) li::marker {
+  content: "❤️" !important;
+} */

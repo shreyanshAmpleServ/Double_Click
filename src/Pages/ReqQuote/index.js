@@ -1,8 +1,7 @@
-import { mainServiceFn, reqQuoteFn } from "Services/Home"
+import { coreServiceFn, footerServiceFn, reqQuoteFn } from "Services/Home"
 import { useState } from "react"
 import toast from "react-hot-toast"
 import { useMutation, useQuery } from "react-query"
-import req1 from "../../Assests/Content/bg_8.jpg"
 
 const initialise2 = {
   email: "",
@@ -12,8 +11,10 @@ const initialise2 = {
   service: "",
 }
 const RequestQuoteModal = ({ modal, setModal }) => {
+  const baseURL = process.env.REACT_APP_API_URL
   const [personalData, setPersonalData] = useState(initialise2)
-  const { data: mainServiceData, isLoading, refetch } = useQuery(["main-service"], () => mainServiceFn())
+  const { data: mainServiceData, isLoading, refetch } = useQuery(["main-service"], () => coreServiceFn())
+  const { data: globalData } = useQuery(["global-entity"], () => footerServiceFn())
 
   const handleChange2 = (e) => {
     setPersonalData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -31,6 +32,10 @@ const RequestQuoteModal = ({ modal, setModal }) => {
     addQuote({ data: personalData })
     // toast.success("Created Successfull !")
   }
+  const findData = (key) => {
+    return globalData?.data?.data?.filter((item) => item.key === key)?.[0]
+  }
+  console.log("mainServiceData", globalData?.data?.data)
   return (
     <>
       {modal && (
@@ -45,7 +50,7 @@ const RequestQuoteModal = ({ modal, setModal }) => {
               <div className="flex flex-col lg:flex-row shadow-md">
                 <div
                   style={{
-                    backgroundImage: `url(${req1})`,
+                    backgroundImage: `url(${baseURL + findData("quote_form_left_side")?.singleMedia?.url})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",

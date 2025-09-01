@@ -1,11 +1,7 @@
-import CustomButton from "Shared/CustomButton"
-import bg2 from "../../Assests/Content/popup_bg.jpg"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
-import { IoPlayOutline } from "react-icons/io5"
 import { useEffect, useRef, useState } from "react"
+import { IoPlayOutline } from "react-icons/io5"
 import { useQuery } from "react-query"
 import { footerServiceFn } from "Services/Home"
-import { Close } from "@mui/icons-material"
 
 const VideoSection = () => {
   const baseURL = process.env.REACT_APP_API_URL
@@ -40,7 +36,7 @@ const VideoSection = () => {
     <>
       <div className=" lg:p-[10%] !py-[4%]">
         <div
-          className="relative mx-auto w-[80%] rounded-2xl  lg:h-[70vh]  h-[37vh]"
+          className="relative mx-auto w-[80%] rounded-2xl  lg:h-[28rem]  h-[37vh]"
           style={{
             backgroundImage: `url(${baseURL + findData("home_page_video")?.supportMedia.url})`,
             backgroundSize: "cover",

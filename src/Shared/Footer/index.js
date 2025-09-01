@@ -1,12 +1,11 @@
-import { Facebook, Google, Instagram, PhoneAndroid, Twitter, WhatsApp } from "@mui/icons-material"
+import { EmailRounded, Google, PhoneAndroid } from "@mui/icons-material"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
-import { blogFn, footerServiceFn, newsLatterFn } from "Services/Home"
+import { blogFn, companiesServiceFn, footerServiceFn, newsLatterFn } from "Services/Home"
 import CustomButton from "Shared/CustomButton"
 import CustomIconButton from "Shared/CustomIconButton"
 import { gsap } from "gsap"
 import { useEffect, useRef, useState } from "react"
 import toast from "react-hot-toast"
-import { FaAt } from "react-icons/fa"
 import { FaLocationDot } from "react-icons/fa6"
 import { IoIosArrowForward } from "react-icons/io"
 import { MdAccessTime } from "react-icons/md"
@@ -14,6 +13,17 @@ import { useMutation, useQuery } from "react-query"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 
 const Footer = () => {
+  const [showButton, setShowButton] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowButton(window.scrollY > 100) // Show if scrolled more than 100px
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   const location = useLocation()
   const navigate = useNavigate()
   const baseURL = process.env.REACT_APP_API_URL
@@ -77,6 +87,7 @@ const Footer = () => {
     addNewsFn({ data: { email: email } })
     setEmail("")
   }
+  const { data: companiesAddress } = useQuery(["companyAddresss"], () => companiesServiceFn())
   return (
     <>
       {/* <hr  className="shadow-xl shadow-red-500"/> */}
@@ -270,48 +281,62 @@ const Footer = () => {
       </div> */}
       {/* </footer> */}
       {/* Third Part  */}
-      <div className="bg-sky-blue-100 px-[8%]">
-        {/* Section1 */}
-        <div className="flex lg:w-1/2 flex-col lg:flex-row justify-center mx-auto   items-center gap-4  lg:my-8 mt-8 ">
-          <div className="text-sm font-semibold">
-            {" "}
-            <span className="whitespace-nowrap"> SUBSCRIBE FOR </span>{" "}
-            <div className="text-base text-red-600">NEWSLETTER</div>{" "}
-          </div>
-          <div className="flex w-full lg:w-2/3  justify-center">
-            <input
-              className="border text-base w-[90%] border-blue-950 active:border-none rounded-s-full px-6 py-2.5 font-normal mr-[-50px]"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <CustomButton
-              disabled={!email}
-              isLoading={isAdding}
-              onClick={handleNews}
-              className="!bg-[#2f3985] !font-semibold  !px-8 whitespace-nowrap !text-sm !rounded-full"
-            >
-              CHECK NOW
-            </CustomButton>
-          </div>
-        </div>
-        {/* Section2 */}
-        <div className="grid lg:grid-cols-3 justify-start   items-center gap-4 my-20">
-          <div className=" flex h-full flex-col justify-start gap-6">
-            <div>
-              <img src={baseURL + findData("company_logo")?.singleMedia?.url} alt="Logo" className="h-14 w-auto" />
+      <div className="bg-sky-blue-100 w-[100vw]  min-w-[320px] max-w-screen-2xl mx-auto ">
+        <div className=" px-[5rem] ">
+          {/* Section1 */}
+          <div className="flex lg:w-1/2 flex-col lg:flex-row justify-center mx-auto   items-center gap-4  lg:my-8 mt-8 ">
+            <div className="text-sm font-semibold">
+              {" "}
+              <span className="whitespace-nowrap"> SUBSCRIBE FOR </span>{" "}
+              <div className="text-base text-red-600">NEWSLETTER</div>{" "}
             </div>
-            <p className="text-sm lg:text-base  text-[#818181]">
-              {findData("quote_form_left_side")?.value}
-              {/* Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
+            <div className="flex w-full lg:w-2/3  justify-center">
+              <input
+                className="border text-base w-[90%] border-blue-950 active:border-none rounded-s-full px-6 py-2.5 font-normal mr-[-50px]"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <CustomButton
+                disabled={!email}
+                isLoading={isAdding}
+                onClick={handleNews}
+                className="!bg-[#2f3985] !font-semibold  !px-8 whitespace-nowrap !text-sm !rounded-full"
+              >
+                CHECK NOW
+              </CustomButton>
+            </div>
+          </div>
+          {/* Section2 */}
+          <div className="grid lg:grid-cols-3 justify-start   items-center gap-4 my-8 lg:my-20">
+            <div className=" flex h-full flex-col justify-start gap-6">
+              <div>
+                <img src={baseURL + findData("company_logo")?.singleMedia?.url} alt="Logo" className="h-14 w-auto" />
+              </div>
+              <p className="text-sm lg:text-base  text-[#818181]">
+                {findData("quote_form_left_side")?.value}
+                {/* Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
             consequat ipsum, nec sagittis sem nibh id elit.  */}
-            </p>
-            <div>
-              <div className="font-bold mb-4 text-xl">We're Social</div>
-              <div className="flex gap-2">
-                {/* <img className="h-6 w-6" src={process.env.REACT_APP_API_URL+ findData("social_account_facebook")?.singleMedia?.url} /> */}
-                {findData("social_account_facebook")?.value && (
+              </p>
+              <div>
+                <div className="font-bold mb-4 text-xl">We're Social</div>
+                <div className="flex gap-2">
+                  {footData?.map(
+                    (item) =>
+                      item?.key?.startsWith("social_account_") && (
+                        <Link target="_blank" to={item?.value} key={item.key}>
+                          {item?.singleMedia?.url ? (
+                            <img className="h-8 w-87" src={baseURL + item?.singleMedia?.url} alt={item?.key} />
+                          ) : (
+                            <Google />
+                          )}
+                        </Link>
+                      )
+                  )}
+
+                  {/* <img className="h-6 w-6" src={process.env.REACT_APP_API_URL+ findData("social_account_facebook")?.singleMedia?.url} /> */}
+                  {/* {findData("social_account_facebook")?.value && (
                   <Link target="_blank" to={findData("social_account_facebook")?.value}>
                     <Facebook />
                   </Link>
@@ -336,101 +361,211 @@ const Footer = () => {
                     <Google />{" "}
                   </Link>
                 )}
+                {findData("social_account_linkedin")?.value && (
+                  <Link target="_blank" to={findData("social_account_linkedin")?.value}>
+                    <LinkedIn />{" "}
+                  </Link>
+                )} */}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className=" flex h-full flex-col justify-start">
-            <div className="text-xl font-semibold">Quick Navigation</div>
-            <div className="text-slate-600 my-5 text-sm grid grid-cols-2 gap-0">
-              <div
-                className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
-                onClick={() => handleClick("/")}
-              >
-                <IoIosArrowForward className="!text-red-500" /> <span>Home</span>
-              </div>
+            <div className=" flex h-full flex-col justify-start">
+              <div className="text-xl font-semibold lg:pl-[20%]">Quick Navigation</div>
+              <div className="text-slate-600 my-5 text-sm grid  lg:pl-[21%] gap-0">
+                <div
+                  className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
+                  onClick={() => handleClick("/")}
+                >
+                  <IoIosArrowForward className="!text-red-500" /> <span>Home</span>
+                </div>
 
-              {/* <div className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"  onClick={()=>{handleClick("/")}} >
+                {/* <div className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"  onClick={()=>{handleClick("/")}} >
               <IoIosArrowForward className="!text-red-500" /> <span>News</span>
             </div> */}
-              <div
+                {/* <div
                 className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
                 onClick={() => {
                   handleClick("/services")
                 }}
               >
                 <IoIosArrowForward className="!text-red-500" /> <span>Services</span>
-              </div>
-              {blogDatas?.data?.map((item) => (
-                <a
-                  href={
-                    item?.children?.length > 0
-                      ? `${window.location.origin}/${item?.slug}/${item?.children?.[0].slug}/${item?.children?.[0]?.article?.slug}`
-                      : `${window.location.origin}/${item.slug}/${item?.article?.slug}`
-                  }
+              </div> */}
+                {/* {blogDatas?.data?.map(
+                (item) =>
+                  item?.slug != "blogs" && (
+                    <a
+                      href={
+                        item?.children?.length > 0
+                          ? `${window.location.origin}/${item?.slug}/${item?.children?.[0].slug}/${item?.children?.[0]?.article?.slug}`
+                          : `${window.location.origin}/${item.slug}/${item?.article?.slug}`
+                      }
+                      className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
+                    >
+                      <IoIosArrowForward className="!text-red-500" /> <span>{item?.name}</span>
+                    </a>
+                  )
+              )} */}
+                {/* {blogDatas?.data?.map((item) => (
+                <>
+                  {item?.slug != "blogs" && (
+                    <div className=" group">
+                      <a
+                        href={item?.article ? `${window.location.origin}/${item.slug}/${item?.article?.slug}` : "#"}
+                        className="!capitalize flex whitespace-nowrap gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
+                      >
+                        <IoIosArrowForward className="!text-red-500" /> {item?.name?.toLowerCase()}
+                   
+                      </a>
+                      <div className="absolute   w-auto bg-white shadow-lg border text-xs whitespace-nowrap font-medium rounded hidden group-hover:block z-50">
+                        {item?.children
+                          ?.slice()
+                          .sort((a, b) => a.order - b.order)
+                          .map((i) => (
+                            <>
+                              {i?.children?.length > 0 ? (
+                                <div className=" !capitalize  bg-gray-100 whitespace-nowrap flex justify-between px-4 py-1.5 border-b hover:bg-gray-100">
+                                  {i.name}
+                                  {i?.children?.length > 0 && <FaAngleDown className="text-black !font-thin !mt-1 " />}
+                                </div>
+                              ) : (
+                                <a
+                                  href={
+                                    i?.article
+                                      ? `${window.location.origin}/${item.slug}/${i.slug}/${i?.article?.slug}`
+                                      : ""
+                                  }
+                                  className=" !capitalize whitespace-nowrap flex px-4 border-b py-2 hover:bg-gray-100"
+                                >
+                                  {i.name}
+                                </a>
+                              )}
+                              {i?.children?.length > 0 &&
+                                i?.children?.map((j) => (
+                                  <>
+                                    {j?.children?.length > 0 ? (
+                                      <div className=" !capitalize bg-gray-200 whitespace-nowrap border-b pl-10 flex justify-between px-4 py-1 hover:bg-gray-100">
+                                        {j.name}
+                                        {j?.children?.length > 0 && (
+                                          <FaAngleDown className="text-black !font-thin   !mt-1 " />
+                                        )}
+                                      </div>
+                                    ) : (
+                                      <a
+                                        href={
+                                          j?.article
+                                            ? `${window.location.origin}/${item.slug}/${i.slug}/${j?.slug}/${j?.article?.slug}`
+                                            : "/no-article-found"
+                                        }
+                                        className=" !capitalize pl-10 bg-gray-100 whitespace-nowrap border-b flex  px-4 py-1 hover:bg-gray-100"
+                                      >
+                                          {j.name}
+                                      </a>
+                                    )}
+
+                                    {j?.children?.length > 0 &&
+                                      j?.children?.map((k) => (
+                                        <a
+                                          href={
+                                            k?.article
+                                              ? `${window.location.origin}/${item.slug}/${i.slug}/${j.slug}/${k.slug}/${k?.article?.slug}`
+                                              : `${window.location.origin}/no-article-found`
+                                          }
+                                          className=" !capitalize px-4 flex bg-gray-200 py-1 !pl-16 border-b    hover:bg-gray-200"
+                                        >
+                                          {k.name}
+                                        </a>
+                                      ))}
+                                  </>
+                                ))}
+                            </>
+                          ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              ))} */}
+                <div
                   className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
+                  onClick={() => {
+                    handleClick("/blogs")
+                  }}
                 >
-                  <IoIosArrowForward className="!text-red-500" /> <span>{item?.name}</span>
-                </a>
-              ))}
-              <div
-                className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
-                onClick={() => {
-                  handleClick("/contact")
-                }}
-              >
-                <IoIosArrowForward className="!text-red-500" /> <span>Contacts</span>
-              </div>
-              <div
-                className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
-                onClick={() => {
-                  handleClick("/aboutus")
-                }}
-              >
-                <IoIosArrowForward className="!text-red-500" /> <span>About Us</span>
-              </div>
-              {/* <div className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"  onClick={()=>{handleClick("/")}} >
+                  <IoIosArrowForward className="!text-red-500" /> <span>Blogs</span>
+                </div>
+                <div
+                  className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
+                  onClick={() => {
+                    handleClick("/contact")
+                  }}
+                >
+                  <IoIosArrowForward className="!text-red-500" /> <span>Contacts</span>
+                </div>
+                <div
+                  className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"
+                  onClick={() => {
+                    handleClick("/aboutus")
+                  }}
+                >
+                  <IoIosArrowForward className="!text-red-500" /> <span>About Us</span>
+                </div>
+                {/* <div className="flex gap-2 items-center my-2 hover:translate-x-4  transition-all duration-300 cursor-pointer"  onClick={()=>{handleClick("/")}} >
               <IoIosArrowForward className="!text-red-500" /> <span>Projects</span>
             </div> */}
-            </div>
-          </div>
-
-          <div className=" flex h-full flex-col justify-start ">
-            <div className="text-xl font-semibold">Get In Touch</div>
-            <div className="text-gray-600 text-xs lg:text-sm font-light flex flex-col gap-0  my-3">
-              <div className="flex items-start gap-4  my-1 lg:my-2 ">
-                <FaLocationDot className="!text-2xl mt-2" />{" "}
-                <span>
-                  {findData("company_address_1")?.value
-                    ? findData("company_address_1")?.value
-                    : findData("company_address_2")?.value}
-                </span>
-              </div>
-              <div className="flex  items-start gap-4  my-1 lg:my-2 ">
-                <PhoneAndroid className="!text-2xl mt-2" />
-                <span>
-                  {" "}
-                  <div>{findData("company_phone")?.value}</div>
-                </span>
-              </div>
-
-              <div className="flex  items-start gap-4  my-1 lg:my-2 ">
-                <FaAt className="!text-2xl mt-2" />{" "}
-                <span>
-                  {" "}
-                  <div>{findData("company_email")?.value}</div>
-                </span>
-              </div>
-              <div className="flex gap-2 items-center my-1 lg:my-2 ">
-                <MdAccessTime className="!text-2xl mt-2" />{" "}
-                <span>
-                  <div>{findData("company_time")?.value}</div>
-                </span>
               </div>
             </div>
-          </div>
 
-          {/*    
+            <div className=" flex h-full flex-col justify-start ">
+              <div className="text-xl font-semibold">Get In Touch</div>
+              {companiesAddress?.data?.data?.map(
+                (item) =>
+                  item?.isDefault && (
+                    <div className="text-gray-600 text-xs lg:text-sm font-light flex flex-col gap-0  my-3">
+                      {item?.address && (
+                        <div className="flex items-start gap-4  my-1 lg:my-2 ">
+                          <FaLocationDot className="!text-4xl  mt-2 mr-2" />{" "}
+                          <span>
+                            {item?.address}
+                            {/* {findData("company_address_1")?.value
+                          ? findData("company_address_1")?.value
+                          : findData("company_address_2")?.value} */}
+                          </span>
+                        </div>
+                      )}
+                      {item?.phone && (
+                        <div className="flex  items-center gap-4  my-1 lg:my-2 ">
+                          <PhoneAndroid className="!text-2xl w-5 mt-2" />
+                          <span>
+                            {item?.phone}
+                            {/* <div>{findData("company_phone")?.value}</div> */}
+                          </span>
+                        </div>
+                      )}
+
+                      {item?.email && (
+                        <div className="flex items-center gap-4  my-1 lg:my-2 ">
+                          <EmailRounded className="!text-2xl w-5 mt-2" />{" "}
+                          <span>
+                            {item?.email}
+                            {/* <div>{findData("company_email")?.value}</div> */}
+                          </span>
+                        </div>
+                      )}
+                      {item?.time && (
+                        <div className="flex gap-2 items-center my-1 lg:my-2 ">
+                          <MdAccessTime className="!text-2xl mt-2" />{" "}
+                          <span>
+                            {item?.time}
+                            {/* <div>{findData("company_time")?.value}</div> */}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )
+              )}
+            </div>
+
+            {/*    
         <div   className=" flex h-full flex-col justify-start" >
           <div className="text-xl font-semibold mb-4">Recent Tweets</div>
           <div style={{fontSize:"14.2px"}} className="text-slate-500 text-sm  font-thin flex flex-col gap-0  ">
@@ -441,57 +576,62 @@ const Footer = () => {
            <Twitter /> FOLLOW @TWITTER
           </CustomButton>
         </div> */}
+          </div>
         </div>
       </div>
       {/* Last Part */}
-      <div className="flex  flex-col lg:flex-row justify-center  lg:justify-between pl-6 pr-6 lg:pl-20 lg:pr-8 text-xs font-thin gap-6 lg:text-sm  items-center py-6 bg-primary text-slate-200">
-        <div className="flex gap-2 ">
-          <div>Privecy Policy</div>
-          <div>|</div>
-          <div
-            className="cursor-pointer"
-            onClick={() => {
-              navigate("/contact")
-            }}
-          >
-            CONTACT
+      <div className=" bg-[#4b5563] text-slate-50">
+        <div className="flex w-[100vw] min-w-[320px] max-w-screen-2xl mx-auto flex-col lg:flex-row justify-center  lg:justify-between pl-6 pr-6 lg:pl-20 lg:pr-8 text-xs font-thin gap-2 lg:gap-6 lg:text-sm  items-center py-4 lg:py-6 bg-[#4b5563] text-slate-50">
+          <div className="flex gap-2 ">
+            <div>Privecy Policy</div>
+            <div>|</div>
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                navigate("/contact")
+              }}
+            >
+              CONTACT
+            </div>
+            <div>|</div>
+            <div
+              className="cursor-pointer"
+              onClick={() => {
+                window.scrollTo("0", { behavior: "smooth" })
+                navigate("/faq")
+              }}
+            >
+              FAQS
+            </div>
           </div>
-          <div>|</div>
-          <div
-            className="cursor-pointer"
-            onClick={() => {
-              window.scrollTo("0", { behavior: "smooth" })
-              navigate("/faq")
-            }}
-          >
-            FAQS
-          </div>
-        </div>
-        <div>
-          <span className="text-center ">
-            {" "}
-            2025 © All Rights Reserved by SAP B1 Solutions | SAP Gold Partner | Add-Ons Development | Double Click
-            Solutions.
-          </span>
+          <div>
+            <span className="text-center mr-7">
+              {" "}
+              2025 © All Rights Reserved by SAP B1 Solutions | SAP Gold Partner | Add-Ons Development | Double Click
+              Solutions.
+            </span>
 
-          {/* <CustomIconButton className="hidden lg:block  ">
+            {/* <CustomIconButton className="hidden lg:block  ">
          <a href="#headerId"><KeyboardArrowUpIcon className="!text-white font-bold" /></a>
         </CustomIconButton> */}
+          </div>
         </div>
       </div>
-      <div className="!absolute !bottom-4  !right-4  z-50 ">
-        <CustomIconButton
-          className=" bg-primary-dark"
-          onClick={() => {
-            const el = document.getElementById("headerId")
-            if (el) el.scrollIntoView({ behavior: "smooth" })
-          }}
-        >
-          <a>
-            <KeyboardArrowUpIcon className="!text-white font-bold" />
-          </a>
-        </CustomIconButton>
-      </div>
+      {showButton && (
+        <div className="!fixed !bottom-4  !right-4  z-50 ">
+          <CustomIconButton
+            className=" bg-primary-dark"
+            onClick={() => {
+              const el = document.getElementById("headerId")
+              if (el) el.scrollIntoView({ behavior: "smooth" })
+            }}
+          >
+            <a>
+              <KeyboardArrowUpIcon className="!text-white font-bold" />
+            </a>
+          </CustomIconButton>
+        </div>
+      )}
     </>
   )
 }
