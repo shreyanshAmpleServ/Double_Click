@@ -1,5 +1,5 @@
 import { ThemeProvider, createTheme } from "@mui/material"
-import RouterProvider from "Routes"
+import RouterProvider, { routes } from "Routes"
 import { footerServiceFn } from "Services/Home"
 import { useEffect } from "react"
 import { HelmetProvider } from "react-helmet-async"

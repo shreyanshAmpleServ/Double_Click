@@ -68,7 +68,6 @@ const Quotes = () => {
   const { data: quoteLeftData } = useQuery(["QuoteLeftDetails"], () => footerServiceFn())
   const serviceOption = mainServiceData?.data?.data?.[0]?.details.map((i) => ({ label: i?.title, value: i?.title }))
   // const transportTypeOptions = quotationSchemaData?.data?.attributes?.transportType?.enum?.map((i)=>({label:i,value:i}))
-  console.log("serviceOption", quoteLeftData)
   const handleChange = (e) => {
     setInitialData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }

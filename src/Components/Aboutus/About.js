@@ -120,7 +120,7 @@ const AboutSection = ({ data, customWidth, value, type, isMarked }) => {
             customWidth?.padding ? customWidth?.padding : "p-[10px]  pb-0"
           }  justify-start   ${customWidth?.margin}  ${customWidth?.htmlCSSClasses}  `}
         >
-          {data?.file?.mime?.includes("image/png") ? (
+          {data?.file?.mime?.includes("image") ? (
             <img
               src={data?.file?.url ? baseURL + data?.file?.url : mapImage}
               alt="Map"

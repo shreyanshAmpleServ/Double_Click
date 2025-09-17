@@ -1,0 +1,121 @@
+/* Perfect styling with enhanced animations */
+.contact-us,
+.contact-us::before,
+.contact-us::after {
+  box-sizing: border-box;
+}
+
+/* Completely prevent any hover dots or pseudo-elements */
+.contact-us:hover::before,
+.contact-us:hover::after,
+.contact-us::before,
+.contact-us::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+}
+
+/* Enhanced form field focus states */
+.form-field:focus-within {
+  transform: translateY(-2px);
+}
+
+/* Perfect transitions */
+.contact-us {
+  transition-property: transform, box-shadow, background-color, border-color, opacity, scale;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Remove any potential dots, particles, or unwanted elements */
+.no-dots,
+.no-dots *,
+.no-dots *::before,
+.no-dots *::after {
+  background-image: none !important;
+  background: none !important;
+}
+
+/* Enhanced backdrop blur */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+/* Perfect shadows */
+.shadow-perfect {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #4f46e5, #7c3aed, #ec4899);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #3730a3, #6d28d9, #db2777);
+}
+
+/* Animation delays */
+.delay-1000 {
+  animation-delay: 1s;
+}
+.delay-2000 {
+  animation-delay: 2s;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Enhanced text color for gradients */
+.text-white {
+  color: #ffffff !important;
+}
+
+/* Ensure button text is always visible */
+button span {
+  color: white !important;
+}
+
+/* Fix any gradient text issues */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

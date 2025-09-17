@@ -52,7 +52,7 @@ export const postServiceFn = (reqbody) => {
 export const postBlogServiceFn = (reqbody) => {
   try {
     const response = axiosInstance.get(
-      `/api/article-types?filters[type]=blogs&populate[articles][populate]=*&pagination[pageSize]=${
+      `/api/article-types?filters[type]=blogs&populate[articles][populate]=*&populate[cover]=true&pagination[pageSize]=${
         reqbody?.size || 25
       }`
     )

@@ -12,7 +12,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 export const routes = [
   { id: 1, path: "/", component: <Home />, navItem: "Home" },
   { id: 1, path: "/demo-videos.html", component: <Home />, navItem: "Home" },
-  { id: 2, path: "/contact", component: <Contact />, navItem: "Contact" },
+  { id: 2, path: "/contact", component: <Contact />, navItem: "ContactUs" },
   { id: 2, path: "/contact_us.php", component: <Contact />, navItem: "Contact" },
   { id: 3, path: "/aboutus", component: <AboutUs />, navItem: "AboutUs" },
   { id: 3, path: "/about-us.html", component: <AboutUs />, navItem: "AboutUs" },
@@ -37,17 +37,7 @@ const RouterProvider = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/" element={<SignIn />} />
-        <Route path="/forget-password" element={<ResetPassword />} />
-        <Route path="/vrf/:id" element={<VendorRegistrationForm />} />
-        <Route path="/request-for-invoice/:invoice_request_id" element={<UploadInvoice />} /> */}
         {routes.map((route) => {
-          // if (
-          //   route.access_level.includes(department.toUpperCase()) ||
-          //   route.access_level.includes("ALL") ||
-          //   route.access_level.includes(department.toUpperCase() !== "FINANCE" && department.toUpperCase() !== "HR" && "TEAM")
-          // )
           return (
             <Route
               key={route.id}

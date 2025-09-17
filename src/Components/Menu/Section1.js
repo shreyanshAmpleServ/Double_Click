@@ -29,16 +29,16 @@ const Section1 = ({ data, menu }) => {
             alt="Cover"
             className="relative h-[17rem] object-fit-fill w-full"
           />
-          <div className=" absolute top-0 h-full w-full left-0 flex justify-center items-center "></div>
+          <div className="absolute top-0 h-full w-full left-0 flex justify-center items-center "></div>
           {/* <div className="bg-black bg-opacity-30 blur-sm absolute top-0 h-full w-full left-0 flex justify-center items-center "></div> */}
           <div
             className={`flex flex-col  ${
-              data?.isDarkCover ? "text-white" : "text-black"
+              data?.IsDarkCover ? "text-white" : "text-black"
             } absolute top-[15%]  justify-between px-[3%] lg:px-[7%] gap-4 `}
           >
             <div
               className={`text-xs ${
-                data?.isDarkCover ? "!text-slate-50" : "!text-gray-700"
+                data?.IsDarkCover ? "!text-slate-50" : "!text-gray-700"
               } lg:text-base whitespace-nowrap text-wrap font-semibold  gap-2  `}
             >
               {console.log("menu", data)}
@@ -46,12 +46,13 @@ const Section1 = ({ data, menu }) => {
                 className="hover:cursor-pointer hover:!text-red-600 !capitalize mb-2"
                 onClick={() => navigate("/")}
               />
-              / {formatSlug(menu)}/{data?.title}
+              / {formatSlug(menu)}
+              {/* /{data?.title} */}
             </div>
             <div className={`text-base lg:text-3xl text-wrap my-2 font-semibold `}>{data?.title}</div>
             <div
               className={`lg:w-[75%] ${
-                data?.isDarkCover ? "!text-slate-50" : "!text-gray-700"
+                data?.IsDarkCover ? "!text-slate-50" : "!text-gray-700"
               } !text-sm font-thin space border-l-2 p-1 border-red-700 pl-4 `}
             >
               {data?.description}

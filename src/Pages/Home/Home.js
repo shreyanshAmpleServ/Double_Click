@@ -6,6 +6,11 @@ import Sliders from "Components/Home/Slider"
 import VideoSection from "Components/Home/Videos"
 import { Helmet } from "react-helmet-async"
 import logo from "../../Assests/Content/logo_footer.png"
+import Posts from "Components/Home/Posts"
+import UponSliderService from "Components/Home/UponSlider"
+import NewsletterSignup from "Components/Home/NewSletter"
+import DoubleClickHero from "Components/Home/AboutSection"
+import DoubleClickWebsite from "Components/Home/HeroSection"
 
 const Home = () => {
   return (
@@ -30,12 +35,16 @@ const Home = () => {
         <meta property="og:image" content={logo} />
       </Helmet>
       <div className=" w-[100vw] min-h-[73vh] min-w-[320px] !bg-white max-w-screen-2xl mx-auto !overflow-hidden">
-        <Sliders />
+        {/* <Sliders />
+        <UponSliderService /> */}
+        {/* <DoubleClickHero /> */}
+        <DoubleClickWebsite />
         <Services />
         <VideoSection />
-        <Quotes />
-        <QuotationSliders />
-        {/* <Posts /> */}
+        <NewsletterSignup />
+        {/* <Quotes /> */}
+        {/* <QuotationSliders /> */}
+        <Posts />
         <Connections />
       </div>
     </>

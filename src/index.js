@@ -17,9 +17,6 @@ const client = new QueryClient({
 
 const root = createRoot(document.getElementById("root"))
 
-console.error = () => {}
-console.warn = () => {}
-
 root.render(
   <QueryClientProvider client={client}>
     <ToastContainer limit={2} position="top-right" autoClose={2000} />

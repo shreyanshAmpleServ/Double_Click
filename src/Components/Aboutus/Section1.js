@@ -19,12 +19,16 @@ const Section1 = ({ data, isTeam }) => {
           // }}
         >
           <img
-            src={data?.cover?.url ? process.env.REACT_APP_API_URL + data?.cover?.url : bg2}
+            src={data?.featuredMedia?.url ? process.env.REACT_APP_API_URL + data?.featuredMedia?.url : bg2}
             alt="Cover"
             className="relative h-[19rem] w-full"
           />
           <div className="bg-black bg-opacity-50 blur-sm absolute top-0 h-full w-full left-0 flex justify-center items-center "></div>
-          <div className="flex flex-col  text-white absolute top-[15%]  justify-between px-[3%] lg:px-[7%] gap-4 ">
+          <div
+            className={`flex flex-col   ${
+              !data?.IsDarkCover ? "text-white" : "text-black"
+            } absolute top-[15%]  justify-between px-[3%] lg:px-[7%] gap-4 `}
+          >
             <div className="text-xs lg:text-base whitespace-nowrap text-wrap font-semibold  gap-2  ">
               <Home className="hover:cursor-pointer hover:!text-red-600 mb-2" onClick={() => navigate("/")} /> / ABOUT
               US / {isTeam ? "Management Team" : "Company Profile"}

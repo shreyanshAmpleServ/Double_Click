@@ -15,6 +15,14 @@ import CustomButton from "Shared/CustomButton"
 import Loader from "Shared/Loader"
 import { fontSizeCalc, widthCalculate } from "Shared/widthCalculate"
 import logo from "../../Assests/Content/logo_footer.png"
+import EnhancedOurStorySection from "Components/AboutUsNew/OurStorySection"
+import HeroSection from "Components/AboutUsNew/HeroSection"
+import Differentiators from "Components/AboutUsNew/Differection"
+import CoreValues from "Components/AboutUsNew/CoreValue"
+import VisionSection from "Components/AboutUsNew/Vision"
+import PartnershipsSection from "Components/AboutUsNew/PartnershipSection"
+import CTASection from "Components/AboutUsNew/CTASection"
+import DoubleClickHero from "Components/Home/AboutSection"
 
 const AboutUs = () => {
   const location = useLocation()
@@ -58,88 +66,98 @@ const AboutUs = () => {
       )}
 
       <div className=" w-[100vw] min-w-[320px] !bg-white max-w-screen-2xl mx-auto">
-        <Section1 isTeam={isAboutUsTeam} data={aboutData?.data?.data} />
+        {isAboutUsTeam && <Section1 isTeam={isAboutUsTeam} data={aboutData?.data?.data} />}
         {!isAboutUsTeam ? (
-          <div className="flex px-[5%] py-[1%]  flex-wrap">
-            {aboutData?.data?.data?.blocks?.map((item) => (
-              <>
-                {item.__component === "shared.about" && (
-                  <AboutSection
-                    customWidth={item.renderBlock}
-                    value={item.renderBlock?.value}
-                    data={item?.body}
-                    type={0}
-                  />
-                )}
-                {item.__component === "shared.contact-form" && <ContactForm />}
-                {item.__component === "shared.team" && (
-                  <Teams
-                    value={item.renderBlock?.value}
-                    data={item?.team}
-                    title={item?.title}
-                    description={item?.description}
-                  />
-                )}
-                {item.__component === "shared.rich-text" && (
-                  <AboutSection
-                    customWidth={item.renderBlock}
-                    value={item.renderBlock?.value}
-                    data={item?.body}
-                    type={1}
-                  />
-                )}
-                {item.__component === "shared.html-markdown-wrapper" && (
-                  <AboutSection
-                    customWidth={item.renderBlock}
-                    value={item.renderBlock?.value}
-                    data={item?.body}
-                    type={3}
-                  />
-                )}
-                {item.__component === "shared.carousel-button" && (
-                  <div
-                    style={
-                      ({ fontSize: `${item?.renderBlock?.fontSize && fontSizeCalc(item?.renderBlock?.fontSize)}` },
-                      item?.renderBlock?.styleCSS)
-                    }
-                    className={`flex  justify-center my-3 w-[100%] ${widthCalculate(item?.renderBlock?.value)}  ${
-                      item?.renderBlock?.padding
-                    } ${item?.renderBlock?.margin}  ${item?.renderBlock?.htmlCSSClasses}  `}
-                  >
-                    {" "}
-                    <CustomButton
-                      style={({ width: "90%" }, item?.renderBlock?.innerStyleCSS)}
-                      className={` ${item?.renderBlock?.innerHtmlCSSClasses}!bg-[#2f3985] !font-semibold  !px-10 !py-3 whitespace-nowrap !text-lg w-[75%] lg:w-[30%]  !rounded-full`}
-                    >
-                      <a href={item?.link}> {item.name}</a>
-                    </CustomButton>
-                  </div>
-                )}
-                {item.__component === "shared.slider-wrapper" && (
-                  <Sliders customWidth={item.renderBlock} value={item.renderBlock?.value} data={item?.files} />
-                )}
-                {item.__component === "shared.quote" && <QuoteSection value={item.renderBlock?.value} data={item} />}
-                {item.__component === "shared.media" && (
-                  <AboutSection customWidth={item.renderBlock} value={item.renderBlock?.value} data={item} type={2} />
-                )}
-                {item.__component === "shared.media-wrapper" && (
-                  <AboutSection
-                    customWidth={item.renderBlock}
-                    value={item.renderBlock?.value}
-                    data={{ file: item?.file, thumbnail: item?.thumbnail_image }}
-                    type={2}
-                  />
-                )}
-                {item.__component === "shared.stack-images" && (
-                  <AboutSection
-                    value={item?.renderBlock?.value}
-                    customWidth={item.renderBlock}
-                    data={item?.files}
-                    type={4}
-                  />
-                )}
-              </>
-            ))}
+          // <div className="flex px-[5%] py-[1%]  flex-wrap">
+          //   {aboutData?.data?.data?.blocks?.map((item) => (
+          //     <>
+          //       {item.__component === "shared.about" && (
+          //         <AboutSection
+          //           customWidth={item.renderBlock}
+          //           value={item.renderBlock?.value}
+          //           data={item?.body}
+          //           type={0}
+          //         />
+          //       )}
+          //       {item.__component === "shared.contact-form" && <ContactForm />}
+          //       {item.__component === "shared.team" && (
+          //         <Teams
+          //           value={item.renderBlock?.value}
+          //           data={item?.team}
+          //           title={item?.title}
+          //           description={item?.description}
+          //         />
+          //       )}
+          //       {item.__component === "shared.rich-text" && (
+          //         <AboutSection
+          //           customWidth={item.renderBlock}
+          //           value={item.renderBlock?.value}
+          //           data={item?.body}
+          //           type={1}
+          //         />
+          //       )}
+          //       {item.__component === "shared.html-markdown-wrapper" && (
+          //         <AboutSection
+          //           customWidth={item.renderBlock}
+          //           value={item.renderBlock?.value}
+          //           data={item?.body}
+          //           type={3}
+          //         />
+          //       )}
+          //       {item.__component === "shared.carousel-button" && (
+          //         <div
+          //           style={
+          //             ({ fontSize: `${item?.renderBlock?.fontSize && fontSizeCalc(item?.renderBlock?.fontSize)}` },
+          //             item?.renderBlock?.styleCSS)
+          //           }
+          //           className={`flex  justify-center my-3 w-[100%] ${widthCalculate(item?.renderBlock?.value)}  ${
+          //             item?.renderBlock?.padding
+          //           } ${item?.renderBlock?.margin}  ${item?.renderBlock?.htmlCSSClasses}  `}
+          //         >
+          //           {" "}
+          //           <CustomButton
+          //             style={({ width: "90%" }, item?.renderBlock?.innerStyleCSS)}
+          //             className={` ${item?.renderBlock?.innerHtmlCSSClasses}!bg-[#2f3985] !font-semibold  !px-10 !py-3 whitespace-nowrap !text-lg w-[75%] lg:w-[30%]  !rounded-full`}
+          //           >
+          //             <a href={item?.link}> {item.name}</a>
+          //           </CustomButton>
+          //         </div>
+          //       )}
+          //       {item.__component === "shared.slider-wrapper" && (
+          //         <Sliders customWidth={item.renderBlock} value={item.renderBlock?.value} data={item?.files} />
+          //       )}
+          //       {item.__component === "shared.quote" && <QuoteSection value={item.renderBlock?.value} data={item} />}
+          //       {item.__component === "shared.media" && (
+          //         <AboutSection customWidth={item.renderBlock} value={item.renderBlock?.value} data={item} type={2} />
+          //       )}
+          //       {item.__component === "shared.media-wrapper" && (
+          //         <AboutSection
+          //           customWidth={item.renderBlock}
+          //           value={item.renderBlock?.value}
+          //           data={{ file: item?.file, thumbnail: item?.thumbnail_image }}
+          //           type={2}
+          //         />
+          //       )}
+          //       {item.__component === "shared.stack-images" && (
+          //         <AboutSection
+          //           value={item?.renderBlock?.value}
+          //           customWidth={item.renderBlock}
+          //           data={item?.files}
+          //           type={4}
+          //         />
+          //       )}
+          //     </>
+          //   ))}
+          // </div>
+          <div>
+            <DoubleClickHero />
+            {/* <HeroSection /> */}
+            {/* <EnhancedOurStorySection /> */}
+            <Differentiators />
+            <CoreValues />
+            <VisionSection />
+            <PartnershipsSection />
+            <CTASection />
           </div>
         ) : (
           <>

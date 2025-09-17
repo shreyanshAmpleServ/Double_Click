@@ -4,17 +4,18 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import RequestQuoteModal from "Pages/ReqQuote"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import air from "../../Assests/Air_Sea_Land.jpg"
 
 const Connections = () => {
   const [isModal, setIsModal] = useState(false)
 
   return (
     <>
-      <div className=" py-[6%] !pb-[0%]">
+      <div className=" py-[4%] !pb-[0%]">
         <div
           className="relative h-[20vh] lg:h-[12rem] overflow-hidden"
           style={{
-            backgroundImage: `url(${bg2})`,
+            backgroundImage: `url(${air || bg2})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

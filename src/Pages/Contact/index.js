@@ -4,11 +4,16 @@ import { useEffect } from "react"
 import { Helmet } from "react-helmet-async"
 import Loader from "Shared/Loader"
 import logo from "../../Assests/Content/logo_footer.png"
+import { footerServiceFn } from "Services/Home"
+import { useQuery } from "react-query"
 
 const Contact = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }, [])
+  const { data } = useQuery(["global"], () => footerServiceFn())
+  const values = data?.data?.data?.filter((item) => item.key === "contact-us")?.[0]
+  console.log("footer data", values)
   return (
     <>
       <Helmet>
@@ -33,7 +38,7 @@ const Contact = () => {
       {/* {isLoading && <div className="fixed h-[100vh] w-[100vw] z-50 bg-black bg-opacity-85 flex justify-center items-center"> <Loader /></div>} */}
 
       <div className="w-[100vw] min-h-[73vh] min-w-[320px] !bg-white max-w-screen-2xl mx-auto overflow-hidden">
-        <Section1 />
+        <Section1 values={values} />
         <ContactForm />
       </div>
     </>
