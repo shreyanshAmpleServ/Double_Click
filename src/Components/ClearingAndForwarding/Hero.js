@@ -7,14 +7,12 @@ export default function Hero() {
   return (
     <section className="relative w-full pt-32 pb-20 overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" style={{ height: "100vh" }}>
         <img src="/images/hero-bg.png" alt="Hero Background" className="object-cover w-full h-full" />
-        {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ height: "100vh" }}>
         <div className="max-w-3xl">
           {/* Main Headline */}
           <h1 className="!text-6xl py-10 !my-0 !font-bold !text-white !mb-6 !leading-tight">
