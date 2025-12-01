@@ -1,9 +1,8 @@
-import { AccountCircle, Logout, TaskAlt } from "@mui/icons-material"
+import { AccountCircle, Logout } from "@mui/icons-material"
 import { Avatar, Divider, ListItemButton, Menu, useTheme } from "@mui/material"
 import { checkInCheckOutInDetailFn, checkInCheckOutInFn } from "Services/Profile"
 import { useProfile } from "Settings"
 import { useState } from "react"
-import { useCurrentLocation } from "react-mkx-toolkit"
 import { useMutation, useQuery } from "react-query"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
@@ -18,10 +17,8 @@ export const LogoutBusiness = () => {
 
 const ProfileMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null)
-  const { latitude, longitude } = useCurrentLocation()
 
   const { profile } = useProfile()
-  const isAdmin = profile?.role === "Admin"
 
   const open = Boolean(anchorEl)
 
@@ -76,30 +73,6 @@ const ProfileMenu = () => {
             <AccountCircle /> Profile
           </ListItemButton>
         </Link>
-
-        {!isAdmin && (
-          <ListItemButton
-            disabled={status === "checked out"}
-            className="!flex !capitalize gap-2"
-            onClick={() =>
-              latitude && longitude
-                ? checkInCheckOutIn({ latitude, longitude })
-                : toast.error("Location permission required.")
-            }
-          >
-            <p
-              className={
-                status === "checked out"
-                  ? "!text-green-500"
-                  : status === "checked in"
-                  ? "!text-blue-500"
-                  : "text-red-500"
-              }
-            >
-              <TaskAlt /> {status}
-            </p>
-          </ListItemButton>
-        )}
 
         {/* <Link to="/reset-password">
           <ListItemButton className="!flex gap-2" onClick={handleClose}>

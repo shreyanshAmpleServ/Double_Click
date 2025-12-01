@@ -6,7 +6,8 @@ const Button = ({ variant = "primary", className = "", children, ...props }) => 
   const variants = {
     primary: "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 focus-visible:ring-blue-500",
     light: "bg-white text-blue-700 hover:bg-gray-100 border border-gray-200 focus-visible:ring-blue-500",
-    outline: "border border-white/30 text-white hover:bg-white/10 focus-visible:ring-white/60",
+    outline:
+      "border border-white border-opacity-30 text-white hover:bg-white hover:bg-opacity-10 focus-visible:ring-white focus-visible:ring-opacity-60",
     dark: "bg-gray-900 text-white hover:bg-black focus-visible:ring-gray-600",
   }
   return (
@@ -45,4 +46,13 @@ const Section = ({ id, className = "", children }) => (
     {children}
   </section>
 )
+
+const Badge = ({ className = "", children }) => (
+  <span
+    className={`inline-flex items-center gap-2 rounded-full border border-white border-opacity-30 bg-white bg-opacity-10 px-4 py-2 text-sm font-semibold ${className}`}
+  >
+    {children}
+  </span>
+)
+
 export { Container, Card, Section, Button }

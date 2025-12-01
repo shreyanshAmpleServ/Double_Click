@@ -14,6 +14,8 @@ import { fontSizeCalc, widthCalculate } from "Shared/widthCalculate"
 import logo from "../../Assests/Content/logo_footer.png"
 import FleetManagment from "Components/FleetManagement"
 import OirGas from "Components/OilGas"
+import ClearingAndForwarding from "Components/ClearingAndForwarding"
+import Warehousing from "Components/Warehousing"
 
 const Menus = () => {
   const baseURL = process.env.REACT_APP_API_URL
@@ -23,6 +25,8 @@ const Menus = () => {
   const { pathname } = window.location
   const isFleetManagement = pathname.includes("fleet-management-solution")
   const isOilGas = pathname.includes("dcc-oil-and-gas-solution")
+  const isClearingAndForwarding = pathname.includes("clearing-and-forwarding-management")
+  const isWarehousing = pathname.includes("warehouse-management-solution")
   return (
     <>
       <Helmet>
@@ -89,6 +93,10 @@ const Menus = () => {
             <FleetManagment />
           ) : isOilGas ? (
             <OirGas />
+          ) : isClearingAndForwarding ? (
+            <ClearingAndForwarding />
+          ) : isWarehousing ? (
+            <Warehousing />
           ) : (
             <>
               <Section1 menu={subBlogData?.data?.data?.[0]?.title || menu} data={subBlogData?.data?.data?.[0]} />

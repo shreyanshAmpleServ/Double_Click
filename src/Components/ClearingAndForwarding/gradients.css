@@ -1,0 +1,30 @@
+.gradient-blue-teal {
+  background-image: linear-gradient(to bottom right, #14b8a6 5%, #1e40af 35%, #1e40af 70%, #14b8a6 90%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.hidden-mobile {
+  display: none;
+}
+@media (min-width: 768px) {
+  .hidden-mobile {
+    display: initial;
+  }
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold transition;
+}
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800;
+}
+.btn-outline {
+  @apply border border-white/30 text-white hover:bg-white/10;
+}
+
+.card {
+  @apply rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-shadow p-6;
+}
