@@ -9,6 +9,8 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0" style={{ height: "100vh" }}>
         <img src="/images/hero-bg.png" alt="Hero Background" className="object-cover w-full h-full" />
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}

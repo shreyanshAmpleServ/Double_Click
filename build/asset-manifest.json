@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.d0360efe.css",
-    "main.js": "/static/js/main.029c88d0.js",
+    "main.js": "/static/js/main.0c44a36f.js",
     "static/media/Home-Page-Image.png": "/static/media/Home-Page-Image.9e0638f8936674ad7ea2.png",
     "static/media/help.png": "/static/media/help.0414a0c3073906d7b2f8.png",
     "static/media/Air_Sea_Land.jpg": "/static/media/Air_Sea_Land.4155274227943b26a8ba.jpg",
@@ -37,10 +37,10 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
     "main.d0360efe.css.map": "/static/css/main.d0360efe.css.map",
-    "main.029c88d0.js.map": "/static/js/main.029c88d0.js.map"
+    "main.0c44a36f.js.map": "/static/js/main.0c44a36f.js.map"
   },
   "entrypoints": [
     "static/css/main.d0360efe.css",
-    "static/js/main.029c88d0.js"
+    "static/js/main.0c44a36f.js"
   ]
 }
