@@ -111,9 +111,10 @@ const NewsletterSignup = () => {
               opacity: 1,
               scale: 1,
               duration: 1,
-              ease: "power2.out",
+              // ease: "power2.out",
+              ease: "back.out(1.7)",
             },
-            "-=0.6"
+            "-=2"
           )
 
           // Input field expand animation
@@ -125,7 +126,7 @@ const NewsletterSignup = () => {
               duration: 0.8,
               ease: "power2.out",
             },
-            "-=0.5"
+            "-=1.2"
           )
 
           // Button spin and scale in
@@ -138,7 +139,7 @@ const NewsletterSignup = () => {
               duration: 0.8,
               ease: "back.out(1.5)",
             },
-            "-=0.4"
+            "-=1"
           )
 
         return tl

@@ -1,39 +1,32 @@
-import AboutSection from "Components/Aboutus/About"
 import Questionaires from "Components/Aboutus/Questionaires"
 import Section1 from "Components/Aboutus/Section1"
 import Teams from "Components/Aboutus/Teams"
-import QuoteSection from "Components/Menu/Quote"
-import { Sliders } from "Components/Menu/Slider"
-import ContactForm from "Components/Contact/ContactForm"
+import CoreValues from "Components/AboutUsNew/CoreValue"
+import CTASection from "Components/AboutUsNew/CTASection"
+import Differentiators from "Components/AboutUsNew/Differection"
+import PartnershipsSection from "Components/AboutUsNew/PartnershipSection"
+import VisionSection from "Components/AboutUsNew/Vision"
+import DoubleClickHero from "Components/Home/AboutSection"
 import Connections from "Components/Home/Connect"
 import Quotes from "Components/Home/Quote"
 import { Helmet } from "react-helmet-async"
 import { useQuery } from "react-query"
 import { useLocation } from "react-router-dom"
-import { aboutServiceFn, footerServiceFn } from "Services/Home"
-import CustomButton from "Shared/CustomButton"
+import { aboutServiceFn } from "Services/Home"
 import Loader from "Shared/Loader"
-import { fontSizeCalc, widthCalculate } from "Shared/widthCalculate"
 import logo from "../../Assests/Content/logo_footer.png"
-import EnhancedOurStorySection from "Components/AboutUsNew/OurStorySection"
-import HeroSection from "Components/AboutUsNew/HeroSection"
-import Differentiators from "Components/AboutUsNew/Differection"
-import CoreValues from "Components/AboutUsNew/CoreValue"
-import VisionSection from "Components/AboutUsNew/Vision"
-import PartnershipsSection from "Components/AboutUsNew/PartnershipSection"
-import CTASection from "Components/AboutUsNew/CTASection"
-import DoubleClickHero from "Components/Home/AboutSection"
+import FuelERPFeatures from "Components/OilGas"
 
 const AboutUs = () => {
   const location = useLocation()
 
   const isAboutUsTeam = location.pathname.includes("management-team")
 
-  const { data: aboutData, isLoading, refetch } = useQuery(["companyAddress"], () => aboutServiceFn())
+  const { data: aboutData, isLoading } = useQuery(["companyAddress"], () => aboutServiceFn())
 
-  const findData = (key) => {
-    return aboutData?.data?.data?.blocks?.filter((item) => item.__component === key)?.[0]
-  }
+  // const findData = (key) => {
+  //   return aboutData?.data?.data?.blocks?.filter((item) => item.__component === key)?.[0]
+  // }
   return (
     <>
       <Helmet>

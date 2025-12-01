@@ -144,7 +144,7 @@ export default function EnhancedDifferentiators() {
   return (
     <section ref={sectionRef} className="bg-gray-50 py-10 px-6 overflow-hidden relative">
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         <div
           className={`absolute top-20 left-10 w-32 h-32 bg-blue-200 rounded-full blur-3xl opacity-20 transition-all duration-2000 ${
             animationPhase >= 1 ? "scale-100" : "scale-0"
@@ -160,7 +160,7 @@ export default function EnhancedDifferentiators() {
             animationPhase >= 3 ? "scale-100" : "scale-0"
           }`}
         ></div>
-      </div>
+      </div> */}
 
       <div className="max-w-6xl mx-auto text-center relative z-10">
         {/* Animated Header Badge */}

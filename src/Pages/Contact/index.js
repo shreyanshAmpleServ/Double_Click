@@ -2,10 +2,9 @@ import ContactForm from "Components/Contact/ContactForm"
 import Section1 from "Components/Contact/Section1"
 import { useEffect } from "react"
 import { Helmet } from "react-helmet-async"
-import Loader from "Shared/Loader"
-import logo from "../../Assests/Content/logo_footer.png"
-import { footerServiceFn } from "Services/Home"
 import { useQuery } from "react-query"
+import { footerServiceFn } from "Services/Home"
+import logo from "../../Assests/Content/logo_footer.png"
 
 const Contact = () => {
   useEffect(() => {

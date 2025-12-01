@@ -384,7 +384,8 @@ const Footer = () => {
 
             {/* Contact Section */}
             <div ref={contactRef} className="flex h-full flex-col justify-start">
-              <div className="text-xl font-semibold mb-6">Get In Touch</div>
+              <div className="text-xl font-semibold mb-6">We’re Here to Help</div>
+              {/* <div className="text-xl font-semibold mb-6">Get In Touch</div> */}
               {companiesAddress?.data?.data?.map(
                 (item) =>
                   item?.isDefault && (

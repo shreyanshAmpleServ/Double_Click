@@ -3,7 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import moment from "moment"
 import { useEffect, useRef, useState } from "react"
 import { useQuery } from "react-query"
-import { postBlogServiceFn, postServiceFn } from "Services/Home"
+import { postBlogServiceFn } from "Services/Home"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -209,12 +209,12 @@ const Posts = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 lg:gap-10 md:gap-5 p-1">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-3 lg:gap-10 md:gap-5 p-1">
           {posts?.map((item, index) => (
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="bg-white relative lg:px-4 py-10 pb-0 flex flex-col items-center gap-1.5 w-[88vw] lg:w-full md:w-full lg:text-black2 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="bg-white relative px-4 py-4 lg:py-10 pb-0 flex flex-col items-center gap-1.5 w-[82vw] lg:w-full md:w-full lg:text-black2 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <div className="overflow-hidden rounded-lg w-full">
                 <img
@@ -240,9 +240,9 @@ const Posts = () => {
                 </div>
               </div>
 
-              <div className="post-date flex justify-between p-2 mb-1 items-center gap-2 text-sm font-thin mt-2 text-slate-600 bg-gray-100 w-full rounded cursor-pointer group transition-all duration-300">
+              <div className="post-date flex justify-between p-2 mb-1 items-center gap-2 text-xs  font-extralight mt-2 !text-slate-800 bg-gray-100 w-full rounded cursor-pointer group transition-all duration-300">
                 <div>Published at</div>
-                <div className="text-xs">{moment(item?.createdAt).format("LL")}</div>
+                <div className="!text-xs">{moment(item?.createdAt).format("LL")}</div>
               </div>
             </div>
           ))}

@@ -28,7 +28,6 @@ const images = [
   { src: logo4, alt: "Logo 4" },
   { src: logo5, alt: "Logo 5" },
   { src: logo6, alt: "Logo 6" },
-  { src: logo7, alt: "Logo 7" },
   { src: logo8, alt: "Logo 8" },
   { src: logo9, alt: "Logo 9" },
   { src: logo10, alt: "Logo 10" },
@@ -267,10 +266,10 @@ export default function DoubleClickWebsite() {
 
             {/* Description with proper font family */}
             <p className="description text-gray-600 text-lg leading-6 mb-4 max-w-lg font-inter">
-              Learn how we support your logistics business with tailored solutions designed to optimize operations,
-              enhance visibility, and drive efficiency across the supply chain. From advanced tracking systems and
-              real-time data insights to streamlined transport management and automation tools, we empower you to
-              overcome challenges and scale with confidence.
+              Learn how we support your business with tailored solutions designed to optimize operations, enhance
+              visibility, and drive efficiency across your business to deliver excellence. From advanced systems and
+              real-time data insights to streamlined management and automation tools, we empower you to overcome
+              challenges and scale with confidence.
             </p>
             {/* Hidden Image Section */}
             <div className="flex-1 lg:hidden relative">
@@ -358,7 +357,7 @@ export default function DoubleClickWebsite() {
                 <div className="text-gray-700 text-sm italic font-inter">Client Satisfaction</div>
               </div>
               <div className="stat-item">
-                <div className="text-4xl font-bold text-center text-[#2f3985] font-inter">100+</div>
+                <div className="text-4xl font-bold text-center text-[#2f3985] font-inter">400+</div>
                 <div className="text-gray-700 text-sm italic font-inter">Projects Delivered</div>
               </div>
             </div>
@@ -378,7 +377,7 @@ export default function DoubleClickWebsite() {
                   <a href="/dcc-cloud">
                     <img src={cloude} alt="Cloud Logo" className="w-12 h-12" />
                   </a>
-                  <div className="absolute whitespace-nowrap left-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-800 text-white text-xs rounded py-1 px-2 z-10">
+                  <div className="absolute whitespace-nowrap left-[190%]  top-4  h-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-800  text-white text-xs rounded py-1 px-2 z-10">
                     DCC Cloud
                   </div>
                 </div>
@@ -394,7 +393,7 @@ export default function DoubleClickWebsite() {
                       className="w-12 h-12"
                     />
                   </a>
-                  <div className="absolute whitespace-nowrap left-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-800 text-white text-xs rounded py-1 px-2 z-10">
+                  <div className="absolute whitespace-nowrap left-[280%]  top-4  h-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-800 text-white text-xs rounded py-1 px-2 z-10">
                     AIVA - AI Virtual Assistant
                   </div>
                 </div>
@@ -407,24 +406,32 @@ export default function DoubleClickWebsite() {
 
             {/* Email Icon */}
             <div className="email-icon absolute right-9 top-14 mt-2 transform -translate-y-1/2">
-              <a
-                href="/contact"
-                className="w-14 h-14 bg-[#2f3985] rounded-full flex items-center justify-center shadow-lg"
-              >
-                <Mail className="w-8 h-8 text-white" />
-              </a>
+              <div className="relative group">
+                <a
+                  href="/contact"
+                  className="w-14 h-14 bg-[#2f3985] rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <Mail className="w-8 h-8 text-white" />
+                </a>
+                <div className="absolute whitespace-nowrap left-1/2  h-1/2 transform -translate-x-1/2 bottom-full mb-1 hidden group-hover:block bg-gray-800 text-white text-xs rounded py-1 px-2 z-10">
+                  Contact Us
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Partner Logos */}
-      <div className="partner-section bg-gray-50 px-[2rem] py-12">
+      <div className="partner-section bg-gray-50 px-[.1rem] lg:px-[2rem] lg:py-12 py-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-center flex-wrap items-center gap-10 opacity-80">
+          <div className="hide-scroll flex justify-center  overflow-x-scroll overflow-y-hidden items-center gap-2.5 lg:gap-10 opacity-80">
             {images?.map((items, index) => (
-              <div key={index} className="partner-logo h-8 flex items-center justify-center min-w-[60px]">
-                <img src={items.src} alt={items.alt} className="h-full w-auto grayscale transition-transform" />
+              <div
+                key={index}
+                className="partner-logo h-6 lg:h-10 flex items-center justify-center min-w-[30px] lg:min-w-[60px]"
+              >
+                <img src={items.src} alt={items.alt} className="h-full  w-auto grayscale transition-transform" />
               </div>
             ))}
           </div>

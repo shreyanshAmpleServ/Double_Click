@@ -1,3 +1,4 @@
+import axios from "axios"
 import axiosInstance from "Config/axio.config"
 
 export const blogFn = (reqbody) => {
@@ -165,5 +166,35 @@ export const contactUsFn = (reqBody) => {
     return response
   } catch ({ error }) {
     throw new Error(error?.message)
+  }
+}
+// export const captchaVarifyFn = (reqBody) => {
+//   try {
+//     const response = axios.get(`http://10.160.5.123:1999/dcc-website/api/google/recaptcha/verify`, { params: reqBody })
+//     return response
+//   } catch ({ error }) {
+//     throw new Error(error?.message)
+//   }
+// }
+
+export const captchaVarifyFn = async (params = {}) => {
+  // params should be like { token: "..." }
+  try {
+    const token =
+      "9d15c4e4596b49219bc83766bd8952f1c51049870af7529c7fc2e7cce5f982e6c4ab392085c5957b53737488deebf87cffd99cb9b4a9e496744d92ecfcaf83df8638846578505adb626f750b32dc75e1fb10d1f152303948f889bde545ca39ca5bc1e46a7bf4e21505bfcaeb43dfa757e9a1e84188346bc71dfa0ce0fa87419b"
+    const response = await axios.get("https://strapi.dcctz.com/dev/api/google/recaptcha/verify", {
+      params, // → becomes ?token=xxxx
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+    // return the full axios response so component can access response.data
+    return response?.data || response
+  } catch (err) {
+    // rethrow to let react-query handle it
+    // normalize message
+    const message = err?.response?.data?.message || err.message || "Captcha verify failed"
+    throw new Error(message)
   }
 }

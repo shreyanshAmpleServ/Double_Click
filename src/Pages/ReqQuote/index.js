@@ -1,9 +1,10 @@
+import emailjs from "@emailjs/browser"
+import ReCaptchaCheckbox from "Components/Contact/ReCaptcha"
 import { coreServiceFn, footerServiceFn, reqQuoteFn } from "Services/Home"
-import { useState, useRef, useEffect } from "react"
+import { gsap } from "gsap"
+import { useEffect, useRef, useState } from "react"
 import toast from "react-hot-toast"
 import { useMutation, useQuery } from "react-query"
-import emailjs from "@emailjs/browser"
-import { gsap } from "gsap"
 
 const initialise2 = {
   email: "",
@@ -25,6 +26,8 @@ const RequestQuoteModal = ({ modal, setModal }) => {
   const baseURL = process.env.REACT_APP_API_URL
   const [personalData, setPersonalData] = useState(initialise2)
   const [errors, setErrors] = useState(initialErrors)
+  const recaptchaRef = useRef(null)
+  const [captchaStatus, setCaptchaStatus] = useState(false)
 
   // Animation refs
   const modalBackdropRef = useRef(null)
@@ -40,7 +43,7 @@ const RequestQuoteModal = ({ modal, setModal }) => {
   const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
   const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY
 
-  const { data: mainServiceData, isLoading, refetch } = useQuery(["main-service"], () => coreServiceFn())
+  const { data: mainServiceData } = useQuery(["main-service"], () => coreServiceFn())
   const { data: globalData } = useQuery(["global-entity"], () => footerServiceFn())
 
   // Modal entrance animation
@@ -326,6 +329,20 @@ const RequestQuoteModal = ({ modal, setModal }) => {
 
       const result = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams, EMAILJS_PUBLIC_KEY)
 
+      // Email 2: Confirmation to form submitter
+      const confirmationEmailParams = {
+        to_email: formData.email, // Send to the submitter
+        to_name: formData.name,
+        from_email: "sales@doubleclick.co.tz", // Your company email
+        message: "Thank you for your quote request. We'll get back to you soon!",
+      }
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        "template_confirmation_id", // Create a second template for this
+        confirmationEmailParams,
+        EMAILJS_PUBLIC_KEY
+      )
       console.log("Email sent successfully to sales@gmail.com:", result)
       return result
     } catch (error) {
@@ -346,7 +363,7 @@ const RequestQuoteModal = ({ modal, setModal }) => {
       })
 
       try {
-        await sendSalesEmail(personalData)
+        // await sendSalesEmail(personalData)
         toast.success("Quote request submitted successfully & Sales Team has been notified!")
       } catch (emailError) {
         toast.error("Quote submitted but failed to notify sales team")
@@ -475,8 +492,8 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                   }}
                   className="hidden lg:block lg:w-5/12 bg-cover bg-center"
                 ></div>
-                <div className="w-full lg:w-7/12 p-6 lg:p-1 lg:mx-10">
-                  <div className="flex justify-end">
+                <div className="w-full lg:w-7/12 px-6 lg:p-1 lg:mx-10 ">
+                  <div className="lg:flex justify-end hidden ">
                     <button
                       ref={closeButtonRef}
                       onClick={closeModal}
@@ -486,11 +503,22 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                       &times;
                     </button>
                   </div>
-                  <h2 ref={titleRef} className="text-3xl font-semibold m-3 mb-5">
-                    Request A Quote
-                  </h2>
+                  <div
+                    ref={titleRef}
+                    className="text-2xl lg:text-3xl flex justify-between font-semibold m-3 w-full mb-5"
+                  >
+                    <span> Request A Quote</span>
+                    <button
+                      ref={closeButtonRef}
+                      onClick={closeModal}
+                      aria-label="Close"
+                      className="text-primary block lg:hidden hover:text-black text-3xl transition-colors duration-300"
+                    >
+                      &times;
+                    </button>
+                  </div>
                   <form onSubmit={handleSubmit} className="space-y-6 mb-4">
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-1.5 lg:gap-3">
                       <div className="w-full space-y-4">
                         {/* Name Field */}
                         <div ref={(el) => (formFieldsRef.current[0] = el)}>
@@ -543,7 +571,7 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                             name="service"
                             value={personalData?.service}
                             onChange={handleChange2}
-                            className={`w-full border rounded-full p-2 px-6 transition-all duration-300 focus:ring-2 focus:ring-primary focus:border-primary ${
+                            className={`w-full border rounded-full p-2 px-6 pe-5 transition-all duration-300 focus:ring-2 focus:ring-primary focus:border-primary ${
                               errors.service ? "border-red-500" : "border-gray-300"
                             }`}
                           >
@@ -568,9 +596,16 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                           className={`w-full border rounded-md p-2 px-6 h-full resize-none transition-all duration-300 focus:ring-2 focus:ring-primary focus:border-primary ${
                             errors.message ? "border-red-500" : "border-gray-300"
                           }`}
-                          rows="6"
+                          rows="5"
                         ></textarea>
                         {errors.message && <p className="!text-red-500 text-sm mt-1 px-2">{errors.message}</p>}
+                      </div>
+                      <div ref={(el) => (formFieldsRef.current[5] = el)}>
+                        <ReCaptchaCheckbox
+                          ref={recaptchaRef}
+                          setCaptchaStatus={setCaptchaStatus}
+                          // onChange={onRecaptchaChange}
+                        />
                       </div>
                     </div>
 
@@ -578,7 +613,7 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                       <button
                         ref={buttonRef}
                         type="submit"
-                        disabled={isAdding}
+                        disabled={isAdding || !captchaStatus}
                         className={`bg-primary-red hover:bg-primary-red text-white px-6 py-2 rounded-full transition-all duration-300 ${
                           isAdding ? "opacity-50 cursor-not-allowed" : "hover:shadow-lg"
                         }`}

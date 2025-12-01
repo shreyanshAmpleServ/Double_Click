@@ -175,7 +175,7 @@ const Services = () => {
 
         <div
           ref={gridRef}
-          className="box grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 text-center gap-5 lg:p-8 lg:pb-1"
+          className="box grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 text-center gap-8  lg:p-8 lg:pb-1"
         >
           {serviceData?.data?.data?.[0]?.details?.map((item, i) => (
             <div key={i} className="service-card">

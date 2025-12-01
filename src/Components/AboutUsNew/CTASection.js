@@ -1,10 +1,14 @@
 // CTASection.js - With particle effects and advanced animations
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, use } from "react"
 
 const CTASection = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const sectionRef = useRef(null)
+
+  const navigateToContact = () => {
+    window.location.href = "/contact"
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -138,7 +142,10 @@ const CTASection = () => {
               }`}
             >
               {/* Primary CTA with pulse animation */}
-              <button className="group relative border !border-black bg-white !text-blue-600 hover:bg-blue-100 px-10 py-5 rounded-2xl font-bold text-lg inline-flex items-center gap-4 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-80 overflow-hidden">
+              <button
+                onClick={navigateToContact}
+                className="group relative border !border-black bg-white !text-blue-600 hover:bg-blue-100 px-10 py-5 rounded-2xl font-bold text-lg inline-flex items-center gap-4 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-80 overflow-hidden"
+              >
                 <div className="absolute  border-black inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
                 <div className="  relative z-10">Get Started Today</div>
                 <svg
@@ -155,7 +162,10 @@ const CTASection = () => {
               </button>
 
               {/* Secondary CTA with border animation */}
-              <button className="group relative bg-transparent border border-black text-black hover:bg-white hover:!text-blue-600 px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50 overflow-hidden">
+              <button
+                onClick={navigateToContact}
+                className="group relative bg-transparent border border-black text-black hover:bg-white hover:!text-blue-600 px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-500 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50 overflow-hidden"
+              >
                 <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 <div className="relative z-10 ">Schedule Consultation</div>
               </button>
@@ -195,7 +205,7 @@ const CTASection = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>100+ Projects Delivered</span>
+                <span>400+ Projects Delivered</span>
               </div>
             </div>
           </div>

@@ -1,16 +1,17 @@
 import { Phone } from "@mui/icons-material"
-import { useState, useRef, useEffect } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useEffect, useRef, useState } from "react"
 import toast from "react-hot-toast"
-import { FaLocationDot, FaStar } from "react-icons/fa6"
-import { IoIosMail, IoMdTime, IoMdCheckmarkCircle } from "react-icons/io"
+import { FaLocationDot } from "react-icons/fa6"
 import { HiSparkles } from "react-icons/hi"
+import { IoIosMail, IoMdCheckmarkCircle, IoMdTime } from "react-icons/io"
 import { useMutation, useQuery } from "react-query"
 import { companiesServiceFn, contactUsFn, footerServiceFn } from "Services/Home"
 import CustomButton from "Shared/CustomButton"
 import CustomInput from "Shared/CustomInput"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import "./Contact.css"
+import ReCaptchaCheckbox from "./ReCaptcha"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -28,8 +29,9 @@ const ContactForm = () => {
   const { data: companiesData, isLoading } = useQuery(["companyAddress"], () => companiesServiceFn())
   const { data: timingData } = useQuery(["timing"], () => footerServiceFn())
   const timing = timingData?.data?.data?.filter((item) => item.key === "company_time")?.[0]
+  const recaptchaRef = useRef(null)
+  const [captchaStatus, setCaptchaStatus] = useState(false) // idle | verifying | success | failed
 
-  // Animation refs
   const sectionRef = useRef(null)
   const headerRef = useRef(null)
   const titleRef = useRef(null)
@@ -42,9 +44,10 @@ const ContactForm = () => {
   const gradientRef = useRef(null)
   const statsRef = useRef([])
 
-  console.log("Companies : ", timingData)
+  // const onRecaptchaChange = (token) => {
+  //   console.log("recaptcha token changed:", token)
+  // }
 
-  // Enhanced GSAP Animations with more effects
   useEffect(() => {
     if (!companiesData?.data?.data || isLoading) return
 
@@ -342,7 +345,7 @@ const ContactForm = () => {
     },
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(initialData)
 
@@ -354,7 +357,11 @@ const ContactForm = () => {
       repeat: 1,
       ease: "power2.out",
     })
-
+    const token = await recaptchaRef.current.execute() // runs invisible captcha
+    if (!token) {
+      toast.error("Captcha failed. Please try again.")
+      return
+    }
     contacUs({ data: initialData })
   }
 
@@ -652,11 +659,17 @@ const ContactForm = () => {
                         placeholder="Tell us about your project, goals, timeline, and any specific requirements. The more details you provide, the better we can help you!"
                       />
                     </div>
-
+                    <div className="mt-6">
+                      <ReCaptchaCheckbox
+                        ref={recaptchaRef}
+                        setCaptchaStatus={setCaptchaStatus}
+                        // onChange={onRecaptchaChange}
+                      />
+                    </div>
                     <div ref={buttonRef} className="pt-8">
                       <CustomButton
                         type="submit"
-                        disabled={isAdding}
+                        disabled={isAdding || !captchaStatus}
                         className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 text-white !rounded-2xl !py-6 !font-black !text-xl shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>

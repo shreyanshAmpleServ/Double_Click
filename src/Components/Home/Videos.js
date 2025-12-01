@@ -123,11 +123,11 @@ const VideoSection = () => {
           })
 
           // Add pulsing effect
-          gsap.to(playBtn, {
-            boxShadow: "0 0 0 20px rgba(255, 255, 255, 0.3), 0 0 0 40px rgba(255, 255, 255, 0.1)",
-            duration: 0.6,
-            ease: "power2.out",
-          })
+          // gsap.to(playBtn, {
+          //   boxShadow: "0 0 0 20px rgba(255, 255, 255, 0.3), 0 0 0 40px rgba(255, 255, 255, 0.1)",
+          //   duration: 0.6,
+          //   ease: "power2.out",
+          // })
         })
 
         playBtn.addEventListener("mouseleave", () => {
@@ -230,7 +230,7 @@ const VideoSection = () => {
 
   return (
     <>
-      <div ref={sectionRef} className="lg:p-[10%] !py-[2%]">
+      <div ref={sectionRef} className="lg:p-[10%] !py-[4%]">
         <div
           ref={videoContainerRef}
           className="relative mx-auto w-[80%] rounded-2xl lg:h-[28rem] h-[37vh] overflow-hidden cursor-pointer shadow-2xl hover:shadow-3xl transition-all duration-500"
@@ -249,7 +249,7 @@ const VideoSection = () => {
 
           {/* Play button with animations */}
           <div className="flex flex-col lg:flex-row text-white absolute top-[42%] left-[45%] lg:left-[45%] gap-4">
-            <div ref={playButtonRef} className="relative cursor-pointer group" onClick={() => setOpenModal(true)}>
+            <div ref={playButtonRef} className="relative cursor-pointer group " onClick={() => setOpenModal(true)}>
               <div className="relative z-10 flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 bg-white/20 backdrop-blur-sm rounded-full border-2 border-white/50 transition-all duration-300 group-hover:border-white/80">
                 <IoPlayOutline className="!text-2xl lg:!text-4xl ml-1 text-white drop-shadow-lg" />
               </div>
