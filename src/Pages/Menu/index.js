@@ -16,6 +16,7 @@ import FleetManagment from "Components/FleetManagement"
 import OirGas from "Components/OilGas"
 import ClearingAndForwarding from "Components/ClearingAndForwarding"
 import Warehousing from "Components/Warehousing"
+import ICDCFS from "Components/ICDCFS"
 
 const Menus = () => {
   const baseURL = process.env.REACT_APP_API_URL
@@ -27,6 +28,7 @@ const Menus = () => {
   const isOilGas = pathname.includes("dcc-oil-and-gas-solution")
   const isClearingAndForwarding = pathname.includes("clearing-and-forwarding-management")
   const isWarehousing = pathname.includes("warehouse-management-solution")
+  const isICDCFS = pathname.includes("icd-cfs")
   return (
     <>
       <Helmet>
@@ -97,6 +99,8 @@ const Menus = () => {
             <ClearingAndForwarding />
           ) : isWarehousing ? (
             <Warehousing />
+          ) : isICDCFS ? (
+            <ICDCFS />
           ) : (
             <>
               <Section1 menu={subBlogData?.data?.data?.[0]?.title || menu} data={subBlogData?.data?.data?.[0]} />

@@ -23,52 +23,6 @@ export default function Warehousing() {
 
   return (
     <div className="!min-h-screen !bg-white">
-      <nav className="!fixed !top-0 !w-full !bg-white !bg-opacity-95 !backdrop-blur-sm !z-50 !border-b !border-gray-200">
-        <div className="!max-w-7xl !mx-auto !px-4 sm:!px-6 lg:!px-8 !py-4 !flex !items-center !justify-between">
-          <div className="!flex !items-center !gap-3">
-            <img src="/images/logo.png" alt="DoubleClick WMS" width={40} height={40} className="!w-10 !h-10" />
-            <span className="!font-semibold !text-lg !text-gray-900">DoubleClick WMS</span>
-          </div>
-
-          <div className="!hidden md:!flex !items-center !gap-8">
-            <button
-              onClick={() => scrollToSection("features")}
-              className="!text-gray-600 hover:!text-gray-900 !transition-colors"
-            >
-              Features
-            </button>
-            <button
-              onClick={() => scrollToSection("benefits")}
-              className="!text-gray-600 hover:!text-gray-900 !transition-colors"
-            >
-              Benefits
-            </button>
-            <button
-              onClick={() => scrollToSection("dashboards")}
-              className="!text-gray-600 hover:!text-gray-900 !transition-colors"
-            >
-              Dashboards
-            </button>
-            <button
-              onClick={() => scrollToSection("kpis")}
-              className="!text-gray-600 hover:!text-gray-900 !transition-colors"
-            >
-              KPIs
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="!text-gray-600 hover:!text-gray-900 !transition-colors"
-            >
-              Contact
-            </button>
-          </div>
-
-          <Button onClick={() => scrollToSection("contact")} className="!bg-blue-600 hover:!bg-blue-700 !text-white">
-            Book a Demo
-          </Button>
-        </div>
-      </nav>
-
       <section className="!pt-12 !pb-20 !px-4 sm:!px-6 lg:!px-8 !relative !overflow-hidden">
         <div className="!absolute !inset-0 !-z-10">
           <img src="/images/hero-bg.png" alt="Hero Background" className="!w-full !h-full !object-cover" />
