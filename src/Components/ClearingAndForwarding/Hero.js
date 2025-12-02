@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="!absolute !inset-0 !z-10">
         <img
-          src="/images/hero-bg.png"
+          src="/images/clearing-and-forwading.png"
           alt="clearing-and-forwarding-management"
           className="!w-full !h-full !object-cover"
         />
@@ -35,7 +35,7 @@ export default function Hero() {
           <div className="!flex !flex-col sm:!flex-row !gap-4">
             <button
               onClick={() => document.getElementById("request-quote")?.click()}
-              className="!bg-blue-600 hover:!bg-blue-700 !rounded-lg !px-6 !py-1 !text-white !font-semibold !text-lg"
+              className="!bg-blue-600 hover:!bg-blue-700 !rounded-lg !px-6 !py-2 !text-white !font-semibold !text-lg"
             >
               Request a Demo
             </button>
