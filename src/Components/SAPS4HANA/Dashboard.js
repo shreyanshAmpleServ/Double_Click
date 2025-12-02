@@ -86,7 +86,10 @@ const Dashboard = () => {
 
         {/* CTA Button */}
         <div className="!text-center !mt-12">
-          <button className="!bg-blue-600 hover:!bg-blue-700 !text-white !px-8 !py-3 !text-lg !rounded-lg !transition">
+          <button
+            onClick={() => document.getElementById("request-quote")?.click()}
+            className="!bg-blue-600 hover:!bg-blue-700 !text-white !px-8 !py-3 !text-lg !rounded-lg !transition"
+          >
             Request a Demo
           </button>
         </div>
