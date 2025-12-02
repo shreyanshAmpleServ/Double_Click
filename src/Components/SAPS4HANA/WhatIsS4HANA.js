@@ -25,7 +25,7 @@ const WhatIsS4HANA = () => {
   ]
 
   return (
-    <section id="what-is-s4hana" className="!py-20 !bg-white">
+    <section id="what-is-s4hana" className="!pt-20 !bg-white">
       <div className="!max-w-7xl !mx-auto !px-4 sm:!px-6 lg:!px-8">
         <div className="!text-center !mb-16">
           <h2 className="!text-4xl !font-bold !mb-4">What is SAP S/4HANA?</h2>
@@ -36,12 +36,12 @@ const WhatIsS4HANA = () => {
         </div>
 
         <div className="!grid md:!grid-cols-2 !gap-8 !mb-16">
-          <div className="!space-y-4">
+          <div className="!space-y-7">
             {features.map((feature, idx) => (
               <div key={idx} className="!flex !gap-4">
                 <CheckCircle2 className="!w-6 !h-6 !text-cyan-600 !flex-shrink-0 !mt-1" />
                 <div>
-                  <h3 className="!font-semibold !text-gray-900">{feature.title}</h3>
+                  <h3 className="!font-semibold !mt-0 !text-gray-900">{feature.title}</h3>
                   <p className="!text-gray-600">{feature.description}</p>
                 </div>
               </div>

@@ -29,7 +29,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
   const recaptchaRef = useRef(null)
   const [captchaStatus, setCaptchaStatus] = useState(false)
 
-  // Animation refs
   const modalBackdropRef = useRef(null)
   const modalContentRef = useRef(null)
   const formFieldsRef = useRef([])
@@ -38,7 +37,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
   const titleRef = useRef(null)
   const leftSideRef = useRef(null)
 
-  // EmailJS configuration from environment variables
   const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID
   const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
   const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY
@@ -46,10 +44,8 @@ const RequestQuoteModal = ({ modal, setModal }) => {
   const { data: mainServiceData } = useQuery(["main-service"], () => coreServiceFn())
   const { data: globalData } = useQuery(["global-entity"], () => footerServiceFn())
 
-  // Modal entrance animation
   useEffect(() => {
     if (modal) {
-      // Set initial states
       gsap.set(modalBackdropRef.current, { opacity: 0 })
       gsap.set(modalContentRef.current, {
         scale: 0.8,
@@ -69,17 +65,14 @@ const RequestQuoteModal = ({ modal, setModal }) => {
         opacity: 0,
       })
 
-      // Create entrance timeline
       const tl = gsap.timeline()
 
-      // Backdrop fade in
       tl.to(modalBackdropRef.current, {
         opacity: 1,
         duration: 0.3,
         ease: "power1.out",
       })
 
-        // Modal content entrance
         .to(
           modalContentRef.current,
           {
@@ -93,7 +86,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
           "-=0.1"
         )
 
-        // Left side image slide
         .to(
           leftSideRef.current,
           {
@@ -105,7 +97,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
           "-=0.6"
         )
 
-        // Title animation
         .to(
           titleRef.current,
           {
@@ -117,7 +108,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
           "-=0.4"
         )
 
-        // Form fields staggered entrance
         .to(
           formFieldsRef.current,
           {
@@ -134,7 +124,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
           "-=0.3"
         )
 
-        // Buttons with bounce
         .to(
           [buttonRef.current, closeButtonRef.current],
           {
@@ -149,7 +138,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
     }
   }, [modal])
 
-  // Modal exit animation
   const closeModal = () => {
     const tl = gsap.timeline({
       onComplete: () => {
@@ -196,11 +184,9 @@ const RequestQuoteModal = ({ modal, setModal }) => {
     const { name, value } = e.target
     setPersonalData((prev) => ({ ...prev, [name]: value }))
 
-    // Clear error when user starts typing with animation
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }))
 
-      // Animate error removal
       const errorElement = e.target.nextElementSibling
       if (errorElement && errorElement.classList.contains("text-red-500")) {
         gsap.to(errorElement, {
@@ -211,7 +197,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
         })
       }
 
-      // Reset field border color
       gsap.to(e.target, {
         borderColor: "#d1d5db",
         duration: 0.3,
@@ -224,13 +209,11 @@ const RequestQuoteModal = ({ modal, setModal }) => {
     const newErrors = {}
     let isValid = true
 
-    // Name validation
     if (!personalData.name.trim()) {
       newErrors.name = "Name is required"
       isValid = false
     }
 
-    // Email validation
     if (!personalData.email.trim()) {
       newErrors.email = "Email is required"
       isValid = false
@@ -239,19 +222,16 @@ const RequestQuoteModal = ({ modal, setModal }) => {
       isValid = false
     }
 
-    // Phone validation
     if (!personalData.phone.trim()) {
       newErrors.phone = "Phone number is required"
       isValid = false
     }
 
-    // Service validation
     if (!personalData.service) {
       newErrors.service = "Please select a service"
       isValid = false
     }
 
-    // Message validation
     if (!personalData.message.trim()) {
       newErrors.message = "Message is required"
       isValid = false
@@ -262,13 +242,11 @@ const RequestQuoteModal = ({ modal, setModal }) => {
 
     setErrors(newErrors)
 
-    // Animate validation errors
     if (!isValid) {
       setTimeout(() => {
         Object.keys(newErrors).forEach((fieldName) => {
           const field = document.querySelector(`[name="${fieldName}"]`)
           if (field) {
-            // Shake animation for invalid field
             gsap.fromTo(
               field,
               {
@@ -281,7 +259,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
               }
             )
 
-            // Red border animation
             gsap.to(field, {
               borderColor: "#ef4444",
               duration: 0.3,
@@ -289,7 +266,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
             })
           }
 
-          // Error message slide in
           const errorElement = field?.nextElementSibling
           if (errorElement && errorElement.classList.contains("text-red-500")) {
             gsap.fromTo(
@@ -309,13 +285,9 @@ const RequestQuoteModal = ({ modal, setModal }) => {
         })
       }, 100)
     }
-
     return isValid
   }
 
-  console.log("personalData", personalData, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY)
-
-  // Function to send email to sales@gmail.com using EmailJS
   const sendSalesEmail = async (formData) => {
     try {
       const emailParams = {
@@ -329,20 +301,14 @@ const RequestQuoteModal = ({ modal, setModal }) => {
 
       const result = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams, EMAILJS_PUBLIC_KEY)
 
-      // Email 2: Confirmation to form submitter
       const confirmationEmailParams = {
-        to_email: formData.email, // Send to the submitter
+        to_email: formData.email,
         to_name: formData.name,
-        from_email: "sales@doubleclick.co.tz", // Your company email
+        from_email: "sales@doubleclick.co.tz",
         message: "Thank you for your quote request. We'll get back to you soon!",
       }
 
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        "template_confirmation_id", // Create a second template for this
-        confirmationEmailParams,
-        EMAILJS_PUBLIC_KEY
-      )
+      await emailjs.send(EMAILJS_SERVICE_ID, "template_confirmation_id", confirmationEmailParams, EMAILJS_PUBLIC_KEY)
       console.log("Email sent successfully to sales@gmail.com:", result)
       return result
     } catch (error) {
@@ -353,7 +319,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
 
   const { mutate: addQuote, isLoading: isAdding } = useMutation(reqQuoteFn, {
     onSuccess: async ({ data }) => {
-      // Success animation
       gsap.to(buttonRef.current, {
         scale: 1.1,
         duration: 0.1,
@@ -373,13 +338,11 @@ const RequestQuoteModal = ({ modal, setModal }) => {
       setPersonalData(initialise2)
       setErrors(initialErrors)
 
-      // Delayed close with animation
       setTimeout(() => {
         closeModal()
       }, 1000)
     },
     onError: (error) => {
-      // Error animation
       gsap.to(buttonRef.current, {
         x: [-5, 5, -5, 5, 0],
         duration: 0.5,
@@ -393,7 +356,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
     e.preventDefault()
 
     if (validateForm()) {
-      // Submit animation
       gsap.to(buttonRef.current, {
         scale: 0.95,
         duration: 0.1,
@@ -411,7 +373,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
     return globalData?.data?.data?.filter((item) => item.key === key)?.[0]
   }
 
-  // Enhanced hover effects
   useEffect(() => {
     if (modal && buttonRef.current) {
       const button = buttonRef.current
@@ -520,7 +481,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                   <form onSubmit={handleSubmit} className="space-y-6 mb-4">
                     <div className="flex flex-col gap-1.5 lg:gap-3">
                       <div className="w-full space-y-4">
-                        {/* Name Field */}
                         <div ref={(el) => (formFieldsRef.current[0] = el)}>
                           <input
                             type="text"
@@ -535,7 +495,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                           {errors.name && <p className="!text-red-500 text-sm mt-1 px-2">{errors.name}</p>}
                         </div>
 
-                        {/* Email Field */}
                         <div ref={(el) => (formFieldsRef.current[1] = el)}>
                           <input
                             type="email"
@@ -550,7 +509,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                           {errors.email && <p className="!text-red-500 text-sm mt-1 px-2">{errors.email}</p>}
                         </div>
 
-                        {/* Phone Field */}
                         <div ref={(el) => (formFieldsRef.current[2] = el)}>
                           <input
                             type="text"
@@ -565,7 +523,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                           {errors.phone && <p className="!text-red-500 text-sm mt-1 px-2">{errors.phone}</p>}
                         </div>
 
-                        {/* Service Selection */}
                         <div ref={(el) => (formFieldsRef.current[3] = el)}>
                           <select
                             name="service"
@@ -586,7 +543,6 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                         </div>
                       </div>
 
-                      {/* Message Field */}
                       <div ref={(el) => (formFieldsRef.current[4] = el)}>
                         <textarea
                           placeholder="Message"
@@ -601,11 +557,7 @@ const RequestQuoteModal = ({ modal, setModal }) => {
                         {errors.message && <p className="!text-red-500 text-sm mt-1 px-2">{errors.message}</p>}
                       </div>
                       <div ref={(el) => (formFieldsRef.current[5] = el)}>
-                        <ReCaptchaCheckbox
-                          ref={recaptchaRef}
-                          setCaptchaStatus={setCaptchaStatus}
-                          // onChange={onRecaptchaChange}
-                        />
+                        <ReCaptchaCheckbox ref={recaptchaRef} setCaptchaStatus={setCaptchaStatus} />
                       </div>
                     </div>
 
@@ -640,261 +592,3 @@ const RequestQuoteModal = ({ modal, setModal }) => {
 }
 
 export default RequestQuoteModal
-
-// import { coreServiceFn, footerServiceFn, reqQuoteFn } from "Services/Home"
-// import { useState } from "react"
-// import toast from "react-hot-toast"
-// import { useMutation, useQuery } from "react-query"
-
-// const initialise2 = {
-//   email: "",
-//   name: "",
-//   phone: "",
-//   message: "",
-//   service: "",
-// }
-
-// const initialErrors = {
-//   email: "",
-//   name: "",
-//   phone: "",
-//   message: "",
-//   service: "",
-// }
-
-// const RequestQuoteModal = ({ modal, setModal }) => {
-//   const baseURL = process.env.REACT_APP_API_URL
-//   const [personalData, setPersonalData] = useState(initialise2)
-//   const [errors, setErrors] = useState(initialErrors)
-
-//   const { data: mainServiceData, isLoading, refetch } = useQuery(["main-service"], () => coreServiceFn())
-//   const { data: globalData } = useQuery(["global-entity"], () => footerServiceFn())
-
-//   const handleChange2 = (e) => {
-//     const { name, value } = e.target
-//     setPersonalData((prev) => ({ ...prev, [name]: value }))
-
-//     // Clear error when user starts typing
-//     if (errors[name]) {
-//       setErrors((prev) => ({ ...prev, [name]: "" }))
-//     }
-//   }
-
-//   const validateForm = () => {
-//     const newErrors = {}
-//     let isValid = true
-
-//     // Name validation
-//     if (!personalData.name.trim()) {
-//       newErrors.name = "Name is required"
-//       isValid = false
-//     }
-
-//     // Email validation
-//     if (!personalData.email.trim()) {
-//       newErrors.email = "Email is required"
-//       isValid = false
-//     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(personalData.email)) {
-//       newErrors.email = "Please enter a valid email address"
-//       isValid = false
-//     }
-
-//     // Phone validation
-//     if (!personalData.phone.trim()) {
-//       newErrors.phone = "Phone number is required"
-//       isValid = false
-//     }
-//     //  else if (!/^[\d\s\-\+\(\)]+$/.test(personalData.phone) || personalData.phone.length < 10) {
-//     //   newErrors.phone = "Please enter a valid phone number"
-//     //   isValid = false
-//     // }
-
-//     // Service validation
-//     if (!personalData.service) {
-//       newErrors.service = "Please select a service"
-//       isValid = false
-//     }
-
-//     // Message validation
-//     if (!personalData.message.trim()) {
-//       newErrors.message = "Message is required"
-//       isValid = false
-//     } else if (personalData.message.trim().length < 10) {
-//       newErrors.message = "Message must be at least 10 characters long"
-//       isValid = false
-//     }
-
-//     setErrors(newErrors)
-//     return isValid
-//   }
-
-//   const { mutate: addQuote, isLoading: isAdding } = useMutation(reqQuoteFn, {
-//     onSuccess: ({ data }) => {
-//       toast.success("Created Successfully!")
-//       setPersonalData(initialise2)
-//       setErrors(initialErrors)
-//       setModal(false)
-//     },
-//     onError: (error) => {
-//       toast.error("Something went wrong. Please try again.")
-//     },
-//   })
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault()
-
-//     if (validateForm()) {
-//       addQuote({ data: personalData })
-//     } else {
-//       toast.error("Please fix the errors below")
-//     }
-//   }
-
-//   const findData = (key) => {
-//     return globalData?.data?.data?.filter((item) => item.key === key)?.[0]
-//   }
-
-//   console.log("mainServiceData", globalData?.data?.data)
-
-//   return (
-//     <>
-//       {modal && (
-//         <div
-//           className="fixed inset-0 !z-50 flex items-center justify-center bg-black bg-opacity-70"
-//           role="dialog"
-//           aria-hidden="true"
-//         >
-//           <div className="bg-white rounded-lg z-50 shadow-lg w-full max-w-5xl overflow-y-auto max-h-[94vh]">
-//             <section className="bg-gray-100">
-//               <div className="flex flex-col lg:flex-row shadow-md">
-//                 <div
-//                   style={{
-//                     backgroundImage: `url(${baseURL + findData("quote_form_left_side")?.singleMedia?.url})`,
-//                     backgroundSize: "cover",
-//                     backgroundPosition: "center",
-//                     backgroundRepeat: "no-repeat",
-//                   }}
-//                   className="hidden lg:block lg:w-5/12 bg-cover bg-center"
-//                 ></div>
-//                 <div className="w-full lg:w-7/12 p-6 lg:p-1 lg:mx-10">
-//                   <div className="flex justify-end">
-//                     <button
-//                       onClick={() => {
-//                         setModal(false)
-//                         setErrors(initialErrors)
-//                       }}
-//                       aria-label="Close"
-//                       className="text-primary hover:text-black text-3xl"
-//                     >
-//                       &times;
-//                     </button>
-//                   </div>
-//                   <h2 className="text-3xl font-semibold m-3 mb-5">Request A Quote</h2>
-//                   <form onSubmit={handleSubmit} className="space-y-6 mb-4">
-//                     <div className="flex flex-col gap-3">
-//                       <div className="w-full space-y-4">
-//                         {/* Name Field */}
-//                         <div>
-//                           <input
-//                             type="text"
-//                             name="name"
-//                             value={personalData?.name}
-//                             onChange={handleChange2}
-//                             placeholder="Your Name"
-//                             className={`w-full border rounded-full p-2 px-6 ${
-//                               errors.name ? "border-red-500" : "border-gray-300"
-//                             }`}
-//                           />
-//                           {errors.name && <p className="!text-red-500 text-sm mt-1 px-2">{errors.name}</p>}
-//                         </div>
-
-//                         {/* Email Field */}
-//                         <div>
-//                           <input
-//                             type="email"
-//                             name="email"
-//                             value={personalData?.email}
-//                             onChange={handleChange2}
-//                             placeholder="Email"
-//                             className={`w-full border rounded-full p-2 px-6 ${
-//                               errors.email ? "border-red-500" : "border-gray-300"
-//                             }`}
-//                           />
-//                           {errors.email && <p className="!text-red-500 text-sm mt-1 px-2">{errors.email}</p>}
-//                         </div>
-
-//                         {/* Phone Field */}
-//                         <div>
-//                           <input
-//                             type="text"
-//                             name="phone"
-//                             value={personalData?.phone}
-//                             onChange={handleChange2}
-//                             placeholder="Phone Number"
-//                             className={`w-full border rounded-full p-2 px-6 ${
-//                               errors.phone ? "border-red-500" : "border-gray-300"
-//                             }`}
-//                           />
-//                           {errors.phone && <p className="!text-red-500 text-sm mt-1 px-2">{errors.phone}</p>}
-//                         </div>
-
-//                         {/* Service Selection */}
-//                         <div>
-//                           <select
-//                             name="service"
-//                             value={personalData?.service}
-//                             onChange={handleChange2}
-//                             className={`w-full border rounded-full p-2 px-6 ${
-//                               errors.service ? "border-red-500" : "border-gray-300"
-//                             }`}
-//                           >
-//                             <option value="">Select Service</option>
-//                             {mainServiceData?.data?.data?.[0]?.details?.map((item, index) => (
-//                               <option key={index} value={item.title}>
-//                                 {item.title}
-//                               </option>
-//                             ))}
-//                           </select>
-//                           {errors.service && <p className="!text-red-500 text-sm mt-1 px-2">{errors.service}</p>}
-//                         </div>
-//                       </div>
-
-//                       {/* Message Field */}
-//                       <div>
-//                         <textarea
-//                           placeholder="Message"
-//                           name="message"
-//                           value={personalData?.message}
-//                           onChange={handleChange2}
-//                           className={`w-full border rounded-md p-2 px-6 h-full resize-none ${
-//                             errors.message ? "border-red-500" : "border-gray-300"
-//                           }`}
-//                           rows="6"
-//                         ></textarea>
-//                         {errors.message && <p className="!text-red-500 text-sm mt-1 px-2">{errors.message}</p>}
-//                       </div>
-//                     </div>
-
-//                     <div>
-//                       <button
-//                         type="submit"
-//                         disabled={isAdding}
-//                         className={`bg-primary-red hover:bg-primary-red text-white px-6 py-2 rounded-full ${
-//                           isAdding ? "opacity-50 cursor-not-allowed" : ""
-//                         }`}
-//                       >
-//                         {isAdding ? "Sending..." : "Send Message"}
-//                       </button>
-//                     </div>
-//                   </form>
-//                 </div>
-//               </div>
-//             </section>
-//           </div>
-//         </div>
-//       )}
-//     </>
-//   )
-// }
-
-// export default RequestQuoteModal
