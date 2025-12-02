@@ -17,6 +17,7 @@ import OirGas from "Components/OilGas"
 import ClearingAndForwarding from "Components/ClearingAndForwarding"
 import Warehousing from "Components/Warehousing"
 import ICDCFS from "Components/ICDCFS"
+import SAPS4HANA from "Components/SAPS4HANA"
 
 const Menus = () => {
   const baseURL = process.env.REACT_APP_API_URL
@@ -29,6 +30,7 @@ const Menus = () => {
   const isClearingAndForwarding = pathname.includes("clearing-and-forwarding-management")
   const isWarehousing = pathname.includes("warehouse-management-solution")
   const isICDCFS = pathname.includes("icd-cfs")
+  const isSAPS4HANA = pathname.includes("sap-s4-hana")
   return (
     <>
       <Helmet>
@@ -101,6 +103,8 @@ const Menus = () => {
             <Warehousing />
           ) : isICDCFS ? (
             <ICDCFS />
+          ) : isSAPS4HANA ? (
+            <SAPS4HANA />
           ) : (
             <>
               <Section1 menu={subBlogData?.data?.data?.[0]?.title || menu} data={subBlogData?.data?.data?.[0]} />
