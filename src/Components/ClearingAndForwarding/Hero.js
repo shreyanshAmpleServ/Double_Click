@@ -8,7 +8,11 @@ export default function Hero() {
     <section className="!relative !w-full !pt-20 lg:!pt-32 !pb-20 !overflow-hidden">
       {/* Background Image */}
       <div className="!absolute !inset-0 !z-10">
-        <img src="/images/hero-bg.webp" alt="Hero Background" className="!w-full !h-full !object-cover" />
+        <img
+          src="/images/hero-bg.png"
+          alt="clearing-and-forwarding-management"
+          className="!w-full !h-full !object-cover"
+        />
         {/* Overlay for text readability */}
         <div className="!absolute !inset-0 !bg-black !z-20 !bg-opacity-40" />
       </div>
@@ -39,15 +43,15 @@ export default function Hero() {
 
           {/* Proven Results */}
           <div className="!mt-16 !grid !grid-cols-1 sm:!grid-cols-3 !gap-8">
-            <div className="!bg-white !bg-opacity-10 !backdrop-blur-sm !rounded-lg !p-6 !border !border-white !border-opacity-20">
+            <div className="!bg-white !bg-opacity-10 !backdrop-blur-sm !rounded-lg !p-4 !border !border-white !border-opacity-20">
               <p className="!text-sm !text-gray-200 !mb-2">Demurrage Reduction</p>
               <p className="!text-3xl !font-bold !text-white">Up to 99%</p>
             </div>
-            <div className="!bg-white !bg-opacity-10 !backdrop-blur-sm !rounded-lg !p-6 !border !border-white !border-opacity-20">
+            <div className="!bg-white !bg-opacity-10 !backdrop-blur-sm !rounded-lg !p-4 !border !border-white !border-opacity-20">
               <p className="!text-sm !text-gray-200 !mb-2">Clearance Time</p>
               <p className="!text-3xl !font-bold !text-white">60% Faster</p>
             </div>
-            <div className="!bg-white !bg-opacity-10 !backdrop-blur-sm !rounded-lg !p-6 !border !border-white !border-opacity-20">
+            <div className="!bg-white !bg-opacity-10 !backdrop-blur-sm !rounded-lg !p-4 !border !border-white !border-opacity-20">
               <p className="!text-sm !text-gray-200 !mb-2">Full Visibility</p>
               <p className="!text-3xl !font-bold !text-white">End-to-End</p>
             </div>
