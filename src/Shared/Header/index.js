@@ -72,13 +72,21 @@ const Header = () => {
     }
   }, [blogDatas])
 
+  useEffect(() => {
+    if (isLoading) {
+      document.querySelector(".isLoadingClass").style.display = "flex"
+    } else {
+      document.querySelector(".isLoadingClass").style.display = "none"
+      window.scrollTo(0, 0)
+    }
+  }, [isLoading])
   return (
     <>
-      {isLoading && (
+      {/* {isLoading && (
         <div className="fixed family-serif2 h-[100vh] w-[100vw] z-40 bg-black bg-opacity-90 flex justify-center items-center">
           <Loader />
         </div>
-      )}
+      )} */}
       <header className="w-full family-serif2 hidden lg:block z-30">
         <div className="w-full !bg-[#4b5563]  text-white">
           <div className="flex pl-[5rem] pr-[3rem] max-w-screen-2xl mx-auto justify-between p-2">

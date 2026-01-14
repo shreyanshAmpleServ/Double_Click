@@ -16,6 +16,7 @@ import { aboutServiceFn } from "Services/Home"
 import Loader from "Shared/Loader"
 import logo from "../../Assests/Content/logo_footer.png"
 import FuelERPFeatures from "Components/OilGas"
+import { useEffect } from "react"
 
 const AboutUs = () => {
   const location = useLocation()
@@ -27,6 +28,14 @@ const AboutUs = () => {
   // const findData = (key) => {
   //   return aboutData?.data?.data?.blocks?.filter((item) => item.__component === key)?.[0]
   // }
+  useEffect(() => {
+    if (isLoading) {
+      document.querySelector(".isLoadingClass").style.display = "flex"
+    } else {
+      document.querySelector(".isLoadingClass").style.display = "none"
+      window.scrollTo(0, 0)
+    }
+  }, [isLoading])
   return (
     <>
       <Helmet>
@@ -51,12 +60,12 @@ const AboutUs = () => {
         />
         <meta property="og:image" content={logo} />
       </Helmet>
-      {isLoading && (
+      {/* {isLoading && (
         <div className="fixed h-[100vh] w-[100vw] z-50 bg-black bg-opacity-85 flex justify-center items-center">
           {" "}
           <Loader />
         </div>
-      )}
+      )} */}
 
       <div className=" w-[100vw] min-w-[320px] !bg-white max-w-screen-2xl mx-auto">
         {isAboutUsTeam && <Section1 isTeam={isAboutUsTeam} data={aboutData?.data?.data} />}

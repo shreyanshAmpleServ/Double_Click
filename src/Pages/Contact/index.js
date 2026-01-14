@@ -12,7 +12,6 @@ const Contact = () => {
   }, [])
   const { data } = useQuery(["global"], () => footerServiceFn())
   const values = data?.data?.data?.filter((item) => item.key === "contact-us")?.[0]
-  console.log("footer data", values)
   return (
     <>
       <Helmet>

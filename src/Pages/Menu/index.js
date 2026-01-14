@@ -18,6 +18,8 @@ import ClearingAndForwarding from "Components/ClearingAndForwarding"
 import Warehousing from "Components/Warehousing"
 import ICDCFS from "Components/ICDCFS"
 import SAPS4HANA from "Components/SAPS4HANA"
+import NGLogistics from "Components/NewNGComponent"
+import { useEffect } from "react"
 
 const Menus = () => {
   const baseURL = process.env.REACT_APP_API_URL
@@ -31,6 +33,15 @@ const Menus = () => {
   const isWarehousing = pathname.includes("warehouse-management-solution")
   const isICDCFS = pathname.includes("icd-cfs")
   const isSAPS4HANA = pathname.includes("sap-s4-hana")
+  const isNGLogistics = pathname.includes("dcc-logistics-siute-ng")
+  useEffect(() => {
+    if (isLoading) {
+      document.querySelector(".isLoadingClass").style.display = "flex"
+    } else {
+      document.querySelector(".isLoadingClass").style.display = "none"
+      window.scrollTo(0, 0)
+    }
+  }, [isLoading])
   return (
     <>
       <Helmet>
@@ -80,12 +91,12 @@ const Menus = () => {
         />
         <meta property="og:image" content={baseURL + subBlogData?.data?.data?.[0]?.seo?.shareImage?.url || logo} />
       </Helmet>
-      {isLoading && (
+      {/* {isLoading && (
         <div className="fixed h-[100vh] w-[100vw] z-50 bg-black bg-opacity-85 flex justify-center items-center">
           {" "}
           <Loader />
         </div>
-      )}
+      )} */}
       {/* <ImageBundle /> */}
       {subBlogData?.data?.data?.length ? (
         <div className="w-[100vw] min-w-[320px] min-h-[73vh] bg-white max-w-screen-2xl rendor overflow-hidden mx-auto">
@@ -105,6 +116,8 @@ const Menus = () => {
             <ICDCFS />
           ) : isSAPS4HANA ? (
             <SAPS4HANA />
+          ) : isNGLogistics ? (
+            <NGLogistics />
           ) : (
             <>
               <Section1 menu={subBlogData?.data?.data?.[0]?.title || menu} data={subBlogData?.data?.data?.[0]} />
