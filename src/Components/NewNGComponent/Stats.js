@@ -4,7 +4,7 @@ export function Stats() {
     { value: "99.9%", label: "Uptime Reliability" },
     { value: "24/7", label: "Real-time Tracking" },
     { value: "30%", label: "Fuel Efficiency Gain" },
-    { value: "500+", label: "Fleets Managed" },
+    { value: "20000+", label: "Fleets Managed" },
   ]
 
   return (

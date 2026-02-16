@@ -198,3 +198,19 @@ export const captchaVarifyFn = async (params = {}) => {
     throw new Error(message)
   }
 }
+
+export const contactSEOFn = (reqbody) => {
+  const articleId = reqbody
+  console.log(reqbody)
+  try {
+    const response = axiosInstance.get(
+      `api/articles?filters[slug]=${reqbody}&populate[blocks][on][shared.stack-images][populate][renderBlock][populate]=*&populate[blocks][on][shared.stack-images][populate][files][populate]=file&populate[blocks][on][shared.rich-text-markdown-wrapper][populate]=*&populate[blocks][on][shared.html-markdown-wrapper][populate]=*&populate[blocks][on][shared.action-btn-wrapper][populate]=*&populate[blocks][on][shared.slider-wrapper][populate]=*&populate[blocks][on][shared.quote-wrapper][populate]=*&populate[blocks][on][shared.media-wrapper][populate]=*&populate[blocks][on][shared.carousel-button][populate]=*&populate[blocks][on][shared.rich-text][populate]=*&populate[cover]=true&populate[seo][populate]=*`
+    )
+    // const response = axiosInstance.get(
+    //   `api/articles?filters[slug]=${articleId}&populate[blocks][populate]=*&populate[cover]=true&populate[seo][populate]=*`
+    // )
+    return response
+  } catch ({ error }) {
+    throw new Error(error.message)
+  }
+}

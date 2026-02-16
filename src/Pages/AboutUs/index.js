@@ -12,7 +12,7 @@ import Quotes from "Components/Home/Quote"
 import { Helmet } from "react-helmet-async"
 import { useQuery } from "react-query"
 import { useLocation } from "react-router-dom"
-import { aboutServiceFn } from "Services/Home"
+import { aboutServiceFn, contactSEOFn } from "Services/Home"
 import Loader from "Shared/Loader"
 import logo from "../../Assests/Content/logo_footer.png"
 import FuelERPFeatures from "Components/OilGas"
@@ -22,6 +22,9 @@ const AboutUs = () => {
   const location = useLocation()
 
   const isAboutUsTeam = location.pathname.includes("management-team")
+  const { data: aboutSeoData } = useQuery(["aboutus-seo"], () =>
+    contactSEOFn(isAboutUsTeam ? "management-team-seo" : "company-profile-seo")
+  )
 
   const { data: aboutData, isLoading } = useQuery(["companyAddress"], () => aboutServiceFn())
 
@@ -36,29 +39,50 @@ const AboutUs = () => {
       window.scrollTo(0, 0)
     }
   }, [isLoading])
+  const seoData = aboutSeoData?.data?.data?.[0]?.seo
+
   return (
     <>
       <Helmet>
-        <title>DoubleClick - Aboutus</title>
+        <title>{seoData?.metaTitle ? seoData?.metaTitle : "DoubleClick - Aboutus"}</title>
         <meta name="Aboutus" content="This page is Aboutus page of Double click cunsulting." />
         <meta
           name="keywords"
-          content="Contact DoubleClick, IT consulting, digital solutions, support, DoubleClick contact"
+          content={
+            seoData?.metakeywords
+              ? seoData?.metakeywords
+              : "Contact DoubleClick, IT consulting, digital solutions, support, DoubleClick contact"
+          }
         />
-        <meta property="og:title" content="About Us | DoubleClick Consulting" />
+        <meta
+          property="og:title"
+          content={seoData?.metaTitle ? seoData?.metaTitle : "About Us | DoubleClick Consulting"}
+        />
         <meta
           name="title"
-          content={`About Us | ${isAboutUsTeam ? "Management Team" : "Company Profile"} | DoubleClick Consulting`}
+          content={
+            seoData?.metaTitle
+              ? seoData?.metaTitle
+              : `About Us | ${isAboutUsTeam ? "Management Team" : "Company Profile"} | DoubleClick Consulting`
+          }
         />
         <meta
           property="og:description"
-          content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          content={
+            seoData?.metaDescription
+              ? seoData?.metaDescription
+              : "Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          }
         />
         <meta
           name="description"
-          content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          content={
+            seoData?.metaDescription
+              ? seoData?.metaDescription
+              : "Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          }
         />
-        <meta property="og:image" content={logo} />
+        <meta property="og:image" content={seoData?.shareImage ? seoData?.shareImage : logo} />
       </Helmet>
       {/* {isLoading && (
         <div className="fixed h-[100vh] w-[100vw] z-50 bg-black bg-opacity-85 flex justify-center items-center">
@@ -166,7 +190,7 @@ const AboutUs = () => {
             <Teams />
             <Quotes />
 
-            <Questionaires />
+            <Questionaires isAboutUsTeam={true} />
           </>
         )}
         <Connections />

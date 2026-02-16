@@ -11,28 +11,52 @@ import UponSliderService from "Components/Home/UponSlider"
 import NewsletterSignup from "Components/Home/NewSletter"
 import DoubleClickHero from "Components/Home/AboutSection"
 import DoubleClickWebsite from "Components/Home/HeroSection"
+import { useQuery } from "react-query"
+import { contactSEOFn } from "Services/Home"
 
 const Home = () => {
+  const { data: contactData } = useQuery(["home-page-seo"], () => contactSEOFn("home-page-seo"))
+  const seoData = contactData?.data?.data?.[0]?.seo
+
   return (
     <>
       <Helmet>
-        <title>DoubleClick - Home</title>
+        <title>{seoData?.metaTitle ? seoData?.metaTitle : "DoubleClick - Home Page"}</title>
         <meta name="DoubleClick" content="This page is Home page of Double click cunsulting." />
         <meta
           name="keywords"
-          content="Contact DoubleClick, IT consulting, digital solutions, support, DoubleClick contact"
+          content={
+            seoData?.metakeywords
+              ? seoData?.metakeywords
+              : "Contact DoubleClick, IT consulting, digital solutions, support, DoubleClick contact ,SAP Business One & Cloud Solutions , Best SAP Consulting , Double Click"
+          }
         />
-        <meta property="og:title" content="Home | DoubleClick Consulting" />
+        <meta
+          property="og:title"
+          content={
+            seoData?.metaTitle
+              ? seoData?.metaTitle
+              : "SAP Business One & Cloud Solutions | Best SAP Consulting | Double Click"
+          }
+        />
         <meta
           property="og:description"
-          content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          content={
+            seoData?.metaDescription
+              ? seoData?.metaDescription
+              : "Expert SAP consulting services, SAP Business One, payroll and HR solutions, business automation tools, and DCC cloud services are all provided by DCC. reliable SAP support company."
+          }
         />
-        <meta property="title" content="Home | DoubleClick Consulting" />
+        <meta property="title" content={seoData?.metaTitle ? seoData?.metaTitle : "Home | DoubleClick Consulting"} />
         <meta
           property="description"
-          content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          content={
+            seoData?.metaDescription
+              ? seoData?.metaDescription
+              : "Expert SAP consulting services, SAP Business One, payroll and HR solutions, business automation tools, and DCC cloud services are all provided by DCC. reliable SAP support company."
+          }
         />
-        <meta property="og:image" content={logo} />
+        <meta property="og:image" content={seoData?.shareImage ? seoData?.shareImage : logo} />
       </Helmet>
       <div className=" w-[100vw] min-h-[73vh] min-w-[320px] !bg-white max-w-screen-2xl mx-auto !overflow-hidden">
         {/* <Sliders />

@@ -122,16 +122,16 @@ const Header = () => {
             style={{ fontWeight: "600", color: "#333" }}
           >
             <div className="nav-item-animate">
-              <a href="/" className="nav-link-decorative">
+              <a href="/" className=" nav-link-decorative  hover:text-red-600">
                 Home
               </a>
             </div>
 
             <div className="group nav-item-animate">
-              <div className="nav-link-decorative flex items-center">
+              <div className="nav-link-decorative flex items-center hover:text-red-600">
                 ABOUT US
                 <svg
-                  className="ml-0 w-3 h-3 font-bold group-hover:rotate-180 transition-transform duration-300"
+                  className="ml-0 w-3 h-3 font-bold hover:text-red-600 group-hover:rotate-180 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -142,13 +142,13 @@ const Header = () => {
               <div className="absolute w-auto bg-white border border-gray-200 shadow-xl text-xs whitespace-nowrap font-medium rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform scale-y-0 origin-top group-hover:scale-y-100">
                 <a
                   href="/aboutus/company-profile"
-                  className="!capitalize whitespace-nowrap border-b border-gray-100 flex px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
+                  className="!capitalize hover:text-red-600 whitespace-nowrap border-b border-gray-100 flex px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
                 >
                   Company Profile
                 </a>
                 <a
                   href="/aboutus/management-team"
-                  className="!capitalize whitespace-nowrap flex px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
+                  className="!capitalize hover:text-red-600 whitespace-nowrap flex px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
                 >
                   Management Team
                 </a>
@@ -162,12 +162,12 @@ const Header = () => {
                   <div key={item.slug} className="group nav-item-animate">
                     <a
                       href={item?.article ? `/${item?.article?.slug}` : "#"}
-                      className="nav-link-decorative flex items-center"
+                      className="nav-link-decorative hover:!text-red-600 flex items-center"
                     >
                       {item?.name}
                       {item?.children?.length > 0 && (
                         <svg
-                          className="ml-0 w-4 h-4 group-hover:rotate-180 transition-transform duration-300"
+                          className="ml-0 w-4 h-4 hover:!text-red-600 group-hover:rotate-180 transition-transform duration-300"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -191,11 +191,11 @@ const Header = () => {
                                     ? `/${item.slug}/${i.article.slug}`
                                     : "/no-article-found"
                                 }
-                                className="!capitalize whitespace-nowrap border-b border-gray-100 flex justify-between px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
+                                className="!capitalize hover:!text-red-600 whitespace-nowrap border-b border-gray-100 flex justify-between px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
                               >
                                 {i.name}
                                 {i?.children?.length > 0 && (
-                                  <FaAngleRight className="text-black !font-thin !mt-1 group-hover/submenu:rotate-90 transition-transform duration-300" />
+                                  <FaAngleRight className="text-black hover:!text-red-600 !font-thin !mt-1 group-hover/submenu:rotate-90 transition-transform duration-300" />
                                 )}
                               </a>
                               {i?.children?.length > 0 && (
@@ -210,11 +210,11 @@ const Header = () => {
                                             ? `/${item.slug}/${i.slug}/${j.article.slug}`
                                             : "/no-article-found"
                                         }
-                                        className="!capitalize whitespace-nowrap border-b border-gray-100 flex justify-between px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
+                                        className="!capitalize hover:!text-red-600 whitespace-nowrap border-b border-gray-100 flex justify-between px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
                                       >
                                         {j.name}
                                         {j?.children?.length > 0 && (
-                                          <FaAngleRight className="text-black !font-thin !mt-1 group-hover/sub2menu:rotate-90 transition-transform duration-300" />
+                                          <FaAngleRight className="text-black hover:!text-red-600 !font-thin !mt-1 group-hover/sub2menu:rotate-90 transition-transform duration-300" />
                                         )}
                                       </a>
                                       {j?.children?.length > 0 && (
@@ -227,7 +227,7 @@ const Header = () => {
                                                   ? `/${item.slug}/${i.slug}/${j.slug}/${k.article.slug}`
                                                   : "/no-article-found"
                                               }
-                                              className="!capitalize px-5 flex border-b border-gray-100 py-2 hover:bg-gray-50 transition-colors duration-300"
+                                              className="!capitalize px-5 hover:!text-red-600 flex border-b border-gray-100 py-2 hover:bg-gray-50 transition-colors duration-300"
                                             >
                                               {k.name}
                                             </a>
@@ -247,12 +247,12 @@ const Header = () => {
             )}
 
             <div className="nav-item-animate">
-              <a href="/blogs" className="nav-link-decorative">
+              <a href="/blogs" className="nav-link-decorative hover:text-red-600">
                 BLOGS
               </a>
             </div>
             <div className="nav-item-animate">
-              <a href="/contact" className="nav-link-decorative">
+              <a href="/contact" className="nav-link-decorative hover:text-red-600">
                 Contact Us
               </a>
             </div>

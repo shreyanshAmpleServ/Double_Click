@@ -3,7 +3,7 @@ import Connections from "Components/Home/Connect"
 import moment from "moment"
 import { Helmet } from "react-helmet-async"
 import { useQuery } from "react-query"
-import { postBlogServiceFn } from "Services/Home"
+import { contactSEOFn, postBlogServiceFn } from "Services/Home"
 import Loader from "Shared/Loader"
 import DefaultImage from "../../Assests/default_image-1.jpg"
 import logo from "../../Assests/Content/logo_footer.png"
@@ -16,6 +16,7 @@ gsap.registerPlugin(ScrollTrigger)
 const Blogs = () => {
   const baseURL = process.env.REACT_APP_API_URL
   const { data: blogData, isLoading, refetch } = useQuery(["blogs"], () => postBlogServiceFn())
+  const { data: blogSeoData } = useQuery(["blog-list-seo"], () => contactSEOFn("blog-list-seo"))
 
   // Animation refs
   const blogsSectionRef = useRef(null)
@@ -251,26 +252,43 @@ const Blogs = () => {
       window.scrollTo(0, 0)
     }
   }, [isLoading])
+
+  const seoData = blogSeoData?.data?.data?.[0]?.seo
   return (
     <>
       <Helmet>
-        <title>DoubleClick - Blogs</title>
+        <title> {seoData?.metaTitle ? seoData?.metaTitle : "DoubleClick - Blogs"}</title>
         <meta name="Blogs" content="This page is Blogs page of Double click consulting." />
         <meta
           name="keywords"
-          content="Contact DoubleClick, IT consulting, digital solutions, support, DoubleClick contact"
+          content={
+            seoData?.metakeywords
+              ? seoData?.metakeywords
+              : "Contact DoubleClick, IT consulting, digital solutions, support, DoubleClick contact"
+          }
         />
-        <meta property="og:title" content="Blogs | DoubleClick Consulting" />
-        <meta property="title" content="Blogs | DoubleClick Consulting" />
+        <meta
+          property="og:title"
+          content={seoData?.metaTitle ? seoData?.metaTitle : "Blogs | DoubleClick Consulting"}
+        />
+        <meta property="title" content={seoData?.metaTitle ? seoData?.metaTitle : "Blogs | DoubleClick Consulting"} />
         <meta
           name="og:description"
-          content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          content={
+            seoData?.metaDescription
+              ? seoData?.metaDescription
+              : "Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          }
         />
         <meta
           name="description"
-          content="Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          content={
+            seoData?.metaDescription
+              ? seoData?.metaDescription
+              : "Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
+          }
         />
-        <meta property="og:image" content={logo} />
+        <meta property="og:image" content={seoData?.shareImage ? seoData?.shareImage : logo} />
       </Helmet>
 
       {/* {isLoading && (
