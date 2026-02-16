@@ -49,7 +49,7 @@ const Home = () => {
         />
         <meta property="title" content={seoData?.metaTitle ? seoData?.metaTitle : "Home | DoubleClick Consulting"} />
         <meta
-          property="description"
+          name="description"
           content={
             seoData?.metaDescription
               ? seoData?.metaDescription
