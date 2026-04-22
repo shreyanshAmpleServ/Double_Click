@@ -1,4 +1,7 @@
 import Questionaires from "Components/Aboutus/Questionaires"
+import SAPGlobalWebsite from "Components/UKPage"
+import USSAPWebsite from "Components/USPage"
+import SAPAfricaWebsite from "Components/africanPage"
 import Layout from "Layout"
 import AboutUs from "Pages/AboutUs"
 import Blogs from "Pages/Blogs"
@@ -30,6 +33,9 @@ export const routes = [
   { id: 5, path: "/blogs", component: <Blogs />, navItem: "Blogs" },
   { id: 6, path: "/faq", component: <Questionaires />, navItem: "Questionair" },
   { id: 7, path: "/no-article-found", component: <NoDataFound />, navItem: "None" },
+  { id: 7, path: "/sap-africa", component: <SAPAfricaWebsite />, navItem: "None" },
+  { id: 7, path: "/sap-usa", component: <USSAPWebsite />, navItem: "None" },
+  { id: 7, path: "/sap-uk", component: <SAPGlobalWebsite />, navItem: "None" },
   { id: 7, path: "*", component: <NoDataFound />, navItem: "None" },
 ]
 

@@ -13,6 +13,7 @@
     "chart.js": "^4.4.9",
     "classnames": "^2.5.1",
     "formik": "^2.4.6",
+    "framer-motion": "^12.38.0",
     "gsap": "^3.12.7",
     "helmet": "^8.1.0",
     "lucide-react": "^0.544.0",

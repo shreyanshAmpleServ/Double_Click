@@ -257,7 +257,7 @@ const Blogs = () => {
   return (
     <>
       <Helmet>
-        <title> {seoData?.metaTitle ? seoData?.metaTitle : "DoubleClick - Blogs"}</title>
+        <title> {seoData?.metaTitle ? seoData?.metaTitle : "DoubleClick - Blogs"} - DoubleClick Consulting</title>
         <meta name="Blogs" content="This page is Blogs page of Double click consulting." />
         <meta
           name="keywords"

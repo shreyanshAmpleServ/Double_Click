@@ -347,7 +347,7 @@ const Footer = () => {
             {/* Navigation Section */}
             <div ref={navigationRef} className="flex h-full flex-col justify-start">
               <div className="text-xl font-semibold lg:pl-[20%] mb-6">Quick Navigation</div>
-              <div className="text-slate-600 text-sm grid lg:pl-[21%] gap-2">
+              <div className="text-slate-600 text-sm grid grid-cols-2 lg:pl-[21%] gap-2">
                 <div
                   className="nav-item flex gap-2 items-center py-2 hover:translate-x-4 transition-all duration-300 cursor-pointer group"
                   onClick={() => handleClick("/")}
@@ -378,6 +378,27 @@ const Footer = () => {
                 >
                   <IoIosArrowForward className="nav-arrow !text-red-500 transition-all duration-300" />
                   <span className="group-hover:text-red-600 transition-colors duration-300">About Us</span>
+                </div>
+                <div
+                  className="nav-item flex gap-2 items-center py-2 hover:translate-x-4 transition-all duration-300 cursor-pointer group"
+                  onClick={() => handleClick("/sap-africa")}
+                >
+                  <IoIosArrowForward className="nav-arrow !text-red-500 transition-all duration-300" />
+                  <span className="group-hover:text-red-600 transition-colors duration-300">SAP Africa</span>
+                </div>
+                <div
+                  className="nav-item flex gap-2 items-center py-2 hover:translate-x-4 transition-all duration-300 cursor-pointer group"
+                  onClick={() => handleClick("/sap-usa")}
+                >
+                  <IoIosArrowForward className="nav-arrow !text-red-500 transition-all duration-300" />
+                  <span className="group-hover:text-red-600 transition-colors duration-300">SAP USA</span>
+                </div>
+                <div
+                  className="nav-item flex gap-2 items-center py-2 hover:translate-x-4 transition-all duration-300 cursor-pointer group"
+                  onClick={() => handleClick("/sap-uk")}
+                >
+                  <IoIosArrowForward className="nav-arrow !text-red-500 transition-all duration-300" />
+                  <span className="group-hover:text-red-600 transition-colors duration-300">SAP UK</span>
                 </div>
               </div>
             </div>

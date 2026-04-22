@@ -107,7 +107,7 @@ const Header = () => {
         </div>
       </header>
       <nav
-        className={`bg-white !sticky !top-0 !left-0 z-40 w-full flex items-center max-w-screen-2xl mx-auto text-black py-4 px-[0%] lg:px-[4%] transition-shadow duration-300 ${
+        className={`bg-white !sticky !top-0 !left-0 z-40 w-full flex items-center max-w-screen-2xl mx-auto text-black py-2 px-[0%] lg:px-[4%] transition-shadow duration-300 ${
           isScrolled ? "shadow-lg shadow-red-200" : ""
         }`}
       >
@@ -118,7 +118,7 @@ const Header = () => {
 
           {/* Desktop Menu */}
           <div
-            className="hidden !uppercase lg:flex space-x-3 text-sm align-content-end !text-black1"
+            className="hidden !uppercase lg:flex space-x-3 !text-sm !font-medium align-content-end !text-black1"
             style={{ fontWeight: "600", color: "#333" }}
           >
             <div className="nav-item-animate">
@@ -188,8 +188,8 @@ const Header = () => {
                                   i?.children?.length > 0
                                     ? "#"
                                     : i?.article
-                                    ? `/${item.slug}/${i.article.slug}`
-                                    : "/no-article-found"
+                                      ? `/${item.slug}/${i.article.slug}`
+                                      : "/no-article-found"
                                 }
                                 className="!capitalize hover:!text-red-600 whitespace-nowrap border-b border-gray-100 flex justify-between px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
                               >
@@ -207,8 +207,8 @@ const Header = () => {
                                           j?.children?.length > 0
                                             ? "#"
                                             : j?.article
-                                            ? `/${item.slug}/${i.slug}/${j.article.slug}`
-                                            : "/no-article-found"
+                                              ? `/${item.slug}/${i.slug}/${j.article.slug}`
+                                              : "/no-article-found"
                                         }
                                         className="!capitalize hover:!text-red-600 whitespace-nowrap border-b border-gray-100 flex justify-between px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
                                       >
@@ -393,15 +393,51 @@ const Header = () => {
             </div>
           </div>
         )}
-
         <CustomButton
           id="request-quote"
           onClick={() => setIsModal(true)}
-          className="whitespace-nowrap !text-base font-semibold !p-2 lg:!p-2 !min-w-10 lg:!min-w-32 !w-6 lg:!px-0  !bg-[#2f3985] !text-white hover:!bg-[#3f4db8]  hover:shadow-lg transition-all duration-300"
+          className="whitespace-nowrap !text-sm font-semibold !p-2 lg:!p-2 !min-w-10 lg:!min-w-32 !w-6 lg:!px-0  !bg-[#2f3985] !text-white hover:!bg-[#3f4db8]  hover:shadow-lg transition-all duration-300"
         >
           <ArticleIcon className="!text-lg !font-normal lg:mr-2" />
           <span className="hidden lg:!block">Req Quote</span>
         </CustomButton>
+        {/* function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  return (
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"}`}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className={`text-2xl font-black tracking-tighter ${scrolled ? COLORS.primaryText : "text-slate-900"}`}>
+          SAP<span className={COLORS.accentText}>AFRICA</span>
+        </div>
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          {["Home", "Services", "Company", "Cases", "Contact"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className={`hover:text-[#C9A84C] transition-colors ${scrolled ? "text-slate-600" : "text-slate-800"}`}
+            >
+              {item}
+            </a>
+          ))}
+          <Button variant="primary" className="py-2 text-xs">
+            Book Consultation
+          </Button>
+        </div>
+        <div className="md:hidden">
+          <Menu />
+        </div>
+      </div>
+    </nav>
+  )
+} */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden !ml-2 text-gray-700 focus:outline-none z-50"

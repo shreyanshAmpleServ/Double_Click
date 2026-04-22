@@ -9,6 +9,8 @@ import Dashboards from "./Dashboard"
 import Reports from "./Reports"
 import SapIntegration from "./SapIntegration"
 import Benefits from "./Benifits"
+import bg2 from "../../Assests/fleetBanner.png"
+import { Section } from "Shared/Customs"
 
 function FleetManagment() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -24,6 +26,9 @@ function FleetManagment() {
         <Benefits />
         {/* <ContactCTA /> */}
       </main>
+      <Section className="relative !pt-0 ">
+        <img alt="fleetBanner" src={bg2} className="w-full h-auto border" />
+      </Section>
       {/* <Footer /> */}
     </div>
   )

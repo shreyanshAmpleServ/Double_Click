@@ -45,20 +45,27 @@ const ValueProps = () => {
   const items = [
     {
       icon: Zap,
-      title: "Real-Time Visibility",
-      text: "Monitor your entire fleet with live tracking, movement monitoring, and instant alerts.",
+      title: "Real Time GPS Tracking",
+      text: ["Live Vehicle Tracking", "Movement Monitoring & Instant Alerts", "Real-Time Status & Delay Notifications"],
+      // text: "Monitor your entire fleet with live tracking, movement monitoring, and instant alerts.",
       chip: "Live tracking",
     },
     {
       icon: BarChart3,
-      title: "Data-Driven Insights",
-      text: "Comprehensive dashboards and reports for granular fleet analytics.",
+      title: "Data-Driven Fleet Analytics",
+      text: ["Vehicle Route & Management Analytics", "Cost & Profit Margin Reports", "Driver Performance Insights"],
+      // text: "Comprehensive dashboards and reports for granular fleet analytics.",
       chip: "Actionable KPIs",
     },
     {
       icon: TrendingUp,
-      title: "Cost Optimization",
-      text: "Intelligent routes, expense control, and resource optimization reduce costs.",
+      title: "Reduced Cost Benefits",
+      text: [
+        "Intelligent Route Optimization",
+        "Billing Automation & Cost Reduction Benefits",
+        "Fuel Efficiency Tracking",
+      ],
+      // text: "Intelligent routes, expense control, and resource optimization reduce costs.",
       chip: "Lower TCO",
     },
   ]
@@ -116,7 +123,29 @@ const ValueProps = () => {
                   <Icon className="h-7 w-7 text-blue-600 transition-transform duration-300 group-hover:scale-110" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-                <p className="mt-2 text-gray-600">{text}</p>
+                {/* <p className="mt-2 text-gray-600">{text}</p> */}
+                {/* <ul className="mt-3 flex flex-wrap justify-start ">
+                  {Array.isArray(text) &&
+                    text.map((item, index) => (
+                      <li
+                        key={index}
+                        className="px-1 text-xs font-medium whitespace-nowrap  text-gray-700   hover:text-blue-700 transition"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                </ul> */}
+                <div className="mt-3 flex flex-wrap justify-center gap-2">
+                  {Array.isArray(text) &&
+                    text.map((item, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full border border-gray-200 hover:bg-blue-50 hover:text-blue-700 transition"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                </div>
 
                 {/* micro chip */}
                 <div className="mt-4 inline-flex items-center gap-1.5 text-xs text-blue-700/90 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-full">

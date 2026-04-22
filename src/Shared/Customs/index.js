@@ -11,7 +11,7 @@ const Button = ({ variant = "primary", className = "", children, ...props }) => 
     dark: "bg-gray-900 text-white hover:bg-black focus-visible:ring-gray-600",
   }
   return (
-    <button className={`${base} ${variants[variant]} ${className}`} {...props}>
+    <button className={`${base}  ${variants[variant]} ${className}`} {...props}>
       {children}
     </button>
   )

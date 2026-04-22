@@ -1,7 +1,7 @@
 import { TbTruckDelivery } from "react-icons/tb"
 import { ImAirplane } from "react-icons/im"
 import { FaShip } from "react-icons/fa"
-import image1 from "../../Assests/Content/bg-text.jpg"
+// import image1 from "../../Assests/Content/bg-text.jpg"
 import CustomInput from "Shared/CustomInput"
 import CustomSelect from "Shared/CustomSelect"
 import CustomButton from "Shared/CustomButton"

@@ -19,7 +19,10 @@ import Warehousing from "Components/Warehousing"
 import ICDCFS from "Components/ICDCFS"
 import SAPS4HANA from "Components/SAPS4HANA"
 import NGLogistics from "Components/NewNGComponent"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
+import FAQAccordion from "Components/FAQs"
+import CloudCalculator from "Components/CloudCalc"
+import CloudPage from "Components/DccCloude"
 
 const Menus = () => {
   const baseURL = process.env.REACT_APP_API_URL
@@ -34,6 +37,8 @@ const Menus = () => {
   const isICDCFS = pathname.includes("icd-cfs")
   const isSAPS4HANA = pathname.includes("sap-s4-hana")
   const isNGLogistics = pathname.includes("dcc-logistics-siute-ng")
+  const isHostingCalculator = pathname.includes("cloud-hosting-calculator")
+  const isDccCloude = pathname.includes("dcc-cloud")
   useEffect(() => {
     if (isLoading) {
       document.querySelector(".isLoadingClass").style.display = "flex"
@@ -42,11 +47,31 @@ const Menus = () => {
       window.scrollTo(0, 0)
     }
   }, [isLoading])
+
+  const structuredData = useMemo(() => {
+    const faqs = subBlogData?.data?.data?.[0]?.faqs
+
+    if (!faqs?.length) return null
+
+    return {
+      "@context": "https://schema.org",
+      "@type": subBlogData?.data?.data?.[0]?.title + " FAQPage",
+      mainEntity: faqs.map((item) => ({
+        "@type": "Question",
+        name: item?.question?.replace(/<[^>]+>/g, "") || "",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item?.answer?.replace(/<[^>]+>/g, "") || "",
+        },
+      })),
+    }
+  }, [subBlogData])
   return (
     <>
       <Helmet>
         <title>
-          DoubleClick - {subBlogData?.data?.data?.[0]?.seo?.metaTitle || subBlogData?.data?.data?.[0]?.title || menu}
+          {subBlogData?.data?.data?.[0]?.seo?.metaTitle || subBlogData?.data?.data?.[0]?.title || menu} - DoubleClick
+          Consulting
         </title>
         <meta
           name={subBlogData?.data?.data?.[0]?.seo?.metaTitle || subBlogData?.data?.data?.[0]?.title || menu}
@@ -89,6 +114,7 @@ const Menus = () => {
             "Reach out to DoubleClick Consulting for business solutions and expert advice tailored to your needs."
           }
         />
+        {structuredData && <script type="application/ld+json">{JSON.stringify(structuredData)}</script>}
         <meta property="og:image" content={baseURL + subBlogData?.data?.data?.[0]?.seo?.shareImage?.url || logo} />
       </Helmet>
       {/* {isLoading && (
@@ -118,78 +144,86 @@ const Menus = () => {
             <SAPS4HANA />
           ) : isNGLogistics ? (
             <NGLogistics />
+          ) : isHostingCalculator ? (
+            <CloudCalculator />
+          ) : isDccCloude ? (
+            <CloudPage />
           ) : (
-            <>
-              <Section1 menu={subBlogData?.data?.data?.[0]?.title || menu} data={subBlogData?.data?.data?.[0]} />
-              <div className="flex flex-wrap px-[5%] py-[1%] ">
-                {/* <div className="flex px-[5%] py-[1%] flex-wrap"> */}
-                {subBlogData?.data?.data?.[0]?.blocks?.map((item) => (
-                  <>
-                    {item.__component === "shared.rich-text-markdown-wrapper" && (
-                      <AboutSection
-                        customWidth={item.renderBlock}
-                        data={item?.body}
-                        value={item?.renderBlock?.value}
-                        type={1}
-                        isMarked={true}
-                      />
-                    )}
-                    {item.__component === "shared.html-markdown-wrapper" && (
-                      <AboutSection
-                        customWidth={item.renderBlock}
-                        data={item?.body}
-                        value={item?.renderBlock?.value}
-                        type={3}
-                        isMarked={true}
-                      />
-                    )}
-                    {item.__component === "shared.action-btn-wrapper" && (
-                      <div
-                        // className={`flex justify-center my-3 ${
-                        //   item?.renderBlock?.value == "Full" ? "w-[100%]" : " w-[100%]  lg:w-[50%]"
-                        // }`}
-                        style={
-                          ({ fontSize: `${item?.renderBlock?.fontSize && fontSizeCalc(item?.renderBlock?.fontSize)}` },
-                          item?.renderBlock?.styleCSS)
-                        }
-                        className={`flex  justify-center my-3 w-[100%] ${widthCalculate(item?.renderBlock?.value)}  ${
-                          item?.renderBlock?.padding
-                        } ${item?.renderBlock?.margin}  ${item?.renderBlock?.htmlCSSClasses}  `}
-                      >
-                        {" "}
-                        <CustomButton className="!bg-[#2f3985] !font-semibold  !px-10 !py-3 whitespace-nowrap !text-lg w-[75%] lg:w-[30%]  !rounded-full">
-                          <a href={item?.link}> {item.name}</a>
-                        </CustomButton>
-                      </div>
-                    )}
-                    {item.__component === "shared.slider-wrapper" && (
-                      <Sliders value={item?.renderBlock?.value} customWidth={item.renderBlock} data={item?.files} />
-                    )}
-                    {item.__component === "shared.quote-wrapper" && (
-                      <QuoteSection value={item?.renderBlock?.value} customWidth={item.renderBlock} data={item} />
-                    )}
-                    {item.__component === "shared.media-wrapper" && (
-                      <AboutSection
-                        value={item?.renderBlock?.value}
-                        customWidth={item.renderBlock}
-                        data={{ file: item?.file, thumbnail: item?.thumbnail_image }}
-                        type={2}
-                      />
-                    )}
-                    {item.__component === "shared.stack-images" && (
-                      <AboutSection
-                        value={item?.renderBlock?.value}
-                        customWidth={item.renderBlock}
-                        data={item?.files}
-                        type={4}
-                      />
-                    )}
-                  </>
-                ))}
-              </div>
-              <Connections />
-            </>
+            <Section1 menu={subBlogData?.data?.data?.[0]?.title || menu} data={subBlogData?.data?.data?.[0]} />
           )}
+          <>
+            <div className="flex flex-wrap px-[5%] py-[1%] ">
+              {/* <div className="flex px-[5%] py-[1%] flex-wrap"> */}
+              {subBlogData?.data?.data?.[0]?.blocks?.map((item) => (
+                <>
+                  {item.__component === "shared.rich-text-markdown-wrapper" && (
+                    <AboutSection
+                      customWidth={item.renderBlock}
+                      data={item?.body}
+                      value={item?.renderBlock?.value}
+                      type={1}
+                      isMarked={true}
+                    />
+                  )}
+                  {item.__component === "shared.html-markdown-wrapper" && (
+                    <AboutSection
+                      customWidth={item.renderBlock}
+                      data={item?.body}
+                      value={item?.renderBlock?.value}
+                      type={3}
+                      isMarked={true}
+                    />
+                  )}
+                  {item.__component === "shared.action-btn-wrapper" && (
+                    <div
+                      // className={`flex justify-center my-3 ${
+                      //   item?.renderBlock?.value == "Full" ? "w-[100%]" : " w-[100%]  lg:w-[50%]"
+                      // }`}
+                      style={
+                        ({ fontSize: `${item?.renderBlock?.fontSize && fontSizeCalc(item?.renderBlock?.fontSize)}` },
+                        item?.renderBlock?.styleCSS)
+                      }
+                      className={`flex  justify-center my-3 w-[100%] ${widthCalculate(item?.renderBlock?.value)}  ${
+                        item?.renderBlock?.padding
+                      } ${item?.renderBlock?.margin}  ${item?.renderBlock?.htmlCSSClasses}  `}
+                    >
+                      {" "}
+                      <CustomButton className="!bg-[#2f3985] !font-semibold  !px-10 !py-3 whitespace-nowrap !text-lg w-[75%] lg:w-[30%]  !rounded-full">
+                        <a href={item?.link}> {item.name}</a>
+                      </CustomButton>
+                    </div>
+                  )}
+                  {item.__component === "shared.slider-wrapper" && (
+                    <Sliders value={item?.renderBlock?.value} customWidth={item.renderBlock} data={item?.files} />
+                  )}
+                  {item.__component === "shared.quote-wrapper" && (
+                    <QuoteSection value={item?.renderBlock?.value} customWidth={item.renderBlock} data={item} />
+                  )}
+                  {item.__component === "shared.media-wrapper" && (
+                    <AboutSection
+                      value={item?.renderBlock?.value}
+                      customWidth={item.renderBlock}
+                      data={{ file: item?.file, thumbnail: item?.thumbnail_image }}
+                      type={2}
+                    />
+                  )}
+                  {item.__component === "shared.stack-images" && (
+                    <AboutSection
+                      value={item?.renderBlock?.value}
+                      customWidth={item.renderBlock}
+                      data={item?.files}
+                      type={4}
+                    />
+                  )}
+                </>
+              ))}
+            </div>
+            {/* <FAQAccordion faqs={subBlogData?.data?.data?.[0]?.faqs} /> */}
+            {subBlogData?.data?.data?.[0]?.faqs?.length > 0 && (
+              <FAQAccordion faqs={subBlogData?.data?.data?.[0]?.faqs} />
+            )}
+            <Connections />
+          </>
         </div>
       ) : (
         !isLoading && <NoDataFound />

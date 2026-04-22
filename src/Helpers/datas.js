@@ -12,75 +12,178 @@ import {
   Zap,
 } from "lucide-react"
 
+// export const FEATURES = [
+//   {
+//     icon: Truck,
+//     title: "Vehicle Registration & Allocation",
+//     description:
+//       "Digitally register vehicles with detailed specs, documents, and inspection schedules. Allocate based on load, fuel efficiency, and driver history.",
+//   },
+//   {
+//     icon: MapPin,
+//     title: "Trip Lifecycle Management",
+//     description:
+//       "Track each leg from loading to offloading with KPIs on turnaround time, stoppages, and delivery performance.",
+//   },
+//   {
+//     icon: AlertCircle,
+//     title: "Trip Release & Checklist Compliance",
+//     description:
+//       "Ensure no delivery goes unchecked with custom checklists for documents, cargo seal, driver briefing, and route planning.",
+//   },
+//   {
+//     icon: Clock,
+//     title: "Movement Monitoring & Border KPIs",
+//     description:
+//       "Visualize vehicle milestones with real-time alerts highlighting potential delays at loading bays, borders, and customer gates.",
+//   },
+//   {
+//     icon: TrendingUp,
+//     title: "Return Load & Container Management",
+//     description:
+//       "Optimize vehicle utilization with intelligent return load planning and automatic demurrage prevention.",
+//   },
+//   {
+//     icon: Fuel,
+//     title: "Trip Expenses & Billing Control",
+//     description:
+//       "Empower drivers to submit expenses via app with approval workflows, duplicate detection, and auto-linked billables.",
+//   },
+//   {
+//     icon: Users,
+//     title: "Driver & Performance Management",
+//     description:
+//       "Maintain complete driver profiles with license validity, trip assignments, POD uploads, and performance KPIs.",
+//   },
+//   {
+//     icon: Wrench,
+//     title: "Workshop & Job Card Automation",
+//     description:
+//       "Digitally inspect vehicles and raise job cards from the field. Track timesheet vs actual time and monitor mechanic productivity.",
+//   },
+//   {
+//     icon: Shield,
+//     title: "Spare Part Control & Approval Flow",
+//     description: "Track spare part requests with intelligent approval workflows that reduce misuse and costs.",
+//   },
+//   {
+//     icon: Zap,
+//     title: "Tyre Lifecycle Intelligence",
+//     description: "Track each tyre from purchase to scrap with retread history, lifespan analytics, and safety alerts.",
+//   },
+//   {
+//     icon: BarChart3,
+//     title: "Visual Dashboards & Analytics",
+//     description: "Gain clarity across vehicle, route, and trip performance with comprehensive real-time dashboards.",
+//   },
+//   {
+//     icon: TrendingUp,
+//     title: "Advanced MIS Reports",
+//     description:
+//       "Access comprehensive configurable reports for all aspects of fleet operations and performance metrics.",
+//   },
+// ]
 export const FEATURES = [
   {
     icon: Truck,
     title: "Vehicle Registration & Allocation",
-    description:
-      "Digitally register vehicles with detailed specs, documents, and inspection schedules. Allocate based on load, fuel efficiency, and driver history.",
+    description: [
+      "Digital vehicle registration with specs & documents",
+      "Inspection & compliance scheduling",
+      "Smart allocation based on load & fuel efficiency",
+      "Driver history-based assignment",
+    ],
   },
   {
     icon: MapPin,
     title: "Trip Lifecycle Management",
-    description:
-      "Track each leg from loading to offloading with KPIs on turnaround time, stoppages, and delivery performance.",
+    description: [
+      "Complete trip planning from loading to offloading",
+      "Real-time trip progress tracking",
+      "Daily status monitoring",
+    ],
   },
   {
     icon: AlertCircle,
     title: "Trip Release & Checklist Compliance",
-    description:
-      "Ensure no delivery goes unchecked with custom checklists for documents, cargo seal, driver briefing, and route planning.",
+    description: [
+      "Pre-dispatch system checklist & validation",
+      "Cargo seal & driver compliance verification",
+      "Audit-ready trip execution",
+    ],
   },
   {
     icon: Clock,
     title: "Movement Monitoring & Border KPIs",
-    description:
-      "Visualize vehicle milestones with real-time alerts highlighting potential delays at loading bays, borders, and customer gates.",
+    description: [
+      "Live vehicle tracking in real-time",
+      "Alerts for trip delays, borders & delivery points",
+      "Turnaround time & transit efficiency tracking",
+    ],
   },
   {
     icon: TrendingUp,
     title: "Return Load & Container Management",
-    description:
-      "Optimize vehicle utilization with intelligent return load planning and automatic demurrage prevention.",
+    description: [
+      "Return load planning & optimization",
+      "Automatic demurrage prevention",
+      "Cost-optimized return trip management",
+    ],
   },
   {
     icon: Fuel,
     title: "Trip Expenses & Billing Control",
-    description:
-      "Empower drivers to submit expenses via app with approval workflows, duplicate detection, and auto-linked billables.",
+    description: [
+      "Expense control via mobile device",
+      "Approval workflows & duplicate detection",
+      "Automated billing & profit insights",
+    ],
   },
   {
     icon: Users,
     title: "Driver & Performance Management",
-    description:
-      "Maintain complete driver profiles with license validity, trip assignments, POD uploads, and performance KPIs.",
+    description: [
+      "Driver profiles & compliance insights",
+      "Trip assignments & POD management",
+      "Driver productivity KPIs",
+    ],
   },
   {
     icon: Wrench,
     title: "Workshop & Job Card Automation",
-    description:
-      "Digitally inspect vehicles and raise job cards from the field. Track timesheet vs actual time and monitor mechanic productivity.",
+    description: [
+      "Digital vehicle inspection & job card creation",
+      "Mechanic efficiency tracking",
+      "Planned vs actual time tracking",
+    ],
   },
   {
     icon: Shield,
     title: "Spare Part Control & Approval Flow",
-    description: "Track spare part requests with intelligent approval workflows that reduce misuse and costs.",
+    description: ["Track spare part requests", "Intelligent approval workflow", "Control maintenance costs"],
   },
   {
     icon: Zap,
     title: "Tyre Lifecycle Intelligence",
-    description: "Track each tyre from purchase to scrap with retread history, lifespan analytics, and safety alerts.",
+    description: [
+      "Tyre tracking from purchase to scrap",
+      "Retread history & cost analysis",
+      "Safety alerts & intelligent monitoring",
+    ],
   },
   {
     icon: BarChart3,
     title: "Visual Dashboards & Analytics",
-    description: "Gain clarity across vehicle, route, and trip performance with comprehensive real-time dashboards.",
+    description: ["Vehicle, route & trip analytics", "Real-time performance dashboards", "Data-driven decision making"],
   },
   {
     icon: TrendingUp,
     title: "Advanced MIS Reports",
-    description:
-      "Access comprehensive configurable reports for all aspects of fleet operations and performance metrics.",
+    description: [
+      "Configurable MIS reports",
+      "Operational & financial KPI tracking",
+      "Comprehensive business insights",
+    ],
   },
 ]
 

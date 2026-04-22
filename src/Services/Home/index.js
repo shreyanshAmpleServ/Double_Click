@@ -14,7 +14,7 @@ export const blogArticleFn = (reqbody) => {
   console.log(reqbody.id)
   try {
     const response = axiosInstance.get(
-      `api/articles?filters[slug]=${articleId}&populate[blocks][on][shared.stack-images][populate][renderBlock][populate]=*&populate[blocks][on][shared.stack-images][populate][files][populate]=file&populate[blocks][on][shared.rich-text-markdown-wrapper][populate]=*&populate[blocks][on][shared.html-markdown-wrapper][populate]=*&populate[blocks][on][shared.action-btn-wrapper][populate]=*&populate[blocks][on][shared.slider-wrapper][populate]=*&populate[blocks][on][shared.quote-wrapper][populate]=*&populate[blocks][on][shared.media-wrapper][populate]=*&populate[blocks][on][shared.carousel-button][populate]=*&populate[blocks][on][shared.rich-text][populate]=*&populate[cover]=true&populate[seo][populate]=*`
+      `api/articles?filters[slug]=${articleId}&populate[blocks][on][shared.stack-images][populate][renderBlock][populate]=*&populate[blocks][on][shared.stack-images][populate][files][populate]=file&populate[blocks][on][shared.rich-text-markdown-wrapper][populate]=*&populate[blocks][on][shared.html-markdown-wrapper][populate]=*&populate[blocks][on][shared.action-btn-wrapper][populate]=*&populate[blocks][on][shared.slider-wrapper][populate]=*&populate[blocks][on][shared.quote-wrapper][populate]=*&populate[blocks][on][shared.media-wrapper][populate]=*&populate[blocks][on][shared.carousel-button][populate]=*&populate[blocks][on][shared.rich-text][populate]=*&populate[cover]=true&populate[seo][populate]=*&populate[faqs][populate]=*`
     )
     // const response = axiosInstance.get(
     //   `api/articles?filters[slug]=${articleId}&populate[blocks][populate]=*&populate[cover]=true&populate[seo][populate]=*`
@@ -204,7 +204,7 @@ export const contactSEOFn = (reqbody) => {
   console.log(reqbody)
   try {
     const response = axiosInstance.get(
-      `api/articles?filters[slug]=${reqbody}&populate[blocks][on][shared.stack-images][populate][renderBlock][populate]=*&populate[blocks][on][shared.stack-images][populate][files][populate]=file&populate[blocks][on][shared.rich-text-markdown-wrapper][populate]=*&populate[blocks][on][shared.html-markdown-wrapper][populate]=*&populate[blocks][on][shared.action-btn-wrapper][populate]=*&populate[blocks][on][shared.slider-wrapper][populate]=*&populate[blocks][on][shared.quote-wrapper][populate]=*&populate[blocks][on][shared.media-wrapper][populate]=*&populate[blocks][on][shared.carousel-button][populate]=*&populate[blocks][on][shared.rich-text][populate]=*&populate[cover]=true&populate[seo][populate]=*`
+      `api/articles?filters[slug]=${reqbody}&populate[blocks][on][shared.stack-images][populate][renderBlock][populate]=*&populate[blocks][on][shared.stack-images][populate][files][populate]=file&populate[blocks][on][shared.rich-text-markdown-wrapper][populate]=*&populate[blocks][on][shared.html-markdown-wrapper][populate]=*&populate[blocks][on][shared.action-btn-wrapper][populate]=*&populate[blocks][on][shared.slider-wrapper][populate]=*&populate[blocks][on][shared.quote-wrapper][populate]=*&populate[blocks][on][shared.media-wrapper][populate]=*&populate[blocks][on][shared.carousel-button][populate]=*&populate[blocks][on][shared.rich-text][populate]=*&populate[cover]=true&populate[seo][populate]=*&populate[faqs][populate]=*`
     )
     // const response = axiosInstance.get(
     //   `api/articles?filters[slug]=${articleId}&populate[blocks][populate]=*&populate[cover]=true&populate[seo][populate]=*`
@@ -212,5 +212,21 @@ export const contactSEOFn = (reqbody) => {
     return response
   } catch ({ error }) {
     throw new Error(error.message)
+  }
+}
+export const claudCalcVerifyFn = (reqBody) => {
+  try {
+    const response = axiosInstance.post(`api/cloud-service-enquiries`, { data: reqBody })
+    return response
+  } catch ({ error }) {
+    throw new Error(error?.message)
+  }
+}
+export const otpVerifyFn = (reqBody) => {
+  try {
+    const response = axiosInstance.post(`api/cloud-service-enquiry/verify-email/otp`, reqBody)
+    return response
+  } catch ({ error }) {
+    throw new Error(error?.message)
   }
 }

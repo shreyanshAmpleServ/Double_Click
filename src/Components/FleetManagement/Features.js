@@ -118,10 +118,11 @@ const Features = () => {
         <div ref={rootRef}>
           <div className="text-center mb-16">
             <h2 data-ft-title className="text-4xl md:text-5xl font-bold mb-4">
-              Comprehensive Fleet Management Capabilities
+              DCC Fleet Management: End-to-End Services (Not Just Tracking)
             </h2>
-            <p data-ft-sub className="text-xl text-gray-600 max-w-2xl mx-auto">
-              From vehicle registration to tyre tracking, transform your fleet from reactive to proactive.
+            <p data-ft-sub className="text-base text-gray-600 max-w-2xl mx-auto">
+              Double Click Consulting offers full fleet operational services from vehicle registration and live tracking
+              to trip expense control, with automatic demurrage prevention.
             </p>
           </div>
 
@@ -144,12 +145,30 @@ const Features = () => {
                       background: "linear-gradient(180deg, rgba(59,130,246,0.06) 0%, rgba(20,184,166,0.05) 100%)",
                     }}
                   />
-                  <div className="relative">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-[#ffffff36] to-[#ffffff36] group-hover:!from-blue-100 group-hover:to-teal-100 ring-1 ring-white">
+                  <div className="relative flex  items-center flex-col h-full">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-1 bg-gradient-to-br from-[#ffffff36] to-[#ffffff36] group-hover:!from-blue-100 group-hover:to-teal-100 ring-1 ring-white">
                       <Icon data-ft-icon className="w-6 h-6 text-blue-600" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    {/* <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p> */}
+                    <ul className="mt-3 text-sm text-gray-600 space-y-1 text-left !pl-4">
+                      {feature.description.map((point, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-blue-600" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                    {/* <div className="mt-3 flex flex-wrap gap-2">
+                      {feature.description.map((point, index) => (
+                        <span
+                          key={index}
+                          className="px-2.5 py-1 text-xs bg-gray-50 text-blue-700 rounded-full border border-blue-200"
+                        >
+                          {point}
+                        </span>
+                      ))}
+                    </div> */}
 
                     <div className="mt-3 inline-flex items-center gap-1.5 text-xs text-blue-700/90 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-full">
                       <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />

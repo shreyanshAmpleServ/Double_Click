@@ -1,5 +1,5 @@
 import { useQuery } from "react-query"
-import mapImage from "../../Assests/Content/map-bg-orange.jpg"
+// import mapImage from "../../Assests/Content/map-bg-orange.jpg"
 import { useEffect, useState } from "react"
 
 const QuoteSection = ({ value, data }) => {
