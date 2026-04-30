@@ -12,6 +12,8 @@ import SerachModal from "./SearchModal"
 import SAPLogo from "../../Assests/SAPLogo.png"
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone"
 import EmailIcon from "@mui/icons-material/Email"
+import RequestQuoteModal2 from "Pages/ReqQuote2"
+import BookConsultationModal from "Pages/ReqQuote3"
 
 /**
  * Header component
@@ -22,6 +24,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isSearch, setIsSearch] = useState(false)
   const [isModal, setIsModal] = useState(false)
+  const [isBookModal, setIsBookModal] = useState(false)
   const [blogData, setBlogData] = useState()
   const [footData, setFootData] = useState([])
   const [blogOpenMap, setBlogOpenMap] = useState({})
@@ -391,8 +394,32 @@ const Header = () => {
                 Contact Us
               </a>
             </div>
+            <CustomButton
+              id="request-quote"
+              onClick={() => setIsModal(true)}
+              className="whitespace-nowrap !text-sm font-semibold !p-2 lg:!p-2 !w-[90%] !m-3 !bg-[#2f3985] !text-white hover:!bg-[#3f4db8]  hover:shadow-lg transition-all duration-300"
+            >
+              <ArticleIcon className="!text-lg !font-normal lg:mr-2" />
+              <span className="">Req Quote</span>
+            </CustomButton>
+            <CustomButton
+              id="book-consultation"
+              onClick={() => setIsBookModal(true)}
+              className="whitespace-nowrap !text-sm font-semibold !p-2 lg:!p-2 !w-[90%] lg:!px-0  !m-3 !mt-0 !bg-[#2f3985] !text-white hover:!bg-[#3f4db8]  hover:shadow-lg transition-all duration-300"
+            >
+              <ArticleIcon className="!text-lg !font-normal lg:mr-2" />
+              <span className="">Book Consultation</span>
+            </CustomButton>
           </div>
         )}
+        <CustomButton
+          id="book-consultation-id"
+          onClick={() => setIsBookModal(true)}
+          className="!hidden whitespace-nowrap !text-sm font-semibold !p-2 lg:!p-2 !w-[90%] lg:!px-0  !m-3 !mt-0 !bg-[#2f3985] !text-white hover:!bg-[#3f4db8]  hover:shadow-lg transition-all duration-300"
+        >
+          <ArticleIcon className="!text-lg !font-normal lg:mr-2" />
+          <span className="">Book Consultation</span>
+        </CustomButton>
         <CustomButton
           id="request-quote"
           onClick={() => setIsModal(true)}
@@ -401,6 +428,7 @@ const Header = () => {
           <ArticleIcon className="!text-lg !font-normal lg:mr-2" />
           <span className="hidden lg:!block">Req Quote</span>
         </CustomButton>
+
         {/* function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
@@ -458,7 +486,9 @@ const Header = () => {
         </button>
       </nav>
       <SerachModal isSearch={isSearch} setIsSearch={setIsSearch} />
-      <RequestQuoteModal modal={isModal} setModal={setIsModal} />
+      {/* <RequestQuoteModal modal={isModal} setModal={setIsModal} /> */}
+      <RequestQuoteModal2 modal={isModal} setModal={setIsModal} />
+      <BookConsultationModal modal={isBookModal} setModal={setIsBookModal} />
     </>
   )
 }

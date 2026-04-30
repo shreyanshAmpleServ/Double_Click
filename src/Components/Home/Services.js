@@ -183,11 +183,11 @@ const Services = () => {
                 <img
                   src={baseURL + item?.icon.url}
                   alt=""
-                  className="service-image w-full !h-48 object-cover shadow-lg transition-transform duration-300 hover:scale-110"
+                  className="service-image w-full rounded !h-48 object-cover shadow-lg transition-transform duration-300 hover:scale-110"
                 />
               </div>
 
-              <div className="card-content box-item group h-[43%] bg-white mt-[-1.2rem] bg-opacity-90 backdrop-blur-sm mx-3 relative px-2 py-5 flex flex-col items-center gap-1 text-black shadow-md hover:shadow-2xl hover:-translate-y-4 transition-all duration-300">
+              <div className="card-content box-item group h-[43%] rounded bg-white mt-[-1.2rem] bg-opacity-90 backdrop-blur-sm mx-3 relative px-2 py-5 flex flex-col items-center gap-1 text-black shadow-md hover:shadow-2xl hover:-translate-y-4 transition-all duration-300">
                 <div className="!text-xs !leading-4 !mb-0 font-semibold transform transition-transform duration-300 group-hover:scale-105">
                   {item?.title}
                 </div>

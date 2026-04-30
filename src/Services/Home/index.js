@@ -152,6 +152,14 @@ export const reqQuoteFn = (reqBody) => {
     throw new Error(error?.message)
   }
 }
+export const reqBookConsultationFn = (reqBody) => {
+  try {
+    const response = axiosInstance.post(`/api/consultation-bookings`, reqBody)
+    return response
+  } catch ({ error }) {
+    throw new Error(error?.message)
+  }
+}
 export const newsLatterFn = (reqBody) => {
   try {
     const response = axiosInstance.post(`/api/newsletters`, reqBody)
@@ -180,20 +188,19 @@ export const contactUsFn = (reqBody) => {
 export const captchaVarifyFn = async (params = {}) => {
   // params should be like { token: "..." }
   try {
+    // const token =
+    //   "9d15c4e4596b49219bc83766bd8952f1c51049870af7529c7fc2e7cce5f982e6c4ab392085c5957b53737488deebf87cffd99cb9b4a9e496744d92ecfcaf83df8638846578505adb626f750b32dc75e1fb10d1f152303948f889bde545ca39ca5bc1e46a7bf4e21505bfcaeb43dfa757e9a1e84188346bc71dfa0ce0fa87419b"
     const token =
-      "9d15c4e4596b49219bc83766bd8952f1c51049870af7529c7fc2e7cce5f982e6c4ab392085c5957b53737488deebf87cffd99cb9b4a9e496744d92ecfcaf83df8638846578505adb626f750b32dc75e1fb10d1f152303948f889bde545ca39ca5bc1e46a7bf4e21505bfcaeb43dfa757e9a1e84188346bc71dfa0ce0fa87419b"
-    const response = await axios.get("https://strapi.dcctz.com/dev/api/google/recaptcha/verify", {
+      "b376d1ba3336b663bf6de2714b27e6a20ff4649f2f94f922adcdd4ba5e25fc9a8cb65f62cb301e544226e70a5532041dc41a4a89527b5c4f0eea1d21f7f4d421967342b52b3a7891efa8b1ad8f9590d1aa77680d823a2700e238a7c413d2707cbcf013d4aea7b840fa1147c8dd88f89cafddd7a954b12038c5f9f0539e9940af"
+    const response = await axios.get("https://strapi.dcctz.com/dcc-dev/api/google/recaptcha/verify", {
       params, // → becomes ?token=xxxx
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     })
-    // return the full axios response so component can access response.data
     return response?.data || response
   } catch (err) {
-    // rethrow to let react-query handle it
-    // normalize message
     const message = err?.response?.data?.message || err.message || "Captcha verify failed"
     throw new Error(message)
   }

@@ -13,16 +13,9 @@ const Section1 = ({ values }) => {
   }
   return (
     <>
-      <div className="">
+      {/* <div className="">
         <div
           className="relative h-[19rem] w-full lg:h-[19rem]"
-          // style={{
-          //   backgroundImage: `url(${values?.singleMedia?.url ? baseURL + values?.singleMedia?.url : bg2})`,
-          //   backgroundSize: "cover",
-          //   backgroundPosition: "center",
-          //   backgroundRepeat: "no-repeat",
-          //   backgroundAttachment: "fixed",
-          // }}
         >
           <img
             src={values?.singleMedia?.url ? baseURL + values?.singleMedia?.url : "bg2"}
@@ -39,13 +32,11 @@ const Section1 = ({ values }) => {
             <div className="lg:w-[75%] !text-sm font-thin space border-l-2 p-1 border-red-700 pl-4 ">
               {values?.value || ""}
             </div>
-            {/* <CustomButton variant="outlined" className="!text-white border-3 font-bold !border-white !rounded-full" > GET IN TOUCH <ArrowForwardIosIcon className="!text-base" /></CustomButton> */}
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="w-[100vw] h-[30rem] relative">
-        {/* Loading Skeleton */}
         {isMapLoading && (
           <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center z-10">
             <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse">

@@ -23,11 +23,14 @@ import { useEffect, useMemo } from "react"
 import FAQAccordion from "Components/FAQs"
 import CloudCalculator from "Components/CloudCalc"
 import CloudPage from "Components/DccCloude"
+import SAPAfricaWebsite from "Components/africanPage"
 
 const Menus = () => {
   const baseURL = process.env.REACT_APP_API_URL
   const { id, menu = "Post" } = useParams()
-  const { data: subBlogData, isLoading } = useQuery(["article"], () => blogArticleFn({ id }))
+  const { data: subBlogData, isLoading } = useQuery(["article"], () =>
+    blogArticleFn(id == "cloud-hosting-calculator-direct" ? { id: "cloud-hosting-calculator" } : { id })
+  )
 
   const { pathname } = window.location
   const isFleetManagement = pathname.includes("fleet-management-solution")
@@ -39,6 +42,7 @@ const Menus = () => {
   const isNGLogistics = pathname.includes("dcc-logistics-siute-ng")
   const isHostingCalculator = pathname.includes("cloud-hosting-calculator")
   const isDccCloude = pathname.includes("dcc-cloud")
+  const isSapAfrica = pathname.includes("sap-partner-in-africa") || pathname.includes("sap-agency-in-africa")
   useEffect(() => {
     if (isLoading) {
       document.querySelector(".isLoadingClass").style.display = "flex"
@@ -145,9 +149,11 @@ const Menus = () => {
           ) : isNGLogistics ? (
             <NGLogistics />
           ) : isHostingCalculator ? (
-            <CloudCalculator />
+            <CloudCalculator isDirect={id == "cloud-hosting-calculator-direct"} />
           ) : isDccCloude ? (
             <CloudPage />
+          ) : isSapAfrica ? (
+            <SAPAfricaWebsite />
           ) : (
             <Section1 menu={subBlogData?.data?.data?.[0]?.title || menu} data={subBlogData?.data?.data?.[0]} />
           )}

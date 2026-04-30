@@ -153,6 +153,7 @@ const Posts = () => {
               scale: 1.02,
               duration: 0.3,
               ease: "power2.out",
+              border: "1px solid #d9145b",
             })
 
             gsap.to(card.querySelector(".post-image"), {
@@ -161,12 +162,12 @@ const Posts = () => {
               ease: "power2.out",
             })
 
-            gsap.to(card.querySelector(".post-date"), {
-              backgroundColor: "#3b82f6",
-              color: "#ffffff",
-              duration: 0.2,
-              ease: "power2.out",
-            })
+            // gsap.to(card.querySelector(".post-date"), {
+            //   backgroundColor: "#3b82f6",
+            //   color: "#ffffff",
+            //   duration: 0.2,
+            //   ease: "power2.out",
+            // })
           })
 
           card.addEventListener("mouseleave", () => {
@@ -175,6 +176,7 @@ const Posts = () => {
               scale: 1,
               duration: 0.3,
               ease: "power2.out",
+              border: "1px solid white",
             })
 
             gsap.to(card.querySelector(".post-image"), {
@@ -214,7 +216,7 @@ const Posts = () => {
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="bg-white relative px-4 py-4 lg:py-10 pb-0 flex flex-col items-center gap-1.5 w-[82vw] lg:w-full md:w-full lg:text-black2 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="bg-white section-card relative px-4 py-4 lg:py-5 pb-0 flex flex-col items-center gap-1.5 w-[82vw] lg:w-full md:w-full lg:text-black2 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               <div className="overflow-hidden rounded-lg w-full">
                 <img

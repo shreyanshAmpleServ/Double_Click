@@ -330,8 +330,11 @@ export default function DoubleClickWebsite() {
               >
                 Request a demo <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="cta-button text-[#2f3985] border border-[#2f3985] px-6 py-3 rounded  hover:bg-blue-50 ">
-                <a href="/contact" className="flex items-center justify-center gap-2 font-inter font-medium">
+              <button
+                onClick={() => document.getElementById("book-consultation-id")?.click()}
+                className="cta-button text-[#2f3985] border border-[#2f3985] px-6 py-3 rounded  hover:bg-blue-50 "
+              >
+                <a href="#" className="flex items-center justify-center gap-2 font-inter font-medium">
                   {" "}
                   Book for consultation <ArrowRight className="w-4 h-4" />
                 </a>

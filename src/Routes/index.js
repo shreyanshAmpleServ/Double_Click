@@ -34,8 +34,12 @@ export const routes = [
   { id: 6, path: "/faq", component: <Questionaires />, navItem: "Questionair" },
   { id: 7, path: "/no-article-found", component: <NoDataFound />, navItem: "None" },
   { id: 7, path: "/sap-africa", component: <SAPAfricaWebsite />, navItem: "None" },
+  { id: 7, path: "/en-za/sap-africa", component: <SAPAfricaWebsite />, navItem: "None" },
+  { id: 7, path: "/sap-partner-in-africa", component: <SAPAfricaWebsite />, navItem: "None" },
   { id: 7, path: "/sap-usa", component: <USSAPWebsite />, navItem: "None" },
+  { id: 7, path: "/en-us/sap-usa", component: <USSAPWebsite />, navItem: "None" },
   { id: 7, path: "/sap-uk", component: <SAPGlobalWebsite />, navItem: "None" },
+  { id: 7, path: "/en-gb/sap-uk", component: <SAPGlobalWebsite />, navItem: "None" },
   { id: 7, path: "*", component: <NoDataFound />, navItem: "None" },
 ]
 

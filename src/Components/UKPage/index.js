@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react"
+import { Helmet } from "react-helmet-async"
 
 /* ─── UK DATA ─────────────────────────────────────────────────────────────── */
 
 const STATS = [
-  { num: "120+", label: "UK Projects Delivered" },
-  { num: "15+", label: "Sectors Served" },
-  { num: "24/7", label: "UK Support Desk" },
+  { num: "$2B+", label: "Capital Managed" },
+  { num: "200+", label: "Fortune 500 Clients" },
+  { num: "24", label: "UK Support Desk" },
   { num: "100%", label: "SAP Certified Team" },
 ]
 
@@ -517,7 +518,7 @@ function Hero() {
                     color: "#d9145b",
                   }}
                 >
-                  SAP Gold Partner — UK & Ireland
+                  SAP Gold Partner — UK
                 </span>
               </div>
             </div>
@@ -533,7 +534,8 @@ function Hero() {
                   marginBottom: 24,
                 }}
               >
-                Precision SAP for <span className="shimmer-rose">British</span> Enterprise
+                <span className="shimmer-rose">Next-Gen SAP</span> Automation for UK Enterprises
+                {/* Precision SAP for <span className="shimmer-rose">British</span> Enterprise */}
               </h1>
             </div>
 
@@ -548,15 +550,15 @@ function Hero() {
                   maxWidth: 500,
                 }}
               >
-                Empowering UK organisations with bespoke SAP solutions — HMRC-compliant, GDPR-ready, and engineered for
-                the demands of modern British commerce.
+                Empowering UK enterprises for scalable growth, Double Click Consulting SAP solutions are HMRC-compliant,
+                GDPR-ready, and engineered for the demands of the new digital age.
               </p>
             </div>
 
             <div className={`flex gap-4 flex-wrap ${inView ? "in-up d4" : "opacity-0"}`}>
               <a
                 href={"#"}
-                onClick={() => document.getElementById("request-quote")?.click()}
+                onClick={() => document.getElementById("book-consultation-id")?.click()}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -660,6 +662,7 @@ function Hero() {
                       style={{ fontSize: 40, fontWeight: 700, lineHeight: 1, marginBottom: 8 }}
                     >
                       {val}
+                      {s.num == "24" ? "/7" : ""}
                     </div>
                     <div
                       style={{
@@ -1427,7 +1430,7 @@ function CTA() {
           measurable growth.
         </p>
         <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-          <PrimaryBtn onClick={() => document.getElementById("request-quote")?.click()}>
+          <PrimaryBtn onClick={() => document.getElementById("book-consultation-id")?.click()}>
             Book Free Consultation
           </PrimaryBtn>
           <OutlineBtn>Contact Us Now</OutlineBtn>
@@ -1469,17 +1472,44 @@ function CTA() {
 
 export default function SAPUK({ onSwitch }) {
   return (
-    <div className="uk-page">
-      <style>{CSS}</style>
-      {/* <Nav onSwitch={onSwitch} /> */}
-      <Hero />
-      <About />
-      <Services />
-      <Coverage />
-      <Cases />
-      <WhyUs />
-      <CTA />
-    </div>
+    <>
+      <Helmet>
+        <title>SAP Services in UK | Expert SAP Consulting & Implementation</title>
+
+        <meta name="title" content="SAP Services in the UK | Expert SAP Consulting & Implementation." />
+        <meta
+          name="description"
+          content="Need SAP experts in the UK? Get fast, secure, and cost-effective SAP consulting, implementation, and support for enterprises and growing businesses."
+        />
+
+        <meta
+          name="keywords"
+          content="SAP implementation services UK, SAP consulting company UK, certified SAP partner UK, SAP technology partner UK, SAP consultants London, SAP services Europe"
+        />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="SAP Services in the UK | Expert SAP Consulting & Implementation" />
+        <meta
+          property="og:description"
+          content="Get expert SAP consulting, implementation, and support services across the UK. Trusted SAP partner for enterprises and growing businesses."
+        />
+
+        {/* Canonical */}
+        <link rel="canonical" href="https://doubleclick.co.tz/en-gb/sap-services-uk" />
+      </Helmet>
+
+      <div className="uk-page">
+        <style>{CSS}</style>
+        {/* <Nav onSwitch={onSwitch} /> */}
+        <Hero />
+        <About />
+        <Services />
+        <Coverage />
+        <Cases />
+        <WhyUs />
+        <CTA />
+      </div>
+    </>
   )
 }
 

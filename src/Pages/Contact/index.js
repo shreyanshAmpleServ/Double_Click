@@ -60,8 +60,8 @@ const Contact = () => {
       {/* {isLoading && <div className="fixed h-[100vh] w-[100vw] z-50 bg-black bg-opacity-85 flex justify-center items-center"> <Loader /></div>} */}
 
       <div className="w-[100vw] min-h-[73vh] min-w-[320px] !bg-white max-w-screen-2xl mx-auto overflow-hidden">
-        <Section1 values={values} />
         <ContactForm />
+        <Section1 values={values} />
       </div>
     </>
   )

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import { Helmet } from "react-helmet-async"
 
 // ─── Data (Tailored for US Market) ───────────────────────────────────────────
 
@@ -178,17 +179,61 @@ function Hero() {
             </div>
 
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.05] mb-8">
-              Next-Gen <span className="text-[#d9145b]">SAP</span> <br />
-              Transformation.
+              {/* Next-Gen <span className="text-[#d9145b]">SAP</span> <br />
+              Transformation. */}
+              <span className="text-[#d9145b]">SAP</span> ERP, Cloud Solutions - Powering US Businesses
             </h1>
 
-            <p className="text-slate-500 text-xl leading-relaxed mb-10 max-w-lg font-light">
+            <p className="text-slate-500 text-lg leading-normal mb-4 max-w-lg font-light">
+              A premier SAP agency in the USA, Double Click Consulting offers end-to-end SAP ERP solutions from{" "}
+              <strong className="!text-black !font-bold">
+                Planning → Implementation → Integration → Analytics → Optimization → Support.
+              </strong>
+            </p>
+            <p className="text-slate-500 text-base leading-relaxed mb-10 max-w-lg font-light">
+              20+ years of transforming digital landscapes for US Fortune 500 companies through cloud-first SAP
+              strategies and faster deployment.
+            </p>
+            {/* <p className="text-slate-500 text-xl leading-relaxed mb-10 max-w-lg font-light">
               Accelerating digital maturity for US Fortune 500 companies through cloud-first SAP strategies and
               high-velocity deployment.
-            </p>
+            </p> */}
 
             <div className="flex flex-wrap gap-5">
-              <PrimaryBtn>Request Executive Brief</PrimaryBtn>
+              {/* <PrimaryBtn>Request Executive Brief</PrimaryBtn> */}
+              <a
+                href={"#"}
+                onClick={() => document.getElementById("book-consultation-id")?.click()}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "#d9145b",
+                  color: "#fff",
+                  fontFamily: "Outfit,sans-serif",
+                  fontWeight: 700,
+                  fontSize: 14,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  padding: "16px 32px",
+                  borderRadius: 999,
+                  textDecoration: "none",
+                  transition: "all .3s",
+                  border: "none",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#9b0d3f"
+                  e.currentTarget.style.transform = "translateY(-2px)"
+                  e.currentTarget.style.boxShadow = "0 16px 40px rgba(217,20,91,.35)"
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#d9145b"
+                  e.currentTarget.style.transform = "translateY(0)"
+                  e.currentTarget.style.boxShadow = "none"
+                }}
+              >
+                Request Executive Brief <span>→</span>
+              </a>
               <div className="flex items-center gap-3 text-slate-400 text-sm font-medium">
                 <span className="w-12 h-px bg-slate-200" />
                 Strategic SAP Partner
@@ -262,7 +307,7 @@ function Services() {
           {SERVICES.map((s, i) => (
             <div
               key={i}
-              className={`p-10 rounded-[32px] bg-slate-50 hover:bg-white hover:shadow-2xl hover:shadow-slate-200 transition-all duration-500 group ${isInView ? "animate-scale" : "opacity-0"}`}
+              className={`p-10 rounded-[32px] bg-slate-50 hover:bg-white hover:shadow-2xl hover:shadow-slate-600 transition-all duration-500 group ${isInView ? "animate-scale" : "opacity-0"}`}
               style={{ animationDelay: `${i * 0.1}s`, animationFillMode: "forwards" }}
             >
               <div className="text-4xl mb-6 p-4 bg-white rounded-2xl w-fit shadow-sm group-hover:scale-110 transition-transform">
@@ -270,9 +315,9 @@ function Services() {
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">{s.title}</h3>
               <p className="text-slate-500 leading-relaxed mb-8">{s.desc}</p>
-              <div className="text-[#d9145b] font-bold text-xs uppercase tracking-widest flex items-center gap-2 cursor-pointer group-hover:gap-4 transition-all">
+              {/* <div className="text-[#d9145b] font-bold text-xs uppercase tracking-widest flex items-center gap-2 cursor-pointer group-hover:gap-4 transition-all">
                 View Framework <span className="text-lg">→</span>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
@@ -387,7 +432,7 @@ function FinalCTA() {
         <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_center,_#d9145b_0%,_transparent_70%)]" />
       </div>
       <div className={`relative z-10 max-w-4xl mx-auto text-center ${isInView ? "animate-fade-up" : "opacity-0"}`}>
-        <h2 className="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+        <h2 className="text-5xl md:text-7xl font-black text-black leading-tight mb-8">
           Elevate Your <br />
           <span className="text-[#d9145b]">Digital Core.</span>
         </h2>
@@ -398,7 +443,7 @@ function FinalCTA() {
           {/* <PrimaryBtn>Request Executive Consultation</PrimaryBtn> */}
           <a
             href={"#"}
-            onClick={() => document.getElementById("request-quote")?.click()}
+            onClick={() => document.getElementById("book-consultation-id")?.click()}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -407,7 +452,7 @@ function FinalCTA() {
               color: "#fff",
               fontFamily: "Outfit,sans-serif",
               fontWeight: 700,
-              fontSize: 11,
+              fontSize: 14,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
               padding: "16px 32px",
@@ -431,7 +476,7 @@ function FinalCTA() {
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center border-2 border-white/20 text-white font-bold px-10 py-4 rounded-full hover:bg-white hover:text-slate-900 transition-all"
+            className="inline-flex items-center justify-center border-2 border-white/40 text-white font-bold px-10 py-4 rounded-full hover:bg-white  hover:!text-slate-800 transition-all"
           >
             Contact US Office
           </a>
@@ -443,15 +488,41 @@ function FinalCTA() {
 
 export default function USSAPWebsite() {
   return (
-    <div className="min-h-screen font-sans antialiased text-slate-900 bg-white">
-      <style>{styles}</style>
-      <Hero />
-      <TrustBar />
-      <Services />
-      <ValueSection />
-      <USCoverage />
-      <CaseStudies />
-      <FinalCTA />
-    </div>
+    <>
+      <Helmet>
+        <title>SAP Services in USA | Expert SAP Consulting & Cost-Effective Solutions.</title>
+
+        <meta name="title" content="SAP Services in the USA | Expert SAP Consulting & Cost-Effective Solutions." />
+        <meta
+          name="description"
+          content="Looking for SAP services in the USA? We provide expert SAP consulting, implementation, migration, and support for businesses across New York, California, and beyond. Delivering scalable, high-performance SAP solutions."
+        />
+
+        <meta
+          name="keywords"
+          content="SAP company in USA, SAP solutions company USA, SAP ERP services USA, SAP agency in USA, SAP partners in USA, SAP consulting USA, SAP implementation USA"
+        />
+
+        <link rel="canonical" href="https://doubleclick.co.tz/en-us/sap-services-usa" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="SAP Services in the USA | Expert SAP Consulting" />
+        <meta
+          property="og:description"
+          content="Expert SAP consulting, implementation, and support services across the USA. Trusted SAP partner for scalable enterprise solutions."
+        />
+      </Helmet>
+
+      <div className="min-h-screen font-sans antialiased text-slate-900 bg-white">
+        <style>{styles}</style>
+        <Hero />
+        <TrustBar />
+        <Services />
+        <ValueSection />
+        <USCoverage />
+        <CaseStudies />
+        <FinalCTA />
+      </div>
+    </>
   )
 }

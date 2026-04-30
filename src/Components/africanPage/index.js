@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import { Helmet } from "react-helmet-async"
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -33,12 +34,24 @@ const SERVICES = [
     desc: "Seamlessly integrate SAP with your existing systems for better data flow, unified reporting, and operational efficiency.",
     icon: "◎",
   },
+  {
+    num: "06",
+    title: "DCC Logistics Suite NG",
+    desc: "AI-powered logistics solutions including fleet management, freight forwarding, inland depot handling, warehouse management, live tracking, real-time profit insights, and intelligent decision making. ",
+    icon: "◎",
+  },
+  {
+    num: "07",
+    title: "DCC Could Services",
+    desc: "Enterprise-specific cloud integration services in your existing ERP system for accessibility, strong data security, low dependency on IT resources, affordable pricing and faster ROI conversions.",
+    icon: "◎",
+  },
 ]
 
 const STATS = [
-  { num: "50+", label: "Projects Delivered" },
-  { num: "10+", label: "Countries Served" },
-  { num: "24/7", label: "Support Available" },
+  { num: "450+", label: "Projects Delivered" },
+  { num: "20+", label: "Countries Served" },
+  { num: "24", label: "Support Available" },
   { num: "100%", label: "SAP Certified Team" },
 ]
 
@@ -73,23 +86,47 @@ const CASES = [
 const WHY_ITEMS = [
   {
     title: "Certified SAP Experts",
-    desc: "Fully accredited consultants with proven, hands-on SAP experience across sectors",
+    desc: (
+      <>
+        <strong>SAP Expert team</strong> with hands-on industry experience in the global market.
+      </>
+    ),
   },
   {
     title: "Deep African Market Knowledge",
-    desc: "We understand the unique regulatory, operational, and cultural realities of African business",
+    desc: (
+      <>
+        Customized SAP solutions based on <strong>Africa regional market analytics</strong> for faster business
+        operations, data-driven.
+      </>
+    ),
   },
   {
     title: "End-to-End Under One Roof",
-    desc: "From strategy to implementation, integration, and support — one partner, zero handoffs",
+    desc: (
+      <>
+        <strong>Complete ERP solutions</strong> from installation, integration, configuration, logistics, CRM, analytics
+        and after delivery customer support.
+      </>
+    ),
   },
   {
     title: "Fast, Efficient Deployment",
-    desc: "Structured delivery methodology that minimizes downtime and accelerates time-to-value",
+    desc: (
+      <>
+        Efficient SAP deployment with automated data migration tools, faster project strategies, minimal downtime and
+        seamless integration with the existing ERP system.
+      </>
+    ),
   },
   {
     title: "Dedicated 24/7 Support Team",
-    desc: "Round-the-clock monitoring and support so your operations never stop",
+    desc: (
+      <>
+        We have a dedicated support team with <strong>24/7 availability</strong>. We offer real-time issue resolutions
+        and operational support.
+      </>
+    ),
   },
 ]
 
@@ -126,6 +163,25 @@ function useInView(options = {}) {
   }, [])
 
   return [ref, isInView]
+}
+function useCountUp(target, active) {
+  const [val, setVal] = useState(0)
+  useEffect(() => {
+    if (!active) return
+    const n = parseInt(target.replace(/\D/g, ""))
+    if (!n) return
+    let cur = 0
+    const step = n / 60
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, n)
+      setVal(Math.floor(cur))
+      if (cur >= n) clearInterval(t)
+    }, 16)
+    return () => clearInterval(t)
+  }, [active])
+  const pre = target.match(/^[^\d]*/)?.[0] ?? ""
+  const suf = target.match(/[^\d]*$/)?.[0] ?? ""
+  return `${pre}${val}${suf}`
 }
 
 // ─── Modern Corporate Styles ───────────────────────────────────────────────
@@ -209,37 +265,89 @@ function Hero() {
           <div className={`max-w-2xl ${isInView ? "animate-fade-left" : "opacity-0"}`}>
             <div className="inline-flex items-center gap-2 bg-[#d9145b]/10 text-[#d9145b] text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
               <span className="w-2 h-2 bg-[#d9145b] rounded-full" />
-              SAP Gold Partner
+              SAP Gold Partner - Africa
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] mb-8">
-              Driving <span className="text-[#d9145b]">Digital</span> <br />
-              Enterprise Success
+              Transform Digital <span className="text-[#d9145b]">ERP </span>landscape for Africa
+              {/* <span className="text-[#d9145b]">Digital</span> <br />
+              Enterprise Success */}
             </h1>
 
-            <p className="text-slate-500 text-lg leading-relaxed mb-10 max-w-lg">
+            {/* <p className="text-slate-500 text-lg leading-relaxed mb-10 max-w-lg">
               Empowering African businesses with high-performance SAP solutions tailored for growth, efficiency, and
               regional scalability.
-            </p>
+            </p> */}
+            <div className="mb-10 max-w-lg">
+              <ul className="space-y-2 text-slate-600 text-[15px] !pl-2 leading-relaxed">
+                <li className="flex items-start gap-2">
+                  <span className="w-5 h-5 bg-gradient-to-r from-[#7B2FBE] to-[#E040A0] text-white rounded-full flex items-center justify-center text-[10px] mt-[2px]">
+                    ✓
+                  </span>
+                  <span>Enterprise Ready SAP Consulting & Services in Africa</span>
+                </li>
+
+                <li className="flex items-start gap-2">
+                  <span className="w-5 h-5 bg-gradient-to-r from-[#7B2FBE] to-[#E040A0] text-white rounded-full flex items-center justify-center text-[10px] mt-[2px]">
+                    ✓
+                  </span>
+                  <span>
+                    Customized ERP solutions like{" "}
+                    <strong className="!text-black !font-bold">SAP Business One, SAP S/4HANA </strong> & more
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-2">
+                  <span className="w-5 h-5 bg-gradient-to-r from-[#7B2FBE] to-[#E040A0] text-white rounded-full flex items-center justify-center text-[10px] mt-[2px]">
+                    ✓
+                  </span>
+
+                  <span>
+                    <strong className="!text-black !font-bold">DCC SAP Cloud </strong> Integration & Services
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-2">
+                  <span className="w-5 h-5 bg-gradient-to-r from-[#7B2FBE] to-[#E040A0] text-white rounded-full flex items-center justify-center text-[10px] mt-[2px]">
+                    ✓
+                  </span>
+                  <span>
+                    AI-Powered <strong className="!text-black !font-bold">Logistics Management Solutions</strong>
+                  </span>
+                </li>
+              </ul>
+            </div>
 
             <div className="flex flex-wrap gap-4">
-              <PrimaryBtn>Book Consultation</PrimaryBtn>
-              <OutlineBtn>Learn More</OutlineBtn>
+              {/* <PrimaryBtn>Book Consultation</PrimaryBtn> */}
+              <a
+                onClick={() => document.getElementById("book-consultation-id")?.click()}
+                href="#"
+                className="inline-block bg-[#d9145b] hover:bg-[#b01149] text-white font-bold tracking-widest uppercase px-10 py-5 rounded-xl text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#d9145b]/25"
+              >
+                Book Consultation
+              </a>
+              <OutlineBtn href="#services">Learn More</OutlineBtn>
             </div>
           </div>
 
           <div className={`relative ${isInView ? "animate-fade-right" : "opacity-0"}`}>
             <div className="grid grid-cols-2 gap-6">
-              {STATS.map((s, i) => (
-                <div
-                  key={i}
-                  className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 text-center animate-scale"
-                  style={{ animationDelay: `${i * 0.1}s` }}
-                >
-                  <div className="text-4xl font-black text-[#d9145b] mb-2">{s.num}</div>
-                  <div className="text-slate-500 text-xs font-bold uppercase tracking-wider">{s.label}</div>
-                </div>
-              ))}
+              {STATS.map((s, i) => {
+                const val = useCountUp(s.num, isInView)
+                return (
+                  <div
+                    key={i}
+                    className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 text-center animate-scale"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    <div className="text-4xl font-black text-[#d9145b] mb-2">
+                      {val} {s.num == "24" ? "/7" : ""}
+                    </div>
+                    <div className="text-slate-500 text-xs font-bold uppercase tracking-wider">{s.label}</div>
+                  </div>
+                )
+              })}
               <div
                 className="col-span-2 bg-[#d9145b] p-8 rounded-3xl shadow-2xl shadow-[#d9145b]/20 text-center text-white animate-scale"
                 style={{ animationDelay: "0.4s" }}
@@ -647,7 +755,7 @@ function FinalCTA() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            onClick={() => document.getElementById("request-quote")?.click()}
+            onClick={() => document.getElementById("book-consultation-id")?.click()}
             href="#"
             className="inline-block bg-[#d9145b] hover:bg-[#b01149] text-white font-bold tracking-widest uppercase px-10 py-5 rounded-xl text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#d9145b]/25"
           >
@@ -669,15 +777,47 @@ function FinalCTA() {
 
 export default function SAPAfricaWebsite() {
   return (
-    <div className="min-h-screen font-sans antialiased ">
-      <style>{styles}</style>
-      <Hero />
-      <About />
-      <Services />
-      <Coverage />
-      <CaseStudies />
-      <WhyUs />
-      <FinalCTA />
-    </div>
+    <>
+      <Helmet>
+        <title>SAP Services in South Africa | Trusted SAP Consulting Experts - DoubleClick Consulting</title>
+        <meta
+          name={"SAP Services in South Africa | Trusted SAP Consulting Experts"}
+          content={`This page is SAP Services in South Africa | Trusted SAP Consulting Experts page of Double click cunsulting.`}
+        />
+        <meta
+          name="keywords"
+          content="SAP agency in South Africa, SAP partners in Africa, SAP business Africa, best SAP agency in South Africa, top SAP partners in Africa,Contact DoubleClick, IT consulting, digital solutions, support, DoubleClick contact"
+        />
+        <link rel="canonical" href="https://doubleclick.co.tz/en-za/sap-africa" />
+        <meta
+          property="og:title"
+          content={`SAP Services in South Africa | Trusted SAP Consulting Experts | DoubleClick Consulting`}
+        />
+        <meta
+          property="og:description"
+          content={
+            "Get reliable SAP services in South Africa. We provide SAP consulting, implementation & support for businesses in Johannesburg, kenaya, Cape Town & across SA. Connect us Today!"
+          }
+        />
+        <meta name="title" content={`SAP Services in South Africa | Trusted SAP Consulting Experts`} />
+        <meta
+          name="description"
+          content={
+            "Get reliable SAP services in South Africa. We provide SAP consulting, implementation & support for businesses in Johannesburg, kenaya, Cape Town & across SA. Connect us Today!"
+          }
+        />
+      </Helmet>
+
+      <div className="min-h-screen font-sans antialiased ">
+        <style>{styles}</style>
+        <Hero />
+        <About />
+        <Services />
+        <Coverage />
+        <CaseStudies />
+        <WhyUs />
+        <FinalCTA />
+      </div>
+    </>
   )
 }
