@@ -454,7 +454,7 @@ const RequestQuoteModal2 = ({ modal, setModal }) => {
                         name="name"
                         value={personalData.name}
                         onChange={handleChange}
-                        placeholder="John Doe"
+                        placeholder="Name"
                         className={ic(errors.name)}
                       />
                     </Field>
@@ -464,7 +464,7 @@ const RequestQuoteModal2 = ({ modal, setModal }) => {
                         name="email"
                         value={personalData.email}
                         onChange={handleChange}
-                        placeholder="john@company.com"
+                        placeholder="xyz@gmail.com"
                         className={ic(errors.email)}
                       />
                     </Field>
@@ -511,7 +511,7 @@ const RequestQuoteModal2 = ({ modal, setModal }) => {
                     </Field>
                   </div>
 
-                  <Field label="Project Details" error={errors.message} index={4} emoji="💬">
+                  <Field label="Brief Details" error={errors.message} index={4} emoji="💬">
                     <textarea
                       name="message"
                       value={personalData.message}
@@ -950,7 +950,7 @@ export default RequestQuoteModal2
 //                       name="name"
 //                       value={personalData.name}
 //                       onChange={handleChange2}
-//                       placeholder="John Doe"
+//                       placeholder="XYZ"
 //                       className={inputClass(errors.name)}
 //                     />
 //                   </Field>

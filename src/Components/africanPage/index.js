@@ -255,7 +255,7 @@ function Hero() {
   const [ref, isInView] = useInView()
 
   return (
-    <section id="home" className="relative min-h-screen  pt-2 flex items-center bg-white overflow-hidden">
+    <section id="home" className="relative !py-10  pt-2 flex items-center bg-white overflow-hidden">
       {/* Elegant Background Decor */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -z-10 rounded-l-[100px]" />
       <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-[#d9145b]/5 rounded-full blur-3xl" />
@@ -323,7 +323,7 @@ function Hero() {
               <a
                 onClick={() => document.getElementById("book-consultation-id")?.click()}
                 href="#"
-                className="inline-block bg-[#d9145b] hover:bg-[#b01149] text-white font-bold tracking-widest uppercase px-10 py-5 rounded-xl text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#d9145b]/25"
+                className="inline-block bg-[#d9145b] hover:bg-[#b01149] text-white font-bold tracking-widest uppercase px-6 py-5 !rounded-full !text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#d9145b]/25"
               >
                 Book Consultation
               </a>
@@ -808,7 +808,7 @@ export default function SAPAfricaWebsite() {
         />
       </Helmet>
 
-      <div className="min-h-screen font-sans antialiased ">
+      <div className="min-h-screen font-sans antialiased !max-w-screen-2xl !mx-auto ">
         <style>{styles}</style>
         <Hero />
         <About />

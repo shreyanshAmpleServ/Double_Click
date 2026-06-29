@@ -1,22 +1,23 @@
-import Questionaires from "Components/Aboutus/Questionaires"
-import Section1 from "Components/Aboutus/Section1"
-import Teams from "Components/Aboutus/Teams"
-import CoreValues from "Components/AboutUsNew/CoreValue"
-import CTASection from "Components/AboutUsNew/CTASection"
-import Differentiators from "Components/AboutUsNew/Differection"
-import PartnershipsSection from "Components/AboutUsNew/PartnershipSection"
-import VisionSection from "Components/AboutUsNew/Vision"
-import DoubleClickHero from "Components/Home/AboutSection"
-import Connections from "Components/Home/Connect"
-import Quotes from "Components/Home/Quote"
+import { Suspense, lazy, useEffect } from "react"
 import { Helmet } from "react-helmet-async"
 import { useQuery } from "react-query"
 import { useLocation } from "react-router-dom"
 import { aboutServiceFn, contactSEOFn } from "Services/Home"
 import Loader from "Shared/Loader"
 import logo from "../../Assests/Content/logo_footer.png"
-import FuelERPFeatures from "Components/OilGas"
-import { useEffect } from "react"
+
+const Questionaires = lazy(() => import("Components/Aboutus/Questionaires"))
+const Section1 = lazy(() => import("Components/Aboutus/Section1"))
+const Teams = lazy(() => import("Components/Aboutus/Teams"))
+const CoreValues = lazy(() => import("Components/AboutUsNew/CoreValue"))
+const CTASection = lazy(() => import("Components/AboutUsNew/CTASection"))
+const Differentiators = lazy(() => import("Components/AboutUsNew/Differection"))
+const PartnershipsSection = lazy(() => import("Components/AboutUsNew/PartnershipSection"))
+const VisionSection = lazy(() => import("Components/AboutUsNew/Vision"))
+const DoubleClickHero = lazy(() => import("Components/Home/AboutSection"))
+const Connections = lazy(() => import("Components/Home/Connect"))
+const Quotes = lazy(() => import("Components/Home/Quote"))
+const FuelERPFeatures = lazy(() => import("Components/OilGas"))
 
 const AboutUs = () => {
   const location = useLocation()
@@ -31,14 +32,6 @@ const AboutUs = () => {
   // const findData = (key) => {
   //   return aboutData?.data?.data?.blocks?.filter((item) => item.__component === key)?.[0]
   // }
-  useEffect(() => {
-    if (isLoading) {
-      document.querySelector(".isLoadingClass").style.display = "flex"
-    } else {
-      document.querySelector(".isLoadingClass").style.display = "none"
-      window.scrollTo(0, 0)
-    }
-  }, [isLoading])
   const seoData = aboutSeoData?.data?.data?.[0]?.seo
 
   return (
@@ -92,107 +85,25 @@ const AboutUs = () => {
       )} */}
 
       <div className=" w-[100vw] min-w-[320px] !bg-white max-w-screen-2xl mx-auto">
-        {isAboutUsTeam && <Section1 isTeam={isAboutUsTeam} data={aboutData?.data?.data} />}
-        {!isAboutUsTeam ? (
-          // <div className="flex px-[5%] py-[1%]  flex-wrap">
-          //   {aboutData?.data?.data?.blocks?.map((item) => (
-          //     <>
-          //       {item.__component === "shared.about" && (
-          //         <AboutSection
-          //           customWidth={item.renderBlock}
-          //           value={item.renderBlock?.value}
-          //           data={item?.body}
-          //           type={0}
-          //         />
-          //       )}
-          //       {item.__component === "shared.contact-form" && <ContactForm />}
-          //       {item.__component === "shared.team" && (
-          //         <Teams
-          //           value={item.renderBlock?.value}
-          //           data={item?.team}
-          //           title={item?.title}
-          //           description={item?.description}
-          //         />
-          //       )}
-          //       {item.__component === "shared.rich-text" && (
-          //         <AboutSection
-          //           customWidth={item.renderBlock}
-          //           value={item.renderBlock?.value}
-          //           data={item?.body}
-          //           type={1}
-          //         />
-          //       )}
-          //       {item.__component === "shared.html-markdown-wrapper" && (
-          //         <AboutSection
-          //           customWidth={item.renderBlock}
-          //           value={item.renderBlock?.value}
-          //           data={item?.body}
-          //           type={3}
-          //         />
-          //       )}
-          //       {item.__component === "shared.carousel-button" && (
-          //         <div
-          //           style={
-          //             ({ fontSize: `${item?.renderBlock?.fontSize && fontSizeCalc(item?.renderBlock?.fontSize)}` },
-          //             item?.renderBlock?.styleCSS)
-          //           }
-          //           className={`flex  justify-center my-3 w-[100%] ${widthCalculate(item?.renderBlock?.value)}  ${
-          //             item?.renderBlock?.padding
-          //           } ${item?.renderBlock?.margin}  ${item?.renderBlock?.htmlCSSClasses}  `}
-          //         >
-          //           {" "}
-          //           <CustomButton
-          //             style={({ width: "90%" }, item?.renderBlock?.innerStyleCSS)}
-          //             className={` ${item?.renderBlock?.innerHtmlCSSClasses}!bg-[#2f3985] !font-semibold  !px-10 !py-3 whitespace-nowrap !text-lg w-[75%] lg:w-[30%]  !rounded-full`}
-          //           >
-          //             <a href={item?.link}> {item.name}</a>
-          //           </CustomButton>
-          //         </div>
-          //       )}
-          //       {item.__component === "shared.slider-wrapper" && (
-          //         <Sliders customWidth={item.renderBlock} value={item.renderBlock?.value} data={item?.files} />
-          //       )}
-          //       {item.__component === "shared.quote" && <QuoteSection value={item.renderBlock?.value} data={item} />}
-          //       {item.__component === "shared.media" && (
-          //         <AboutSection customWidth={item.renderBlock} value={item.renderBlock?.value} data={item} type={2} />
-          //       )}
-          //       {item.__component === "shared.media-wrapper" && (
-          //         <AboutSection
-          //           customWidth={item.renderBlock}
-          //           value={item.renderBlock?.value}
-          //           data={{ file: item?.file, thumbnail: item?.thumbnail_image }}
-          //           type={2}
-          //         />
-          //       )}
-          //       {item.__component === "shared.stack-images" && (
-          //         <AboutSection
-          //           value={item?.renderBlock?.value}
-          //           customWidth={item.renderBlock}
-          //           data={item?.files}
-          //           type={4}
-          //         />
-          //       )}
-          //     </>
-          //   ))}
-          // </div>
-          <div>
-            <DoubleClickHero />
-            {/* <HeroSection /> */}
-            {/* <EnhancedOurStorySection /> */}
-            <Differentiators />
-            <CoreValues />
-            <VisionSection />
-            <PartnershipsSection />
-            <CTASection />
-          </div>
-        ) : (
-          <>
-            <Teams />
-            <Quotes />
-
-            <Questionaires isAboutUsTeam={true} />
-          </>
-        )}
+        <Suspense fallback={<Loader />}>
+          {isAboutUsTeam && <Section1 isTeam={isAboutUsTeam} data={aboutData?.data?.data} />}
+          {!isAboutUsTeam ? (
+            <div>
+              <DoubleClickHero />
+              <Differentiators />
+              <CoreValues />
+              <VisionSection />
+              <PartnershipsSection />
+              <CTASection />
+            </div>
+          ) : (
+            <>
+              <Teams />
+              <Quotes />
+              <Questionaires isAboutUsTeam={true} />
+            </>
+          )}
+        </Suspense>
         <Connections />
       </div>
     </>

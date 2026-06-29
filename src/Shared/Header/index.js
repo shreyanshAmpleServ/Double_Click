@@ -85,18 +85,58 @@ const Header = () => {
   }, [isLoading])
   return (
     <>
-      {/* {isLoading && (
-        <div className="fixed family-serif2 h-[100vh] w-[100vw] z-40 bg-black bg-opacity-90 flex justify-center items-center">
-          <Loader />
-        </div>
-      )} */}
-      <header className="w-full family-serif2 hidden lg:block z-30">
+      <style>
+        {`
+        .menu-option a:hover {
+          background-color: #f9f9f9;
+          border-color: #e5e5e5;
+          berder-width: 2px;
+          border-style: solid;
+          border-radius: 8px;
+          border-left-width: 4px;
+          border-left-color: #d9145b;
+          font-weight: 600;
+          font-size: 0.75rem;
+        }
+
+        .nav-link-decorative {
+          position: relative;
+         padding: 0.65rem  0.15rem !important;
+          transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-link-decorative:hover {
+          transform: translateY(-1px);
+        }
+
+        .nav-link-decorative::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0.25rem;
+          width: 100%;
+          height: 2px;
+          border-radius: 999px;
+          background: linear-gradient(90deg, #dc2626, #2f3985);
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform 0.35s ease;
+        }
+
+        .nav-link-decorative:hover::after,
+        .group:hover > .nav-link-decorative::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+`}
+      </style>
+      <header className="w-full family-serif2 !max-w-screen-2xl !mx-auto  hidden lg:block z-30">
         <div className="w-full !bg-[#4b5563]  text-white">
           <div className="flex pl-[5rem] pr-[3rem] max-w-screen-2xl mx-auto justify-between p-2">
             <div className="col">
               <img src={SAPLogo} className="h-8 w-16" alt="SAP Logo" />
             </div>
-            <div className="col-md-auto">
+            {/* <div className="col-md-auto">
               <span className="mr-3">
                 <PhoneIphoneIcon className="!text-white !font-thin !text-sm" />
                 {findData("company_phone")?.value}
@@ -104,6 +144,21 @@ const Header = () => {
               <span className="mr-3">
                 <EmailIcon className="!text-white !font-thin mr-1 !text-sm" />
                 {findData("company_email")?.value}
+              </span>
+            </div> */}
+            <div className="col-md-auto">
+              <span className="mr-3">
+                <PhoneIphoneIcon className="!text-white !font-thin !text-sm" />
+                <a href={`tel:${findData("company_phone")?.value}`} className="text-white no-underline ml-1">
+                  {findData("company_phone")?.value}
+                </a>
+              </span>
+
+              <span className="mr-3">
+                <EmailIcon className="!text-white !font-thin mr-1 !text-sm" />
+                <a href={`mailto:${findData("company_email")?.value}`} className="text-white no-underline">
+                  {findData("company_email")?.value}
+                </a>
               </span>
             </div>
           </div>
@@ -121,7 +176,7 @@ const Header = () => {
 
           {/* Desktop Menu */}
           <div
-            className="hidden !uppercase lg:flex space-x-3 !text-sm !font-medium align-content-end !text-black1"
+            className="hidden !uppercase lg:flex space-x-3 items-center !text-sm !font-medium align-content-end !text-black1"
             style={{ fontWeight: "600", color: "#333" }}
           >
             <div className="nav-item-animate">
@@ -142,7 +197,7 @@ const Header = () => {
                   <path d="M19 9l-7 7-7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <div className="absolute w-auto bg-white border border-gray-200 shadow-xl text-xs whitespace-nowrap font-medium rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform scale-y-0 origin-top group-hover:scale-y-100">
+              <div className="menu-option absolute w-auto bg-white border border-gray-200 shadow-xl text-xs whitespace-nowrap font-medium rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform scale-y-0 origin-top group-hover:scale-y-100">
                 <a
                   href="/aboutus/company-profile"
                   className="!capitalize hover:text-red-600 whitespace-nowrap border-b border-gray-100 flex px-5 py-2 hover:bg-gray-50 transition-colors duration-300"
@@ -162,7 +217,7 @@ const Header = () => {
             {blogData?.data?.map(
               (item) =>
                 item?.slug !== "blogs" && (
-                  <div key={item.slug} className="group nav-item-animate">
+                  <div key={item.slug} className="group  nav-item-animate">
                     <a
                       href={item?.article ? `/${item?.article?.slug}` : "#"}
                       className="nav-link-decorative hover:!text-red-600 flex items-center"
@@ -180,7 +235,7 @@ const Header = () => {
                       )}
                     </a>
                     {item?.children?.length > 0 && (
-                      <div className="absolute w-auto bg-white shadow-xl border border-gray-200 text-xs whitespace-nowrap font-medium rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform scale-y-0 origin-top group-hover:scale-y-100">
+                      <div className="absolute menu-option w-auto bg-white shadow-xl border border-gray-200 text-xs whitespace-nowrap font-medium rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform scale-y-0 origin-top group-hover:scale-y-100">
                         {item?.children
                           ?.slice()
                           .sort((a, b) => a.order - b.order)

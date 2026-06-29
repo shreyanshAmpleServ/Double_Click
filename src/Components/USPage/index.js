@@ -166,7 +166,7 @@ function Hero() {
   const [ref, isInView] = useInView()
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-white overflow-hidden">
+    <section id="home" className="relative  flex items-center bg-white overflow-hidden">
       <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 -z-10 rounded-l-[120px]" />
       <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-[#d9145b]/5 rounded-full blur-3xl" />
 
@@ -513,7 +513,7 @@ export default function USSAPWebsite() {
         />
       </Helmet>
 
-      <div className="min-h-screen font-sans antialiased text-slate-900 bg-white">
+      <div className="min-h-screen font-sans antialiased text-slate-900 bg-white !max-w-screen-2xl !mx-auto ">
         <style>{styles}</style>
         <Hero />
         <TrustBar />

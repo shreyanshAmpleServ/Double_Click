@@ -442,7 +442,6 @@ function Hero() {
       id="home"
       style={{
         position: "relative",
-        minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
@@ -1498,7 +1497,7 @@ export default function SAPUK({ onSwitch }) {
         <link rel="canonical" href="https://doubleclick.co.tz/en-gb/sap-services-uk" />
       </Helmet>
 
-      <div className="uk-page">
+      <div className="uk-page !max-w-screen-2xl !mx-auto ">
         <style>{CSS}</style>
         {/* <Nav onSwitch={onSwitch} /> */}
         <Hero />

@@ -1,18 +1,21 @@
-import Connections from "Components/Home/Connect"
-import Quotes from "Components/Home/Quote"
-import QuotationSliders from "Components/Home/quoteSlider"
-import Services from "Components/Home/Services"
-import Sliders from "Components/Home/Slider"
-import VideoSection from "Components/Home/Videos"
+import { Suspense, lazy } from "react"
 import { Helmet } from "react-helmet-async"
 import logo from "../../Assests/Content/logo_footer.png"
-import Posts from "Components/Home/Posts"
-import UponSliderService from "Components/Home/UponSlider"
-import NewsletterSignup from "Components/Home/NewSletter"
-import DoubleClickHero from "Components/Home/AboutSection"
-import DoubleClickWebsite from "Components/Home/HeroSection"
+import Loader from "Shared/Loader"
 import { useQuery } from "react-query"
 import { contactSEOFn } from "Services/Home"
+
+const Connections = lazy(() => import("Components/Home/Connect"))
+const Quotes = lazy(() => import("Components/Home/Quote"))
+const QuotationSliders = lazy(() => import("Components/Home/quoteSlider"))
+const Services = lazy(() => import("Components/Home/Services"))
+const Sliders = lazy(() => import("Components/Home/Slider"))
+const VideoSection = lazy(() => import("Components/Home/Videos"))
+const Posts = lazy(() => import("Components/Home/Posts"))
+const UponSliderService = lazy(() => import("Components/Home/UponSlider"))
+const NewsletterSignup = lazy(() => import("Components/Home/NewSletter"))
+const DoubleClickHero = lazy(() => import("Components/Home/AboutSection"))
+const DoubleClickWebsite = lazy(() => import("Components/Home/HeroSection"))
 
 const Home = () => {
   const { data: contactData } = useQuery(["home-page-seo"], () => contactSEOFn("home-page-seo"))
@@ -59,17 +62,14 @@ const Home = () => {
         <meta property="og:image" content={seoData?.shareImage ? seoData?.shareImage : logo} />
       </Helmet>
       <div className=" w-[100vw] min-h-[73vh] min-w-[320px] !bg-white max-w-screen-2xl mx-auto !overflow-hidden">
-        {/* <Sliders />
-        <UponSliderService /> */}
-        {/* <DoubleClickHero /> */}
-        <DoubleClickWebsite />
-        <Services />
-        <VideoSection />
-        <NewsletterSignup />
-        {/* <Quotes /> */}
-        {/* <QuotationSliders /> */}
-        <Posts />
-        <Connections />
+        <Suspense fallback={<Loader />}>
+          <DoubleClickWebsite />
+          <Services />
+          <VideoSection />
+          <NewsletterSignup />
+          <Posts />
+          <Connections />
+        </Suspense>
       </div>
     </>
   )

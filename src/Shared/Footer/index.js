@@ -447,7 +447,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Section */}
-      <div ref={bottomSectionRef} className="bg-[#4b5563] text-slate-50">
+      <div ref={bottomSectionRef} className="bg-[#4b5563] !max-w-screen-2xl !mx-auto  text-slate-50">
         <div className="flex w-[100vw] min-w-[320px] max-w-screen-2xl mx-auto flex-col lg:flex-row justify-center lg:justify-between pl-6 pr-6 lg:pl-20 lg:pr-8 text-xs font-thin gap-2 lg:gap-6 lg:text-sm items-center py-4 lg:py-6">
           <div className="flex gap-2">
             <div className="hover:text-gray-300 transition-colors duration-300 cursor-pointer">Privacy Policy</div>

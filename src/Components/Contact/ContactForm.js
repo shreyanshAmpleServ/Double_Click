@@ -324,6 +324,7 @@ const ContactForm = () => {
 
       toast.success("Message sent successfully!")
       setInitialData(initialise)
+      recaptchaRef.current?.reset()
     },
     onError: () => {
       // Enhanced error animation
@@ -345,9 +346,13 @@ const ContactForm = () => {
     },
   })
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(initialData)
+
+    if (!captchaStatus) {
+      toast.error("Please complete the captcha verification.")
+      return
+    }
 
     // Enhanced submit animation
     gsap.to(buttonRef.current, {
@@ -357,11 +362,7 @@ const ContactForm = () => {
       repeat: 1,
       ease: "power2.out",
     })
-    const token = await recaptchaRef.current.execute() // runs invisible captcha
-    if (!token) {
-      toast.error("Captcha failed. Please try again.")
-      return
-    }
+
     contacUs({ data: initialData })
   }
 

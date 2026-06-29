@@ -1,16 +1,19 @@
-import Questionaires from "Components/Aboutus/Questionaires"
-import SAPGlobalWebsite from "Components/UKPage"
-import USSAPWebsite from "Components/USPage"
-import SAPAfricaWebsite from "Components/africanPage"
+import React, { lazy, Suspense } from "react"
 import Layout from "Layout"
-import AboutUs from "Pages/AboutUs"
-import Blogs from "Pages/Blogs"
-import Contact from "Pages/Contact"
-import Home from "Pages/Home/Home"
-import Menus from "Pages/Menu"
-import Services from "Pages/Service"
-import NoDataFound from "Shared/NoDataFound"
+import Loader from "Shared/Loader"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+
+const Questionaires = lazy(() => import("Components/Aboutus/Questionaires"))
+const SAPGlobalWebsite = lazy(() => import("Components/UKPage"))
+const USSAPWebsite = lazy(() => import("Components/USPage"))
+const SAPAfricaWebsite = lazy(() => import("Components/africanPage"))
+const AboutUs = lazy(() => import("Pages/AboutUs"))
+const Blogs = lazy(() => import("Pages/Blogs"))
+const Contact = lazy(() => import("Pages/Contact"))
+const Home = lazy(() => import("Pages/Home/Home"))
+const Menus = lazy(() => import("Pages/Menu"))
+const Services = lazy(() => import("Pages/Service"))
+const NoDataFound = lazy(() => import("Shared/NoDataFound"))
 
 export const routes = [
   { id: 1, path: "/", component: <Home />, navItem: "Home" },
@@ -46,19 +49,21 @@ export const routes = [
 const RouterProvider = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        {routes.map((route) => {
-          return (
-            <Route
-              key={route.id}
-              path={route.path}
-              element={
-                <Layout id={route.id} navLink={route.path} navItem={route.navItem} component={route.component} />
-              }
-            />
-          )
-        })}
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          {routes.map((route) => {
+            return (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={
+                  <Layout id={route.id} navLink={route.path} navItem={route.navItem} component={route.component} />
+                }
+              />
+            )
+          })}
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }

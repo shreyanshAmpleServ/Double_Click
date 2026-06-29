@@ -620,7 +620,7 @@ const BookConsultationModal = ({ modal, setModal }) => {
                         name="name"
                         value={personalData.name}
                         onChange={handleChange}
-                        placeholder="John Doe"
+                        placeholder="XYZ"
                         className={inputClass(errors.name)}
                       />
                     </Field>

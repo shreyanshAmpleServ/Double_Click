@@ -1,8 +1,11 @@
-import Connections from "Components/Home/Connect"
-import AboutSection from "Components/Services/AboutSection"
-import Section1 from "Components/Services/Section1"
-import CoreServices from "Components/Services/Services"
+import { Suspense, lazy } from "react"
 import { Helmet } from "react-helmet-async"
+import Loader from "Shared/Loader"
+
+const Connections = lazy(() => import("Components/Home/Connect"))
+const AboutSection = lazy(() => import("Components/Services/AboutSection"))
+const Section1 = lazy(() => import("Components/Services/Section1"))
+const CoreServices = lazy(() => import("Components/Services/Services"))
 
 const Services = () => {
   return (
@@ -21,11 +24,12 @@ const Services = () => {
         />
       </Helmet>
       <div className=" w-[100vw] overflow-hidden">
-        <Section1 />
-        {/* <ContactForm /> */}
-        <AboutSection />
-        <CoreServices />
-        <Connections />
+        <Suspense fallback={<Loader />}>
+          <Section1 />
+          <AboutSection />
+          <CoreServices />
+          <Connections />
+        </Suspense>
       </div>
     </>
   )

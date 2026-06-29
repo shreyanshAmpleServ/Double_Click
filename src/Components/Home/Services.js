@@ -25,7 +25,7 @@ const Services = () => {
         gsap.set(titleRef.current, { y: -60, opacity: 0, scale: 0.7 })
         gsap.set(subtitleRef.current, { y: 40, opacity: 0 })
         gsap.set(".service-card", { y: 120, opacity: 0, scale: 0.6, rotationY: 20 })
-        gsap.set(".service-image", { scale: 1.4, y: 60, opacity: 0.7 })
+        gsap.set(".service-image", { borderRadius: "10px", scale: 1.4, y: 60, opacity: 0.7 })
         gsap.set(".card-content", { y: 40, opacity: 0 })
         gsap.set(".read-more-btn", { x: -30, opacity: 0 })
       }
@@ -95,6 +95,7 @@ const Services = () => {
               duration: 2.2,
               stagger: 0.2,
               ease: "power1.out",
+              borderRadius: "10px",
             },
             "-=1.8"
           )
@@ -117,7 +118,7 @@ const Services = () => {
             {
               x: 0,
               opacity: 1,
-              duration: 1.2,
+              duration: 1,
               stagger: 0.1,
               ease: "power1.out",
             },
@@ -199,12 +200,25 @@ const Services = () => {
                   {item?.description}
                 </div>
 
-                <div className="read-more-btn text-lg font-semibold flex items-center mt-auto text-black transition-all duration-300 group-hover:text-red-600">
+                <a
+                  href={
+                    item?.description?.includes("DCC Cloud")
+                      ? "dcc-cloud"
+                      : item?.description?.includes("S4/HANA")
+                        ? "products-and-solutions/sap-s4-hana"
+                        : item?.description?.includes("Custom Development")
+                          ? "products-and-solutions/products-and-solutions/dcc-logistics-siute-ng"
+                          : item?.description?.includes("Consulting Services")
+                            ? "products-and-solutions/sap-business-one"
+                            : "#"
+                  }
+                  className="read-more-btn text-lg font-semibold flex items-center mt-auto text-black transition-all duration-300 group-hover:text-red-600"
+                >
                   <FaCaretRight className="!text-red-600 transition-transform duration-300 group-hover:translate-x-1" />
                   <span className="text-gray-800 font-semibold text-xs transition-colors duration-300 group-hover:text-red-600">
                     Read More
                   </span>
-                </div>
+                </a>
 
                 <div className="absolute bottom-0 left-1/2 w-0 h-1 bg-primary-red transition-all duration-500 group-hover:left-0 group-hover:w-full"></div>
               </div>

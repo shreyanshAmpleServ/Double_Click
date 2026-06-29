@@ -26,6 +26,7 @@ const AboutSection = ({ data, customWidth, value, type, isMarked }) => {
             <div>
               {" "}
               <div
+                className="prose-content"
                 dangerouslySetInnerHTML={{
                   __html: customWidth?.fontSize ? marked(data.replace("font-size:", "")) : marked(data),
                 }}
@@ -57,7 +58,7 @@ const AboutSection = ({ data, customWidth, value, type, isMarked }) => {
               <span className="text-primary">{data?.title}</span> 
             </div> */}
           <div
-            className=" w-full"
+            className="prose-content w-full"
             dangerouslySetInnerHTML={{ __html: customWidth?.fontSize ? data.replace("font-size:", "") : data }}
           />
           {/* <div className="text-base text-slate-600 mb-4">
