@@ -216,35 +216,39 @@ const Posts = () => {
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="bg-white section-card relative px-4 py-4 lg:py-5 pb-0 flex flex-col items-center gap-1.5 w-[82vw] lg:w-full md:w-full lg:text-black2 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="bg-white section-card relative px-4 py-4 lg:py-5 pb-0 flex flex-col items-center gap-1 w-[82vw] lg:w-full md:w-full lg:text-black2 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
             >
-              <div className="overflow-hidden rounded-lg w-full">
+              <div className="overflow-hidden rounded-lg w-full relative bg-gray-200 animate-pulse">
                 <img
                   src={baseURL + item?.thumbnail_image?.url}
                   alt=""
-                  className="post-image w-full h-64 object-cover transition-all duration-300 rounded-lg"
-                  loading="eager" // Ensure images load immediately
+                  className="post-image w-full h-64 object-cover transition-all duration-500 rounded-lg opacity-0"
+                  loading="eager"
+                  onLoad={(e) => {
+                    e.target.classList.remove('opacity-0');
+                    e.target.parentElement.classList.remove('animate-pulse', 'bg-gray-200');
+                  }}
                 />
               </div>
 
-              <div className="post-content w-full px-2">
-                <div className="text-lg font-semibold hover:text-red-700 text-nowrap overflow-hidden w-[100%] text-ellipsis mb-2">
+              <div className="post-content w-full px-2 mt-3">
+                <div className="text-sm lg:text-base font-bold font-inter text-gray-900 hover:text-red-700 text-nowrap overflow-hidden w-[100%] text-ellipsis mb-2 transition-colors duration-300">
                   <a href={`${window.location.origin}/post/${item.slug}`}>{item?.title}</a>
                 </div>
 
                 <div
                   onClick={() => setDescOpen(descOpen === index ? null : index)}
-                  className={`text-sm font-extralight famiy-serif2 w-[100%] ${
+                  className={`text-sm lg:text-base font-inter w-[100%] ${
                     descOpen === index ? "" : "text-nowrap overflow-hidden text-ellipsis"
-                  } leading-6 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors duration-300`}
+                  } leading-relaxed text-gray-600 cursor-pointer hover:text-gray-900 transition-colors duration-300`}
                 >
                   {item?.description}
                 </div>
               </div>
 
-              <div className="post-date flex justify-between p-2 mb-1 items-center gap-2 text-xs  font-extralight mt-2 !text-slate-800 bg-gray-100 w-full rounded cursor-pointer group transition-all duration-300">
+              <div className="post-date flex justify-between px-3 py-2.5 mb-1 items-center gap-2 text-sm font-medium font-inter mt-3 !text-gray-500 bg-gray-50 w-full rounded-md cursor-pointer group transition-all duration-300 border border-gray-100">
                 <div>Published at</div>
-                <div className="!text-xs">{moment(item?.createdAt).format("LL")}</div>
+                <div className="text-gray-700">{moment(item?.createdAt).format("LL")}</div>
               </div>
             </div>
           ))}

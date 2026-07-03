@@ -22,6 +22,7 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
         teko: ["Teko", "sans-serif"],
         sans: [
+          "Inter",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",

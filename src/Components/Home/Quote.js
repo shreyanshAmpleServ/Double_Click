@@ -43,7 +43,7 @@ if (!document.getElementById("quotes-styles")) {
     .q-blob { animation: qBlob 8s ease-in-out infinite; }
     .q-orbit { animation: qOrbit 9s linear infinite; }
     .q-orbit-b { animation: qOrbitB 13s linear infinite; }
-    .q-shimmer-bar { background: linear-gradient(120deg,#dc2626,#ef4444,#f97316,#dc2626); background-size:300% auto; animation: qShimmer 3s linear infinite; }
+    .q-shimmer-bar { background: linear-gradient(120deg,#e11d48,#ef4444,#fb7185,#e11d48); background-size:300% auto; animation: qShimmer 3s linear infinite; }
     .q-bg-grad { background: linear-gradient(140deg,#fff8f6,#fff5f0,#fdf4ff,#f0f9ff); background-size:400% 400%; animation: qGradShift 12s ease infinite; }
 
     .q-input {
@@ -60,7 +60,7 @@ if (!document.getElementById("quotes-styles")) {
     }
     .q-input::placeholder { color: #9ca3af; }
     .q-input:hover:not(:focus) { border-color: #fca5a5; }
-    .q-input:focus { border-color: #dc2626; box-shadow: 0 0 0 4px rgba(220,38,38,.10); background: #fff; }
+    .q-input:focus { border-color: #e11d48; box-shadow: 0 0 0 4px rgba(220,38,38,.10); background: #fff; }
     .q-input.error { border-color: #f87171; background: #fff5f5; }
     .q-input::-webkit-scrollbar { width: 4px; }
     .q-input::-webkit-scrollbar-track { background: transparent; }
@@ -75,8 +75,8 @@ if (!document.getElementById("quotes-styles")) {
       transform: translateY(-50%);
       width: 10px;
       height: 10px;
-      border-right: 2px solid #dc2626;
-      border-bottom: 2px solid #dc2626;
+      border-right: 2px solid #e11d48;
+      border-bottom: 2px solid #e11d48;
       transform: translateY(-65%) rotate(45deg);
       pointer-events: none;
     }
@@ -94,7 +94,7 @@ if (!document.getElementById("quotes-styles")) {
     }
 
     .q-submit-btn {
-      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      background: linear-gradient(135deg, #e11d48 0%, #b91c1c 100%);
       box-shadow: 0 8px 30px rgba(220,38,38,.40), 0 2px 8px rgba(0,0,0,.1);
       transition: box-shadow .3s, transform .2s;
     }
@@ -118,12 +118,12 @@ const Blob = ({ style, delay = "0s" }) => (
 
 const FloatingBadge = ({ icon, label, value, cls, style }) => (
   <div
-    className={`absolute z-20 bg-white/85 rounded-2xl shadow-lg px-3 py-2.5 flex items-center gap-2.5 border border-red-100 ${cls}`}
+    className={`absolute z-20 bg-white/85 rounded-2xl shadow-lg px-3 py-2.5 flex items-center gap-2.5 border border-rose-100 ${cls}`}
     style={style}
   >
     <span className="text-xl leading-none">{icon}</span>
     <div>
-      <div className="q-label text-red-400" style={{ fontSize: 9 }}>
+      <div className="q-label text-rose-400" style={{ fontSize: 9 }}>
         {label}
       </div>
       <div className="q-dm text-xs font-bold text-gray-800 mt-0.5">{value}</div>
@@ -143,7 +143,7 @@ const fv = {
 
 const Field = ({ label, error, index, emoji, children }) => (
   <motion.div custom={index} variants={fv} initial="hidden" animate="show">
-    <label className="q-label text-red-500 flex items-center gap-1.5 mb-1.5 pl-0.5">
+    <label className="q-label text-rose-500 flex items-center gap-1.5 mb-1.5 pl-0.5">
       <span className="text-sm">{emoji}</span>
       {label}
     </label>
@@ -154,7 +154,7 @@ const Field = ({ label, error, index, emoji, children }) => (
           initial={{ opacity: 0, y: -4, height: 0 }}
           animate={{ opacity: 1, y: 0, height: "auto" }}
           exit={{ opacity: 0, y: -4, height: 0 }}
-          className="q-dm text-red-500 text-xs mt-1.5 pl-0.5 font-medium"
+          className="q-dm text-rose-500 text-xs mt-1.5 pl-0.5 font-medium"
         >
           ⚠ {error}
         </motion.p>
@@ -253,24 +253,24 @@ const Quotes = () => {
     <section
       ref={sectionRef}
       className="py-20 px-4 sm:px-6 lg:px-16 relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #fff 0%, #fff5f3 50%, #f8f4ff 100%)" }}
+      style={{ background: "linear-gradient(180deg, #fff 0%, #fff1f2 50%, #fff 100%)" }}
     >
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute top-10 right-20 w-80 h-80 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #dc2626, transparent)", filter: "blur(60px)" }}
+          style={{ background: "radial-gradient(circle, #e11d48, transparent)", filter: "blur(60px)" }}
         />
         <div
           className="absolute bottom-20 left-10 w-64 h-64 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #7c3aed, transparent)", filter: "blur(50px)" }}
+          style={{ background: "radial-gradient(circle, #e11d48, transparent)", filter: "blur(50px)" }}
         />
         <div
-          className="q-spin absolute top-16 right-40 w-20 h-20 rounded-full border-[2px] border-dashed border-red-200/60"
+          className="q-spin absolute top-16 right-40 w-20 h-20 rounded-full border-[2px] border-dashed border-rose-200/60"
           style={{ top: "5%", right: "8%" }}
         />
         <div
-          className="q-spin absolute w-12 h-12 rounded-full border-[2px] border-dashed border-red-300/40"
+          className="q-spin absolute w-12 h-12 rounded-full border-[2px] border-dashed border-rose-300/40"
           style={{ bottom: "12%", left: "5%", animationDirection: "reverse", animationDuration: "14s" }}
         />
       </div>
@@ -283,13 +283,13 @@ const Quotes = () => {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-14 relative"
       >
-        <span className="q-label text-red-400 tracking-widest">Request A</span>
+        {/* <span className="q-label text-rose-400 tracking-widest">Request A</span> */}
         <h2 className="q-playfair text-4xl md:text-5xl font-black text-gray-900 mt-2 mb-3">
           Free{" "}
           <span
             className="italic"
             style={{
-              background: "linear-gradient(135deg, #dc2626 0%, #f97316 100%)",
+              background: "linear-gradient(135deg, #e11d48 0%, #fb7185 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -301,9 +301,9 @@ const Quotes = () => {
           Tell us about your project and we'll craft the perfect solution.
         </p>
         <div className="flex items-center justify-center gap-2 mt-4">
-          <div className="w-8 h-[2px] rounded-full bg-red-500" />
-          <div className="w-2 h-2 rounded-full bg-red-400" />
-          <div className="w-8 h-[2px] rounded-full bg-red-500" />
+          <div className="w-8 h-[2px] rounded-full bg-rose-500" />
+          <div className="w-2 h-2 rounded-full bg-rose-400" />
+          <div className="w-8 h-[2px] rounded-full bg-rose-500" />
         </div>
       </motion.div>
 
@@ -333,16 +333,16 @@ const Quotes = () => {
               </motion.div>
               <h3 className="q-playfair text-4xl font-black text-gray-800 mb-3 text-center">Quote Sent!</h3>
               <p className="q-dm text-gray-500 text-center max-w-xs text-sm leading-relaxed">
-                Our team will review and reply within <span className="text-red-500 font-semibold">24 hours</span> with
+                Our team will review and reply within <span className="text-rose-500 font-semibold">24 hours</span> with
                 a tailored proposal.
               </p>
-              <div className="mt-8 w-40 h-1.5 rounded-full bg-red-100 overflow-hidden">
+              <div className="mt-8 w-40 h-1.5 rounded-full bg-rose-100 overflow-hidden">
                 <motion.div
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 3.2, ease: "linear" }}
                   className="h-full rounded-full"
-                  style={{ background: "linear-gradient(90deg, #dc2626, #f97316)" }}
+                  style={{ background: "linear-gradient(90deg, #e11d48, #fb7185)" }}
                 />
               </div>
               <p className="q-dm text-xs text-gray-400 mt-2">Closing automatically…</p>
@@ -358,7 +358,7 @@ const Quotes = () => {
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           className="hidden lg:flex lg:w-[42%] relative flex-col justify-between overflow-hidden"
           style={{
-            background: "linear-gradient(160deg, #fff5ed 0%, #ffe4cc 50%, #ffd0b0 100%)",
+            background: "linear-gradient(160deg, #fff1f2 0%, #ffe4e6 50%, #fecdd3 100%)",
             minHeight: 560,
           }}
         >
@@ -367,7 +367,7 @@ const Quotes = () => {
             style={{
               width: 260,
               height: 260,
-              background: "radial-gradient(circle, #ffb38a, #dc2626)",
+              background: "radial-gradient(circle, #fda4af, #e11d48)",
               top: -80,
               right: -80,
               opacity: 0.4,
@@ -377,7 +377,7 @@ const Quotes = () => {
             style={{
               width: 180,
               height: 180,
-              background: "radial-gradient(circle, #f97316, #dc2626)",
+              background: "radial-gradient(circle, #fb7185, #e11d48)",
               bottom: 50,
               left: -60,
               opacity: 0.3,
@@ -388,7 +388,7 @@ const Quotes = () => {
             style={{
               width: 110,
               height: 110,
-              background: "radial-gradient(circle, #fde68a, #f97316)",
+              background: "radial-gradient(circle, #ffe4e6, #fb7185)",
               top: "45%",
               right: 15,
               opacity: 0.25,
@@ -397,16 +397,16 @@ const Quotes = () => {
           />
 
           {/* Spinning rings */}
-          <div className="q-spin absolute top-5 right-5 w-20 h-20 rounded-full border-[2.5px] border-dashed border-red-300/60" />
+          <div className="q-spin absolute top-5 right-5 w-20 h-20 rounded-full border-[2.5px] border-dashed border-rose-300/60" />
           <div
-            className="q-spin absolute bottom-8 left-5 w-12 h-12 rounded-full border-[2.5px] border-dashed border-orange-300/50"
+            className="q-spin absolute bottom-8 left-5 w-12 h-12 rounded-full border-[2.5px] border-dashed border-rose-300/50"
             style={{ animationDirection: "reverse", animationDuration: "12s" }}
           />
 
           {/* Orbiting dots */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 pointer-events-none">
-            <div className="q-orbit absolute w-4 h-4 rounded-full bg-red-500 shadow-lg" />
-            <div className="q-orbit-b absolute w-3 h-3 rounded-full bg-orange-400 shadow-md" />
+            <div className="q-orbit absolute w-4 h-4 rounded-full bg-rose-500 shadow-lg" />
+            <div className="q-orbit-b absolute w-3 h-3 rounded-full bg-rose-400 shadow-md" />
           </div>
 
           {/* Image / Illustration */}
@@ -420,10 +420,10 @@ const Quotes = () => {
                 <img src={imageUrl} alt="Quote illustration" className="w-52 h-52 object-contain drop-shadow-2xl" />
               ) : (
                 <div className="relative w-48 h-48 flex items-center justify-center">
-                  <div className="q-ring absolute inset-0 rounded-full border-4 border-red-400/40" />
-                  <div className="q-ring-d absolute inset-0 rounded-full border-4 border-red-300/30" />
-                  <div className="absolute inset-4 rounded-full bg-red-100/60 q-float-b" />
-                  <div className="absolute inset-8 rounded-full bg-red-200/50 q-float-a" />
+                  <div className="q-ring absolute inset-0 rounded-full border-4 border-rose-400/40" />
+                  <div className="q-ring-d absolute inset-0 rounded-full border-4 border-rose-300/30" />
+                  <div className="absolute inset-4 rounded-full bg-rose-100/60 q-float-b" />
+                  <div className="absolute inset-8 rounded-full bg-rose-200/50 q-float-a" />
                   <span className="q-float-a text-6xl select-none relative z-10">💼</span>
                 </div>
               )}
@@ -449,13 +449,13 @@ const Quotes = () => {
           {/* Bottom copy */}
           <div className="relative z-10 px-8 pb-10 pt-6">
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-6 h-0.5 rounded-full bg-red-500 block" />
-              <span className="q-label text-red-500">Free Consultation</span>
+              <span className="w-6 h-0.5 rounded-full bg-rose-500 block" />
+              <span className="q-label text-rose-500">Free Consultation</span>
             </div>
             <h2 className="q-playfair text-[1.9rem] font-black text-gray-800 leading-tight mb-3">
               Let's Build
               <br />
-              <span className="text-red-500 italic">Something</span>
+              <span className="text-rose-500 italic">Something</span>
               <br />
               Remarkable
             </h2>
@@ -471,7 +471,7 @@ const Quotes = () => {
                 ["5★", "Rating"],
               ].map(([v, l]) => (
                 <div key={l}>
-                  <div className="q-playfair font-black text-xl text-red-500">{v}</div>
+                  <div className="q-playfair font-black text-xl text-rose-500">{v}</div>
                   <div className="q-dm text-[10px] text-gray-400 font-medium mt-0.5">{l}</div>
                 </div>
               ))}
@@ -493,7 +493,7 @@ const Quotes = () => {
               transition={{ delay: 0.15, duration: 0.55 }}
               className="mb-7"
             >
-              <span className="q-label text-red-400">✦ Get Started Today</span>
+              <span className="q-label text-rose-400">✦ Get Started Today</span>
               <h3 className="q-playfair text-[1.85rem] font-black text-gray-800 mt-1 mb-1 leading-tight">
                 Request A Quote
               </h3>
@@ -845,3 +845,4 @@ export default Quotes
 //   )
 // }
 // export default Quotes
+

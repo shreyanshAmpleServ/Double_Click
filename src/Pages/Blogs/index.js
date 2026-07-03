@@ -319,7 +319,7 @@ const Blogs = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-orange-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
                   <div className="relative z-10 w-full">
-                    <div className="overflow-hidden rounded-xl mb-4">
+                    <div className="overflow-hidden rounded-xl mb-4 relative bg-gray-200 animate-pulse">
                       <Image
                         src={
                           item?.thumbnail_image?.url
@@ -327,7 +327,11 @@ const Blogs = () => {
                             : baseURL + item?.cover?.url || DefaultImage
                         }
                         altImage={DefaultImage}
-                        className="blog-image w-full h-64 object-cover transition-all duration-300 rounded-xl"
+                        className="blog-image w-full h-64 object-cover transition-all duration-500 rounded-xl opacity-0"
+                        onLoad={(e) => {
+                          e.target.classList.remove('opacity-0');
+                          e.target.parentElement.classList.remove('animate-pulse', 'bg-gray-200');
+                        }}
                       />
                     </div>
 

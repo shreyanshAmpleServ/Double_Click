@@ -134,10 +134,10 @@ const NewContactForm = () => {
         <IoMdCheckmarkCircle className="text-3xl" />
       </div>
 
-      <div ref={sectionRef} className="py-12 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto">
+      <div ref={sectionRef} className="py-8 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto">
           {/* Section Header */}
-          <div ref={headerRef} className="text-center mb-10">
+          <div ref={headerRef} className="text-center mb-8">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-50 px-3.5 py-1.5 text-xs font-semibold text-[#e91e63] uppercase tracking-wider">
               <HiSparkles /> Free Consultation
             </span>

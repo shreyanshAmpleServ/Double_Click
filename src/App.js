@@ -8,6 +8,7 @@ import { useQuery } from "react-query"
 import "slick-carousel/slick/slick-theme.css"
 import "slick-carousel/slick/slick.css"
 import "./App.css"
+import BookConsultantModal from "Shared/BookConsultantModal"
 
 const App = () => {
   const [theme, setTheme] = useLocalStorage("theme", {
@@ -19,7 +20,7 @@ const App = () => {
     return globalData?.data?.data?.filter((item) => item.key === key)?.[0]
   }
 
-  console.log("globalData", document.getElementsByClassName("dynamic-from-server"))
+  // console.log("globalData", document.getElementsByClassName("dynamic-from-server"))
   useEffect(() => {
     const styleString = findData("embedded-css")?.richText // e.g. "<style>...</style>"
     const scriptString = findData("embedded-javascript")?.richText // e.g. "<script>...</script>"
@@ -91,6 +92,7 @@ const App = () => {
   return (
     <HelmetProvider>
       <ThemeProvider theme={themeConfig}>
+        <BookConsultantModal />
         <RouterProvider />
       </ThemeProvider>
     </HelmetProvider>

@@ -141,3 +141,18 @@ html {
 .rc-anchor {
   /* position: relative !important; */
 }
+
+:root {
+  --cc-bg: #ffffff;
+  --cc-text: #334155;
+  --cc-btn-primary-bg: #f43f5e;
+  --cc-btn-primary-text: #ffffff;
+  --cc-btn-primary-hover-bg: #e11d48;
+  --cc-btn-secondary-bg: #f1f5f9;
+  --cc-btn-secondary-text: #475569;
+  --cc-btn-secondary-hover-bg: #e2e8f0;
+  --cc-border-radius: 8px;
+  --cc-font-family: 'Inter', sans-serif;
+  --cc-z-index: 2000;
+}
+

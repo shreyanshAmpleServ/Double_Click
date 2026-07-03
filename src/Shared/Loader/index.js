@@ -67,29 +67,31 @@ const Loader = () => {
   ]
 
   return (
-    <div className="relative flex items-center justify-center" style={{ width: "120px", height: "120px" }}>
-      {/* Main morphing shape */}
-      <div
-        ref={shapeRef}
-        className="w-16 h-16 shadow-lg"
-        style={{
-          background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
-          boxShadow: `0 0 20px ${theme.palette.primary.main}40`,
-        }}
-      />
-
-      {/* Floating particles */}
-      {particlePositions.map((pos, i) => (
+    <div className="flex items-center justify-center w-full min-h-[50vh]">
+      <div className="relative flex items-center justify-center" style={{ width: "120px", height: "120px" }}>
+        {/* Main morphing shape */}
         <div
-          key={i}
-          ref={(el) => (particlesRef.current[i] = el)}
-          className="absolute w-2 h-2 rounded-full"
+          ref={shapeRef}
+          className="w-16 h-16 shadow-lg"
           style={{
-            backgroundColor: theme.palette.primary.main,
-            ...pos,
+            background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.light})`,
+            boxShadow: `0 0 20px ${theme.palette.primary.main}40`,
           }}
         />
-      ))}
+
+        {/* Floating particles */}
+        {particlePositions.map((pos, i) => (
+          <div
+            key={i}
+            ref={(el) => (particlesRef.current[i] = el)}
+            className="absolute w-2 h-2 rounded-full"
+            style={{
+              backgroundColor: theme.palette.primary.main,
+              ...pos,
+            }}
+          />
+        ))}
+      </div>
     </div>
   )
 }

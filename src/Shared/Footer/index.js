@@ -320,7 +320,7 @@ const Footer = () => {
               <div>
                 <img src={baseURL + findData("company_logo")?.singleMedia?.url} alt="Logo" className="h-14 w-auto" />
               </div>
-              <p className="text-sm lg:text-base text-[#818181]">{findData("quote_form_left_side")?.value}</p>
+              <p className="text-sm lg:text-base text-[#818181] text-justify">{findData("quote_form_left_side")?.value}</p>
               <div>
                 <div className="font-bold mb-4 text-xl">We're Social</div>
                 <div className="flex gap-3">

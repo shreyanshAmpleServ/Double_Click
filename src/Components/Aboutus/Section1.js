@@ -19,21 +19,19 @@ const Section1 = ({ data, isTeam }) => {
         <img
           src={data?.featuredMedia?.url ? baseURL + data?.featuredMedia?.url : bg2}
           alt="Banner Background"
-          className={`w-full h-full object-cover transition-transform duration-[10s] ease-out ${
-            isLoaded ? "scale-110" : "scale-100"
-          }`}
+          className={`w-full h-full object-cover transition-transform duration-[10s] ease-out ${isLoaded ? "scale-110" : "scale-100"
+            }`}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/70 to-slate-900/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 md:px-10 lg:px-20 py-10">
         {/* Breadcrumb */}
         <nav
-          className={`flex flex-wrap items-center gap-2 text-[10px] sm:text-xs md:text-sm mb-2 transition-all duration-1000 ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
-          }`}
+          className={`flex flex-wrap items-center gap-2 text-[10px] sm:text-xs md:text-sm mb-2 transition-all duration-1000 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+            }`}
         >
           <button onClick={() => navigate("/")} className="flex items-center gap-1 text-white/70 hover:text-white">
             <Home className="text-xs sm:text-sm" />
@@ -51,14 +49,13 @@ const Section1 = ({ data, isTeam }) => {
 
         {/* Heading */}
         <div
-          className={`max-w-3xl transition-all duration-1000 delay-300 ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          className={`max-w-3xl transition-all duration-1000 delay-300 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
         >
           <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3">
             {isTeam ? (
               <>
-                <span className="block">Meet Our</span>
+                <span className="block !text-white">Meet Our</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-300 to-red-500">
                   Management Team
                 </span>
@@ -84,9 +81,8 @@ const Section1 = ({ data, isTeam }) => {
 
           {/* Description */}
           <p
-            className={`text-white text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mb-4 transition-all duration-1000 delay-500 ${
-              isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`!text-white text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mb-4 transition-all duration-1000 delay-500 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
           >
             {data?.description ||
               "Leading the way in digital transformation and strategic consulting with global expertise and local precision."}
@@ -94,9 +90,8 @@ const Section1 = ({ data, isTeam }) => {
 
           {/* Buttons */}
           <div
-            className={`flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 transition-all duration-1000 delay-700 ${
-              isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
+            className={`flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 transition-all duration-1000 delay-700 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
           >
             <a
               href="/contact"
@@ -116,9 +111,8 @@ const Section1 = ({ data, isTeam }) => {
 
         {/* Stats */}
         <div
-          className={`mt-6 grid grid-cols-2 sm:flex sm:flex-wrap items-start sm:items-center gap-4 sm:gap-8 transition-all duration-1000 delay-1000 ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          className={`mt-6 grid grid-cols-2 sm:flex sm:flex-wrap items-start sm:items-center gap-4 sm:gap-8 transition-all duration-1000 delay-1000 ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
         >
           {[
             { label: "Years Experience", value: "15+", icon: "🏆" },

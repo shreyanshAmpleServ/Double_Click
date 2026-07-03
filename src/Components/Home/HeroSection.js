@@ -265,7 +265,7 @@ export default function DoubleClickWebsite() {
             </div>
 
             {/* Description with proper font family */}
-            <p className="description text-gray-600 text-lg leading-6 mb-4 max-w-lg font-inter">
+            <p className="description text-gray-600 text-lg leading-6 mb-4 max-w-lg font-inter text-justify">
               Learn how we support your business with tailored solutions designed to optimize operations, enhance
               visibility, and drive efficiency across your business to deliver excellence. From advanced systems and
               real-time data insights to streamlined management and automation tools, we empower you to overcome
